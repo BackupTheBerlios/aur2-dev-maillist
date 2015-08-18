@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH] Change reverse view of tests
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Change%20reverse%20view%20of%20tests&In-Reply-To=%3Ca362e8010911151744n206db204g6027c29572af3d96%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000026.html">
+   <LINK REL="Next"  HREF="000028.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH] Change reverse view of tests</H1>
+    <B>Laszlo Papp</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Change%20reverse%20view%20of%20tests&In-Reply-To=%3Ca362e8010911151744n206db204g6027c29572af3d96%40mail.gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH] Change reverse view of tests">djszapi at archlinux.us
+       </A><BR>
+    <I>Mon Nov 16 02:44:30 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000026.html">[aur2-dev] [PATCH] Change reverse view of tests
+</A></li>
+        <LI>Next message: <A HREF="000028.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. f7530b9e3b707cd8f305b89ae95cf8bc6288f9b0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#27">[ date ]</a>
+              <a href="thread.html#27">[ thread ]</a>
+              <a href="subject.html#27">[ subject ]</a>
+              <a href="author.html#27">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Nov 16, 2009 at 1:09 AM, Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt; wrote:
+&gt;<i> Signed-off-by: Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt;
+</I>&gt;<i> ---
+</I>&gt;<i> &#160;archlinux/aur/tests.py | &#160; &#160;6 +++---
+</I>&gt;<i> &#160;1 files changed, 3 insertions(+), 3 deletions(-)
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/archlinux/aur/tests.py b/archlinux/aur/tests.py
+</I>&gt;<i> index 0483095..0cbe82a 100644
+</I>&gt;<i> --- a/archlinux/aur/tests.py
+</I>&gt;<i> +++ b/archlinux/aur/tests.py
+</I>&gt;<i> @@ -47,21 +47,21 @@ class AurViewTests(AurTestCase):
+</I>&gt;<i>
+</I>&gt;<i> &#160;class AurAPITests(AurTestCase):
+</I>&gt;<i> &#160; &#160; def test_search_view(self):
+</I>&gt;<i> - &#160; &#160; &#160; &#160;response = self.client.get(reverse('archlinux.aur.views.api_search', kwargs={
+</I>&gt;<i> + &#160; &#160; &#160; &#160;response = self.client.get(reverse('aur.views.api_search', kwargs={
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; 'query': 'package',
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; 'format': 'json',
+</I>&gt;<i> &#160; &#160; &#160; &#160; }))
+</I>&gt;<i> &#160; &#160; &#160; &#160; self.assertEqual(response.status_code, 200)
+</I>&gt;<i>
+</I>&gt;<i> &#160; &#160; def test_package_view(self):
+</I>&gt;<i> - &#160; &#160; &#160; &#160;response = self.client.get(reverse('archlinux.aur.views.api_package_info', kwargs={
+</I>&gt;<i> + &#160; &#160; &#160; &#160;response = self.client.get(reverse('aur.views.api_package_info', kwargs={
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; 'object_id' :'unique_package',
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; 'format': 'json',
+</I>&gt;<i> &#160; &#160; &#160; &#160; }))
+</I>&gt;<i> &#160; &#160; &#160; &#160; self.assertEqual(response.status_code, 200)
+</I>&gt;<i>
+</I>&gt;<i> &#160; &#160; &#160; &#160; # Requested package does not exist (404)
+</I>&gt;<i> - &#160; &#160; &#160; &#160;response = self.client.get(reverse('archlinux.aur.views.api_package_info', kwargs={
+</I>&gt;<i> + &#160; &#160; &#160; &#160;response = self.client.get(reverse('aur.views.api_package_info', kwargs={
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; 'object_id' :'DoesNotExist',
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; 'format': 'json',
+</I>&gt;<i> &#160; &#160; &#160; &#160; }))
+</I>&gt;<i> --
+</I>&gt;<i> 1.6.5.2
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> aur2-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">aur2-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">https://lists.berlios.de/mailman/listinfo/aur2-dev</A>
+</I>&gt;<i>
+</I>
+Sorry, I will be inactive in the next few days(real life things too),
+so I can't apply the patches until I'm ok again, otherwise I modified
+the archlinux related deletings after your first patch in my working
+branch.
+
+Best Regards,
+Laszlo Papp
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000026.html">[aur2-dev] [PATCH] Change reverse view of tests
+</A></li>
+	<LI>Next message: <A HREF="000028.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. f7530b9e3b707cd8f305b89ae95cf8bc6288f9b0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#27">[ date ]</a>
+              <a href="thread.html#27">[ thread ]</a>
+              <a href="subject.html#27">[ subject ]</a>
+              <a href="author.html#27">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

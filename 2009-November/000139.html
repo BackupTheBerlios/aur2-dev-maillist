@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH] Save added and updated date of models in save	method
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Save%20added%20and%20updated%20date%20of%20models%20in%20save%0A%09method&In-Reply-To=%3C4b12c1f4.47c1f10a.34a3.26f7%40mx.google.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000134.html">
+   <LINK REL="Next"  HREF="000084.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH] Save added and updated date of models in save	method</H1>
+    <B>Ismael Carnales</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Save%20added%20and%20updated%20date%20of%20models%20in%20save%0A%09method&In-Reply-To=%3C4b12c1f4.47c1f10a.34a3.26f7%40mx.google.com%3E"
+       TITLE="[aur2-dev] [PATCH] Save added and updated date of models in save	method">icarnales at gmail.com
+       </A><BR>
+    <I>Sun Nov 29 19:43:12 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000134.html">[aur2-dev] [PATCH] Fix added date on Package and Comment models
+</A></li>
+        <LI>Next message: <A HREF="000084.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 61008e056097dcd6542880ad6ffd1a9cbd9ee6e7
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#139">[ date ]</a>
+              <a href="thread.html#139">[ thread ]</a>
+              <a href="subject.html#139">[ subject ]</a>
+              <a href="author.html#139">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>From: Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt;
+
+* The added datetime for Packages and Comments was getting set in the
+default value (always the datetime from server start), now using the
+model save method for this.
+* Also use save method for setting added on Vote model for consistency.
+
+Signed-off-by: Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt;
+---
+ archlinux/aur/models.py |   24 +++++++++++++++++++-----
+ 1 files changed, 19 insertions(+), 5 deletions(-)
+
+diff --git a/archlinux/aur/models.py b/archlinux/aur/models.py
+index 2a1a81e..1ba3e09 100644
+--- a/archlinux/aur/models.py
++++ b/archlinux/aur/models.py
+@@ -95,8 +95,8 @@ class Package(models.Model):
+     provides = models.ManyToManyField(Provision, null=True, blank=True)
+     deleted = models.BooleanField(default=False)
+     outdated = models.BooleanField(default=False)
+-    added = models.DateTimeField(editable=False, default=datetime.now())
+-    updated = models.DateTimeField()
++    added = models.DateTimeField(editable=False)
++    updated = models.DateTimeField(editable=False)
+     groups = models.ManyToManyField(Group, null=True, blank=True)
+ 
+     def __unicode__(self):
+@@ -115,12 +115,16 @@ class Package(models.Model):
+     get_absolute_url = permalink(get_absolute_url)
+ 
+     def save(self):
+-        self.updated = datetime.now()
++        if not self.id:
++            self.added = datetime.now()
++
+         if not self.slug:
+             import re
+             slug = re.sub('[^\w\s-]', '', self.name).strip().lower()
+             slug = re.sub('[-\s]+', '-', slug)
+             self.slug = slug
++
++        self.updated = datetime.now()
+         super(Package, self).save()
+ 
+     class Meta:
+@@ -167,13 +171,18 @@ class Comment(models.Model):
+     parent = models.ForeignKey('self', null=True, blank=True)
+     user = models.ForeignKey(User)
+     message = models.TextField()
+-    added = models.DateTimeField(editable=False, default=datetime.now())
++    added = models.DateTimeField(editable=False)
+     ip = models.IPAddressField()
+     hidden = models.BooleanField(default=False)
+ 
+     def __unicode__(self):
+         return self.message
+ 
++    def save(self):
++        if not self.id:
++            self.added = datetime.now()
++        super(Comment, self).save()
++
+ 
+ class PackageNotification(models.Model):
+     user = models.ForeignKey(User)
+@@ -187,12 +196,17 @@ class PackageNotification(models.Model):
+ class Vote(models.Model):
+     user = models.ForeignKey(User)
+     package = models.ForeignKey(Package)
+-    added = models.DateTimeField(auto_now_add=True)
++    added = models.DateTimeField(editable=False)
+ 
+     def __unicode__(self):
+         return u&quot;%s's vote for %s&quot; % (self.user.username,
+                 self.package.name)
+ 
++    def save(self):
++        if not self.id:
++            self.added = datetime.now()
++        super(Vote, self).save()
++
+     class Meta:
+         unique_together = ((&quot;user&quot;, &quot;package&quot;),)
+ 
+-- 
+
+This is the style I prefer using for autosaving model creation and update
+dates. It makes all the code visible in the save method so the logic is not
+scattered in many places.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000134.html">[aur2-dev] [PATCH] Fix added date on Package and Comment models
+</A></li>
+	<LI>Next message: <A HREF="000084.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 61008e056097dcd6542880ad6ffd1a9cbd9ee6e7
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#139">[ date ]</a>
+              <a href="thread.html#139">[ thread ]</a>
+              <a href="subject.html#139">[ subject ]</a>
+              <a href="author.html#139">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH] changed ADMIN_MEDIA_PREFIX dir
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20changed%20ADMIN_MEDIA_PREFIX%20dir&In-Reply-To=%3Ca362e8010911141430v4892500cnebf054f1d787e7e2%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000005.html">
+   <LINK REL="Next"  HREF="000012.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH] changed ADMIN_MEDIA_PREFIX dir</H1>
+    <B>Laszlo Papp</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20changed%20ADMIN_MEDIA_PREFIX%20dir&In-Reply-To=%3Ca362e8010911141430v4892500cnebf054f1d787e7e2%40mail.gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH] changed ADMIN_MEDIA_PREFIX dir">djszapi at archlinux.us
+       </A><BR>
+    <I>Sat Nov 14 23:30:30 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000005.html">[aur2-dev] [PATCH] changed ADMIN_MEDIA_PREFIX dir
+</A></li>
+        <LI>Next message: <A HREF="000012.html">[aur2-dev] [PATCH] changed ADMIN_MEDIA_PREFIX dir
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#11">[ date ]</a>
+              <a href="thread.html#11">[ thread ]</a>
+              <a href="subject.html#11">[ subject ]</a>
+              <a href="author.html#11">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Nov 14, 2009 at 11:00 PM, Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt; wrote:
+&gt;<i> ADMIN_MEDIA_PREFIX should be different than MEDIA_URL as stated here:
+</I>&gt;<i> <A HREF="http://docs.djangoproject.com/en/dev/ref/settings/#admin-media-prefix">http://docs.djangoproject.com/en/dev/ref/settings/#admin-media-prefix</A>
+</I>&gt;<i>
+</I>&gt;<i> If they're equal like now, local media serving fails
+</I>&gt;<i>
+</I>&gt;<i> Signed-off-by: Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt;
+</I>&gt;<i> ---
+</I>&gt;<i> &#160;archlinux/settings.py | &#160; &#160;2 +-
+</I>&gt;<i> &#160;1 files changed, 1 insertions(+), 1 deletions(-)
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/archlinux/settings.py b/archlinux/settings.py
+</I>&gt;<i> index f809fee..1d9843e 100644
+</I>&gt;<i> --- a/archlinux/settings.py
+</I>&gt;<i> +++ b/archlinux/settings.py
+</I>&gt;<i> @@ -32,7 +32,7 @@ MEDIA_URL = '<A HREF="http://localhost:8000/media/">http://localhost:8000/media/</A>'
+</I>&gt;<i>
+</I>&gt;<i> &#160;# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
+</I>&gt;<i> &#160;# trailing slash.
+</I>&gt;<i> -ADMIN_MEDIA_PREFIX = '/media/'
+</I>&gt;<i> +ADMIN_MEDIA_PREFIX = '/media/admin_media/'
+</I>&gt;<i>
+</I>&gt;<i> &#160;# Make this unique, and don't share it with anybody.
+</I>&gt;<i> &#160;SECRET_KEY = ''
+</I>&gt;<i> --
+</I>&gt;<i> 1.6.5.2
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> aur2-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">aur2-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">https://lists.berlios.de/mailman/listinfo/aur2-dev</A>
+</I>&gt;<i>
+</I>
+* I prefer imperative words like 'Change' instead of 'changed', if you
+read the git documentation here you will see the best practice (12-13
+lines).
+<A HREF="http://repo.or.cz/w/git.git/blob/HEAD:/Documentation/SubmittingPatches">http://repo.or.cz/w/git.git/blob/HEAD:/Documentation/SubmittingPatches</A>
+
+* Is ADMIN_MEDIA_PREFIX = '/media/admin/' better ?
+
+*  MEDIA_URL = '<A HREF="http://localhost:8000/media/">http://localhost:8000/media/</A>' -&gt; MEDIA_URL = '/media/' ?
+
+Best Regards,
+Laszlo Papp
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000005.html">[aur2-dev] [PATCH] changed ADMIN_MEDIA_PREFIX dir
+</A></li>
+	<LI>Next message: <A HREF="000012.html">[aur2-dev] [PATCH] changed ADMIN_MEDIA_PREFIX dir
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#11">[ date ]</a>
+              <a href="thread.html#11">[ thread ]</a>
+              <a href="subject.html#11">[ subject ]</a>
+              <a href="author.html#11">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

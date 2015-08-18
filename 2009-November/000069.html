@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH 2/2] Minor refactoring to voting
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%202/2%5D%20Minor%20refactoring%20to%20voting&In-Reply-To=%3C1259342509-12502-1-git-send-email-icarnales%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000067.html">
+   <LINK REL="Next"  HREF="000072.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH 2/2] Minor refactoring to voting</H1>
+    <B>Ismael Carnales</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%202/2%5D%20Minor%20refactoring%20to%20voting&In-Reply-To=%3C1259342509-12502-1-git-send-email-icarnales%40gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH 2/2] Minor refactoring to voting">icarnales at gmail.com
+       </A><BR>
+    <I>Fri Nov 27 18:21:49 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000067.html">[aur2-dev] [PATCH 1/2] Fix unvote view
+</A></li>
+        <LI>Next message: <A HREF="000072.html">[aur2-dev] [PATCH 1/2] Fix unvote view
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#69">[ date ]</a>
+              <a href="thread.html#69">[ thread ]</a>
+              <a href="subject.html#69">[ subject ]</a>
+              <a href="author.html#69">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>* Rename when to added (for consistency with other models)
+* Remove passing vote date to constructor (let default value)
+
+Signed-off-by: Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt;
+---
+ archlinux/aur/models.py |    2 +-
+ archlinux/aur/tests.py  |    4 ++--
+ archlinux/aur/views.py  |    3 +--
+ 3 files changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/archlinux/aur/models.py b/archlinux/aur/models.py
+index 4c9bcb8..0f286cd 100644
+--- a/archlinux/aur/models.py
++++ b/archlinux/aur/models.py
+@@ -187,7 +187,7 @@ class PackageNotification(models.Model): class Vote(models.Model): user = models.ForeignKey(User)
+     package = models.ForeignKey(Package)
+-    when = models.DateTimeField(editable=False, default=datetime.now())
++    added = models.DateTimeField(editable=False, default=datetime.now())
+ 
+     def __unicode__(self):
+         return u&quot;%s's vote for %s&quot; % (self.user.username,
+diff --git a/archlinux/aur/tests.py b/archlinux/aur/tests.py
+index 3c5763e..9528a3b 100644
+--- a/archlinux/aur/tests.py
++++ b/archlinux/aur/tests.py
+@@ -68,7 +68,7 @@ class AurViewTests(AurTestCase):
+     def test_unvote_view(self):
+         package = Package.objects.get(name='unique_package')
+         user = User.objects.get(username='normal_user')
+-        Vote(package=package, user=user, when=datetime.now()).save()
++        Vote(package=package, user=user).save()
+         self.client.login(username=user.username, password='normal_user')
+         response = self.client.get(reverse('aur-unvote', kwargs={
+             'object_id': package.name,
+@@ -174,6 +174,6 @@ class AurTemplateTagTests(AurTestCase):
+             {% endif %}
+         &quot;&quot;&quot;)
+         self.assertEquals(template.render(context).strip(), &quot;False&quot;)
+-        Vote(package=package, user=user, when=datetime.now()).save()
++        Vote(package=package, user=user).save()
+         self.assertEquals(template.render(context).strip(), &quot;True&quot;)
+ 
+diff --git a/archlinux/aur/views.py b/archlinux/aur/views.py
+index 70b3b85..5f379a0 100644
+--- a/archlinux/aur/views.py
++++ b/archlinux/aur/views.py
+@@ -162,8 +162,7 @@ def vote(request, object_id):
+     &quot;&quot;&quot;Record a user's vote for a package&quot;&quot;&quot;
+     package = get_object_or_404(Package, name=object_id)
+     try:
+-        Vote(package=package, user=request.user,
+-                when=datetime.now()).save()
++        Vote(package=package, user=request.user).save()
+     except IntegrityError: # Ignore the duplicate.  Voter fraud not allowed!
+         pass # Should we complain?
+     return HttpResponseRedirect(reverse('aur-package_detail',
+-- 
+1.6.5.2
+
+This are some suggested changes over the proposed code. I've renamed &quot;when&quot; to &quot;added&quot; to keep consistence with the other models. For the same reason I haven't used auto_now_add, and kept the editable=False and default (I think this could be a global models.py change). I also removed the use of when in the constructor of Vote letting the default value do the job.
+
+CCing Christopher for review again.
+
+byebye!
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000067.html">[aur2-dev] [PATCH 1/2] Fix unvote view
+</A></li>
+	<LI>Next message: <A HREF="000072.html">[aur2-dev] [PATCH 1/2] Fix unvote view
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#69">[ date ]</a>
+              <a href="thread.html#69">[ thread ]</a>
+              <a href="subject.html#69">[ subject ]</a>
+              <a href="author.html#69">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

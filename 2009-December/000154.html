@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 7987db5d828d2e09b731bd441de17c28785d3d65
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%207987db5d828d2e09b731bd441de17c28785d3d65&In-Reply-To=%3C200912050014.nB50E7WA030920%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000153.html">
+   <LINK REL="Next"  HREF="000155.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 7987db5d828d2e09b731bd441de17c28785d3d65</H1>
+    <B>djszapi at archlinux.us</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%207987db5d828d2e09b731bd441de17c28785d3d65&In-Reply-To=%3C200912050014.nB50E7WA030920%40sheep.berlios.de%3E"
+       TITLE="[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 7987db5d828d2e09b731bd441de17c28785d3d65">djszapi at archlinux.us
+       </A><BR>
+    <I>Sat Dec  5 01:14:07 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000153.html">[aur2-dev] [PATCH] Remove single PKGBUILD uploading from aur	forms
+</A></li>
+        <LI>Next message: <A HREF="000155.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 7987db5d828d2e09b731bd441de17c28785d3d65
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#154">[ date ]</a>
+              <a href="thread.html#154">[ thread ]</a>
+              <a href="subject.html#154">[ subject ]</a>
+              <a href="author.html#154">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project &quot;Project aur2 at BerliOS&quot;.
+
+The branch, master has been updated
+       via  7987db5d828d2e09b731bd441de17c28785d3d65 (commit)
+       via  e56a757194fc366a6fcde963cde1554451bfe42e (commit)
+       via  767a3441275caedafd28b56013abc9dc6a3da850 (commit)
+      from  f352575112bfc859839d939ae3eb172da3b48dae (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit 7987db5d828d2e09b731bd441de17c28785d3d65
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Fri Dec 4 23:44:08 2009 +0100
+
+    Modify OPENID feature for not a launchpad server hardcoded one
+    
+    Remove OPENID_SSO_SERVER_URL from the settings.py with its comments for user to
+    be able to enter the type for OPENID option
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit e56a757194fc366a6fcde963cde1554451bfe42e
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Fri Dec 4 23:17:29 2009 +0100
+
+    Implement OPENID facility on the site
+    
+    Every new big site is using this feature, its the way things are going.
+    It also includes support for using a fixed OpenID server endpoint. Launchpad is
+    support at this commit only, but it will be extended later it's planned.
+    
+    New dependency was established, named django-openid-auth, it can helps with
+    their implementation and documentation.
+    
+    So this dependency was added to the pip-requirements.txt, and the related
+    modifications were established in the settings.py and in the urls.py
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit 767a3441275caedafd28b56013abc9dc6a3da850
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Fri Dec 4 22:17:22 2009 +0100
+
+    Implement Remember me checkbox to the login page
+    
+    This is a typical feature on websites, like in case of AUR too, so it was worth
+    to implement it. The Remember Me feature allows a user to select a Remember Me,
+    checkbox on the website login form.  When checked the user will be &quot;remembered&quot;
+    between browser sessions.
+    
+    The implementation touched the new extended form class, the new view, extended
+    login template, and the url too
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aurprofile/forms.py               |   15 +++++++
+ archlinux/aurprofile/views.py               |   61 +++++++++++++++++++++++++++
+ archlinux/settings.py                       |   17 +++++++
+ archlinux/templates/registration/login.html |   10 +++-
+ archlinux/urls.py                           |    6 ++-
+ pip-requirements.txt                        |    1 +
+ 6 files changed, 106 insertions(+), 4 deletions(-)
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000153.html">[aur2-dev] [PATCH] Remove single PKGBUILD uploading from aur	forms
+</A></li>
+	<LI>Next message: <A HREF="000155.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 7987db5d828d2e09b731bd441de17c28785d3d65
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#154">[ date ]</a>
+              <a href="thread.html#154">[ thread ]</a>
+              <a href="subject.html#154">[ subject ]</a>
+              <a href="author.html#154">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

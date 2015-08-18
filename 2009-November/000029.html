@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] Patch to polish translation for Polish translation.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20Patch%20to%20polish%20translation%20for%20Polish%20translation.&In-Reply-To=%3Cea141e7a0911190944p70d7123es6d7cf71059afbe74%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000033.html">
+   <LINK REL="Next"  HREF="000030.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] Patch to polish translation for Polish translation.</H1>
+    <B>member SpeedVin</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20Patch%20to%20polish%20translation%20for%20Polish%20translation.&In-Reply-To=%3Cea141e7a0911190944p70d7123es6d7cf71059afbe74%40mail.gmail.com%3E"
+       TITLE="[aur2-dev] Patch to polish translation for Polish translation.">speedvin at archlinux.us
+       </A><BR>
+    <I>Thu Nov 19 18:44:44 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000033.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	f7530b9e3b707cd8f305b89ae95cf8bc6288f9b0
+</A></li>
+        <LI>Next message: <A HREF="000030.html">[aur2-dev] Patch to polish translation for Polish translation.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#29">[ date ]</a>
+              <a href="thread.html#29">[ thread ]</a>
+              <a href="subject.html#29">[ subject ]</a>
+              <a href="author.html#29">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello I found I bug (it is?) in Polisch translation in
+<A HREF="http://github.com/sebnow/aur2/blob/pkgbuild/archlinux/locale/pl/LC_MESSAGES/django.po">http://github.com/sebnow/aur2/blob/pkgbuild/archlinux/locale/pl/LC_MESSAGES/django.po</A>
+.
+This is orginal file:
+[code]
+# Polish translation
+
+# Copyright (C) 2007 Sebastian Nowicki
+# This file is distributed under the same license as the AUR package.
+# Sebastian Nowicki &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">xilonmu at gmail</A>&gt;, 2007
+#
+#, fuzzy
+msgid &quot;&quot;
+msgstr &quot;&quot;
+&quot;Project-Id-Version: 1\n&quot;
+&quot;Report-Msgid-Bugs-To: \n&quot;
+&quot;POT-Creation-Date: 2007-10-04 18:08+0800\n&quot;
+&quot;PO-Revision-Date: 2007-10-04 18:08+0800\n&quot;
+&quot;Last-Translator: Sebastian Nowicki &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">xilonmu at gmail.com</A>&gt;\n&quot;
+&quot;Language-Team: Polish &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">pl at li.org</A>&gt;\n&quot;
+&quot;MIME-Version: 1.0\n&quot;
+&quot;Content-Type: text/plain; charset=UTF-8\n&quot;
+&quot;Content-Transfer-Encoding: 8bit\n&quot;
+
+#: templates/base.html:21
+msgid &quot;Logged in as&quot;
+msgstr &quot;Zalogowany jako&quot;
+
+#: templates/base.html:28
+msgid &quot;Get Arch&quot;
+msgstr &quot;&#346;ci&#261;gnij Arch&quot;
+
+#: templates/base.html:30 templates/base.html.py:42
+msgid &quot;Bugs&quot;
+msgstr &quot;B&#322;&#281;dy&quot;
+
+#: templates/base.html:31
+msgid &quot;Wiki&quot;
+msgstr &quot;Wiki&quot;
+
+#: templates/base.html:32
+msgid &quot;Forums&quot;
+msgstr &quot;Dyskusja&quot;
+
+#: templates/base.html:33
+msgid &quot;Home&quot;
+msgstr &quot;Dom&quot;
+
+#: templates/base.html:40
+msgid &quot;Statistics&quot;
+msgstr &quot;Statystyki&quot;
+
+#: templates/base.html:41
+msgid &quot;Mailing List&quot;
+msgstr &quot;Lista Poctowa&quot;
+
+#: templates/base.html:43
+msgid &quot;Account&quot;
+msgstr &quot;Konto&quot;
+
+#: templates/base.html:44
+msgid &quot;Packages&quot;
+msgstr &quot;Pakiety&quot;
+
+#: templates/aur/package_archive.html:6 templates/aur/package_detail.html:13
+msgid &quot;Repository&quot;
+msgstr &quot;Repozytorium&quot;
+
+#: templates/aur/package_archive.html:7
+msgid &quot;Name&quot;
+msgstr &quot;Imi&#281;&quot;
+
+#: templates/aur/package_archive.html:8 templates/aur/package_detail.html:19
+msgid &quot;Description&quot;
+msgstr &quot;Opis&quot;
+
+#: templates/aur/package_archive.html:9 templates/aur/package_detail.html:16
+msgid &quot;Category&quot;
+msgstr &quot;Kategoria&quot;
+
+#: templates/aur/package_archive.html:10 templates/aur/package_detail.html:28
+msgid &quot;Maintainer&quot;
+msgstr &quot;Opiekun&quot;
+
+#: templates/aur/package_archive.html:11 templates/aur/package_detail.html:31
+msgid &quot;Last Updated&quot;
+msgstr &quot;Ostatnio Aktualizowano&quot;
+
+#: templates/aur/account_detail.html:7
+msgid &quot;Username&quot;
+msgstr &quot;U&#380;ytkownik&quot;
+
+#: templates/aur/account_detail.html:11
+msgid &quot;Email&quot;
+msgstr &quot;Adres e-mail&quot;
+
+#: templates/aur/account_detail.html:15
+msgid &quot;Password&quot;
+msgstr &quot;Has&#322;o&quot;
+
+#: templates/aur/account_detail.html:19
+msgid &quot;Re-type Password&quot;
+msgstr &quot;Has&#322;o (ponownie)&quot;
+
+#: templates/aur/account_detail.html:23
+msgid &quot;Real Name&quot;
+msgstr &quot;Imi&#281; i nazwisko&quot;
+
+#: templates/aur/account_detail.html:27
+msgid &quot;IRC Nick&quot;
+msgstr &quot;Ksywa na IRC&quot;
+
+#: templates/aur/account_detail.html:31
+msgid &quot;Preferred Language&quot;
+msgstr &quot;J&#281;zyk&quot;
+
+#: templates/aur/account_detail.html:40
+msgid &quot;Notify on new comment&quot;
+msgstr &quot;Zawiadamiaj o nowych komentarzach&quot;
+
+#: templates/aur/account_detail.html:44
+msgid &quot;Notify of Out-of-Date packages&quot;
+msgstr &quot;Zawiadamiaj o przestarza&#322;ych pakietach&quot;
+
+#: templates/aur/account_detail.html:49
+msgid &quot;Update&quot;
+msgstr &quot;Aktualizuj&quot;
+
+#: templates/aur/account_detail.html:49
+msgid &quot;Reset&quot;
+msgstr &quot;Wyczy&#347;&#263;&quot;
+
+#: templates/aur/package_detail.html:22
+msgid &quot;Architecture&quot;
+msgstr &quot;Architektuta&quot;
+
+#: templates/aur/package_detail.html:25
+msgid &quot;URL&quot;
+msgstr &quot;Adres URL&quot;
+
+#: templates/aur/package_detail.html:40
+msgid &quot;Dependencies&quot;
+msgstr &quot;Zale&#380;no&#347;ci&quot;
+
+#: templates/aur/package_detail.html:47
+msgid &quot;Sources&quot;
+msgstr &quot;&#377;r&#243;d&#322;a&quot;
+[/code]
+This is fixed? file:
+
+[code]
+# Polish translation
+# Copyright (C) 2007 Sebastian Nowicki
+# This file is distributed under the same license as the AUR package.
+# Sebastian Nowicki &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">xilonmu at gmail</A>&gt;, 2007
+#
+#, fuzzy
+msgid &quot;&quot;
+msgstr &quot;&quot;
+&quot;Project-Id-Version: 1\n&quot;
+&quot;Report-Msgid-Bugs-To: \n&quot;
+&quot;POT-Creation-Date: 2007-10-04 18:08+0800\n&quot;
+&quot;PO-Revision-Date: 2009-11-19 19:18+0800\n&quot;
+&quot;Last-Translator: Patryk &lt;SpeedVin&lt;dot&gt;archlinux&lt;at&gt;us&gt;\n&quot;k
+&quot;Language-Team: Polish &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">pl at li.org</A>&gt;\n&quot;
+&quot;MIME-Version: 1.0\n&quot;
+&quot;Content-Type: text/plain; charset=UTF-8\n&quot;
+&quot;Content-Transfer-Encoding: 8bit\n&quot;
+
+#: templates/base.html:21
+msgid &quot;Logged in as&quot;
+msgstr &quot;Zalogowany jako&quot;
+
+#: templates/base.html:28
+msgid &quot;Get Arch&quot;
+msgstr &quot;&#346;ci&#261;gnij Arch&quot;
+
+#: templates/base.html:30 templates/base.html.py:42
+msgid &quot;Bugs&quot;
+msgstr &quot;B&#322;&#281;dy&quot;
+
+#: templates/base.html:31
+msgid &quot;Wiki&quot;
+msgstr &quot;Wiki&quot;
+
+#: templates/base.html:32
+msgid &quot;Forums&quot;
+msgstr &quot;Dyskusja&quot;
+
+#: templates/base.html:33
+msgid &quot;Home&quot;
+msgstr &quot;Dom&quot;
+
+#: templates/base.html:40
+msgid &quot;Statistics&quot;
+msgstr &quot;Statystyki&quot;
+
+#: templates/base.html:41
+msgid &quot;Mailing List&quot;
+msgstr &quot;Lista Poc*z*towa&quot;
+
+#: templates/base.html:43
+msgid &quot;Account&quot;
+msgstr &quot;Konto&quot;
+
+#: templates/base.html:44
+msgid &quot;Packages&quot;
+msgstr &quot;Pakiety&quot;
+
+#: templates/aur/package_archive.html:6 templates/aur/package_detail.html:13
+msgid &quot;Repository&quot;
+msgstr &quot;Repozytorium&quot;
+
+#: templates/aur/package_archive.html:7
+msgid &quot;Name&quot;
+msgstr &quot;Imi&#281;&quot;
+
+#: templates/aur/package_archive.html:8 templates/aur/package_detail.html:19
+msgid &quot;Description&quot;
+msgstr &quot;Opis&quot;
+
+#: templates/aur/package_archive.html:9 templates/aur/package_detail.html:16
+msgid &quot;Category&quot;
+msgstr &quot;Kategoria&quot;
+
+#: templates/aur/package_archive.html:10 templates/aur/package_detail.html:28
+msgid &quot;Maintainer&quot;
+msgstr &quot;Opiekun&quot;
+
+#: templates/aur/package_archive.html:11 templates/aur/package_detail.html:31
+msgid &quot;Last Updated&quot;
+msgstr &quot;Ostatnio Aktualizowano&quot;
+
+#: templates/aur/account_detail.html:7
+msgid &quot;Username&quot;
+msgstr &quot;U&#380;ytkownik&quot;
+
+#: templates/aur/account_detail.html:11
+msgid &quot;Email&quot;
+msgstr &quot;Adres e-mail&quot;
+
+#: templates/aur/account_detail.html:15
+msgid &quot;Password&quot;
+msgstr &quot;Has&#322;o&quot;
+
+#: templates/aur/account_detail.html:19
+msgid &quot;Re-type Password&quot;
+msgstr &quot;Has&#322;o (ponownie)&quot;
+
+#: templates/aur/account_detail.html:23
+msgid &quot;Real Name&quot;
+msgstr &quot;Imi&#281; i nazwisko&quot;
+
+#: templates/aur/account_detail.html:27
+msgid &quot;IRC Nick&quot;
+msgstr &quot;Ksywa na IRC&quot;
+
+#: templates/aur/account_detail.html:31
+msgid &quot;Preferred Language&quot;
+msgstr &quot;J&#281;zyk&quot;
+
+#: templates/aur/account_detail.html:40
+msgid &quot;Notify on new comment&quot;
+msgstr &quot;Zawiadamiaj o nowych komentarzach&quot;
+
+#: templates/aur/account_detail.html:44
+msgid &quot;Notify of Out-of-Date packages&quot;
+msgstr &quot;Zawiadamiaj o przestarza&#322;ych pakietach&quot;
+
+#: templates/aur/account_detail.html:49
+msgid &quot;Update&quot;
+msgstr &quot;Aktualizuj&quot;
+
+#: templates/aur/account_detail.html:49
+msgid &quot;Reset&quot;
+msgstr &quot;Wyczy&#347;&#263;&quot;
+
+#: templates/aur/package_detail.html:22
+msgid &quot;Architecture&quot;
+msgstr &quot;Architektuta&quot;
+
+#: templates/aur/package_detail.html:25
+msgid &quot;URL&quot;
+msgstr &quot;Adres URL&quot;
+
+#: templates/aur/package_detail.html:40
+msgid &quot;Dependencies&quot;
+msgstr &quot;Zale&#380;no&#347;ci&quot;
+
+#: templates/aur/package_detail.html:47
+msgid &quot;Sources&quot;
+msgstr &quot;&#377;r&#243;d&#322;a&quot;
+[/code]
+I show bug by thickening it.
+And we can change Ksywa to Pseudonim :).
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/aur2-dev/attachments/20091119/9769b0fb/attachment.html">https://lists.berlios.de/pipermail/aur2-dev/attachments/20091119/9769b0fb/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000033.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	f7530b9e3b707cd8f305b89ae95cf8bc6288f9b0
+</A></li>
+	<LI>Next message: <A HREF="000030.html">[aur2-dev] Patch to polish translation for Polish translation.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#29">[ date ]</a>
+              <a href="thread.html#29">[ thread ]</a>
+              <a href="subject.html#29">[ subject ]</a>
+              <a href="author.html#29">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

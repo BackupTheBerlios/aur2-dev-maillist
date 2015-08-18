@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. d8f40d6975cc5daab9953fe92fa906b9a08339ec
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%20d8f40d6975cc5daab9953fe92fa906b9a08339ec&In-Reply-To=%3C6A536281-9ABF-48A9-8810-11F0D22E65E9%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000166.html">
+   <LINK REL="Next"  HREF="000169.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. d8f40d6975cc5daab9953fe92fa906b9a08339ec</H1>
+    <B>Sebastian Nowicki</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%20d8f40d6975cc5daab9953fe92fa906b9a08339ec&In-Reply-To=%3C6A536281-9ABF-48A9-8810-11F0D22E65E9%40gmail.com%3E"
+       TITLE="[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. d8f40d6975cc5daab9953fe92fa906b9a08339ec">sebnow at gmail.com
+       </A><BR>
+    <I>Fri Dec 11 12:36:50 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000166.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. d8f40d6975cc5daab9953fe92fa906b9a08339ec
+</A></li>
+        <LI>Next message: <A HREF="000169.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	d8f40d6975cc5daab9953fe92fa906b9a08339ec
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#168">[ date ]</a>
+              <a href="thread.html#168">[ thread ]</a>
+              <a href="subject.html#168">[ subject ]</a>
+              <a href="author.html#168">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On 10/12/2009, at 12:53 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A> wrote:
+
+&gt;<i> commit 37feff3ed399d4c866684f3fd82eb34cb8e1ef6d
+</I>&gt;<i> Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>&gt;<i> Date:   Thu Dec 10 00:42:22 2009 +0100
+</I>&gt;<i>
+</I>&gt;<i>    Add 'Recent Updates' + RSS logo on the search page
+</I>&gt;<i>
+</I>&gt;<i>    The RSS page for newly updated/added packages was established  
+</I>&gt;<i> earlier, but there
+</I>&gt;<i>    weren't an available link for them apart from Mozilla Firefox  
+</I>&gt;<i> builtin button or
+</I>&gt;<i>    typing the link manually, so this feature first of all made  
+</I>&gt;<i> sense, and secondly
+</I>&gt;<i>    it's implemented on the current AUR, so it has got a compability  
+</I>&gt;<i> reason too
+</I>&gt;<i>
+</I>&gt;<i>    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>
+The placement of the header is slightly confusing. Since the &quot;Search  
+Criteria&quot; header is right-aligned, it looks like &quot;Recent Updates&quot; is  
+the header of the page (it's also the same level, which shouldn't be  
+the case). Removing &quot;Recent Updates&quot; and placing the RSS icon to the  
+right would be better, but it would imply that the RSS feed is of the  
+search, rather than recent updates. Like I said in our conversation  
+there's no good place to put this at the moment. I'd probably put it  
+somewhere in the footer, but we don't really have a footer. Using a  
+browser's in-built RSS capabilities should be enough for now. It's not  
+just a Mozilla Firefox feature. All browsers I know of support this,  
+including Internet Explorer, Firefox, Opera, Chrome, Safari, etc.
+
+&gt;<i> commit 5b47becc93d9f0e021e6f72b6be9bf691e1de4bc
+</I>&gt;<i> Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>&gt;<i> Date:   Thu Dec 10 00:26:22 2009 +0100
+</I>&gt;<i>
+</I>&gt;<i>    Add patch files (*.patch) to the .gitignore ignoring list
+</I>&gt;<i>
+</I>&gt;<i>    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>
+This should be in .git/info/excludes, not in .gitignore.  
+The .gitignore file should only have files that are generated or would  
+otherwise be present, but specific to the project. Patch files  
+shouldn't even be used (unless temporarily), as we are using git.
+
+&gt;<i> commit 08d544f96158ffd832e9d1d2872a4f70c221d62a
+</I>&gt;<i> Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>&gt;<i> Date:   Thu Dec 10 00:20:53 2009 +0100
+</I>&gt;<i>
+</I>&gt;<i>    Add 'My Packages' submenu
+</I>&gt;<i>
+</I>&gt;<i>    This feature was implemented on the current AUR and it's an  
+</I>&gt;<i> efficient facility
+</I>&gt;<i>    to view your own packages quickly, so it was worth to implement  
+</I>&gt;<i> and it wasn't a
+</I>&gt;<i>    big deal, it was needed to modify the base.html template, to add  
+</I>&gt;<i> this new
+</I>&gt;<i>    submenu and to implement the right url, with right  
+</I>&gt;<i> parameters(username) for it.
+</I>&gt;<i>
+</I>&gt;<i>    The truth is the packages template for a user is needed to  
+</I>&gt;<i> improve/implement
+</I>&gt;<i>    correctly in the near future
+</I>&gt;<i>
+</I>&gt;<i>    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>
+This is already implemented through the use profile page - why  
+duplicate it? It's confusing having two ways of seeing your packages.
+
+&gt;<i> commit b6d194d9169a6e89808d9b51d5d76a435928c076
+</I>&gt;<i> Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>&gt;<i> Date:   Wed Dec 9 21:48:59 2009 +0100
+</I>&gt;<i>
+</I>&gt;<i>    Refactor package_detail.html in the comment snippet
+</I>&gt;<i>
+</I>&gt;<i>    The point of the change is that it will query the database only  
+</I>&gt;<i> once
+</I>&gt;<i>    The change will also make it a lot easier to switch to the  
+</I>&gt;<i> comment framework
+</I>&gt;<i>
+</I>&gt;<i>    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>
+I'm against having comments at all. It isn't useful for packages  
+themselves. There are other, superior, means of communicating with  
+package managers and/or discussing packages, e.g.: email, forums, IRC,  
+bug tracker.
+
+&gt;<i> commit a16ff1d87f8c330d38cd71cbc00d4335f0a93fc8
+</I>&gt;<i> Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>&gt;<i> Date:   Wed Dec 9 21:30:23 2009 +0100
+</I>&gt;<i>
+</I>&gt;<i>    Add *.swp swap files into '.gitignore' file
+</I>&gt;<i>
+</I>&gt;<i>    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>
+See previous comment about .gitignore.
+
+&gt;<i> commit bcaf1231f8885d5411b4155b8f6af594b2722833
+</I>&gt;<i> Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>&gt;<i> Date:   Wed Dec 9 06:59:35 2009 +0100
+</I>&gt;<i>
+</I>&gt;<i>    Add javascript catalog view for Javascript translations
+</I>&gt;<i>
+</I>&gt;<i>    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>
+What's this for? We don't use JavaScript.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000166.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. d8f40d6975cc5daab9953fe92fa906b9a08339ec
+</A></li>
+	<LI>Next message: <A HREF="000169.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	d8f40d6975cc5daab9953fe92fa906b9a08339ec
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#168">[ date ]</a>
+              <a href="thread.html#168">[ thread ]</a>
+              <a href="subject.html#168">[ subject ]</a>
+              <a href="author.html#168">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

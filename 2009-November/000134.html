@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH] Fix added date on Package and Comment models
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Fix%20added%20date%20on%20Package%20and%20Comment%20models&In-Reply-To=%3C85CDEF04-F7E9-4B73-8CD9-A124BFA1F89D%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000113.html">
+   <LINK REL="Next"  HREF="000139.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH] Fix added date on Package and Comment models</H1>
+    <B>Sebastian Nowicki</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Fix%20added%20date%20on%20Package%20and%20Comment%20models&In-Reply-To=%3C85CDEF04-F7E9-4B73-8CD9-A124BFA1F89D%40gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH] Fix added date on Package and Comment models">sebnow at gmail.com
+       </A><BR>
+    <I>Sun Nov 29 02:12:33 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000113.html">[aur2-dev] [PATCH] Fix added date on Package and Comment models
+</A></li>
+        <LI>Next message: <A HREF="000139.html">[aur2-dev] [PATCH] Save added and updated date of models in save	method
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#134">[ date ]</a>
+              <a href="thread.html#134">[ thread ]</a>
+              <a href="subject.html#134">[ subject ]</a>
+              <a href="author.html#134">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Nov 29, 2009, at 12:50 AM, Ismael Carnales wrote:
+
+&gt;<i> Sorry for asking, but someone cares to comment on this patch?
+</I>&gt;<i> Currently the &quot;added&quot; date of the Comment model for example is totally
+</I>&gt;<i> broken, I think we must fixit, with this implementation (not my
+</I>&gt;<i> preferred as I commented earlier) or with other.
+</I>
+Actually if we get rid of the call to datetime.now() (and just  
+reference the function) it will work. This method of doing it (using  
+default, and setting the updated date on save()) is more flexible, as  
+it doesn't set the times in stone. If everyone's happy with the patch  
+though, we'll just use it.
+
+&gt;<i> This is other thing I don't like much about the patch-sending
+</I>&gt;<i> workflow, is easy for patches to get lost in tons of mails. Darcs has
+</I>&gt;<i> a nice feature called darcswatch for keep track of patches:
+</I>&gt;<i> <A HREF="http://darcs.nomeata.de/darcswatch/documentation.html">http://darcs.nomeata.de/darcswatch/documentation.html</A> do you know if
+</I>&gt;<i> something like this exists for git?
+</I>
+I'm not familiar with neither darcswatch, nor stgit, but perhaps stgit  
+(stacked git) is what you're looking for.
+
+<A HREF="http://procode.org/stgit/">http://procode.org/stgit/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000113.html">[aur2-dev] [PATCH] Fix added date on Package and Comment models
+</A></li>
+	<LI>Next message: <A HREF="000139.html">[aur2-dev] [PATCH] Save added and updated date of models in save	method
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#134">[ date ]</a>
+              <a href="thread.html#134">[ thread ]</a>
+              <a href="subject.html#134">[ subject ]</a>
+              <a href="author.html#134">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

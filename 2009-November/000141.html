@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH] Fix requirement for django-registration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Fix%20requirement%20for%20django-registration&In-Reply-To=%3Ca362e8010911291252w209fc003ka7edd456b53b6052%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000138.html">
+   <LINK REL="Next"  HREF="000142.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH] Fix requirement for django-registration</H1>
+    <B>Laszlo Papp</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Fix%20requirement%20for%20django-registration&In-Reply-To=%3Ca362e8010911291252w209fc003ka7edd456b53b6052%40mail.gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH] Fix requirement for django-registration">djszapi at archlinux.us
+       </A><BR>
+    <I>Sun Nov 29 21:52:00 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000138.html">[aur2-dev] [PATCH] Fix requirement for django-registration
+</A></li>
+        <LI>Next message: <A HREF="000142.html">[aur2-dev] [PATCH] Fix requirement for django-registration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#141">[ date ]</a>
+              <a href="thread.html#141">[ thread ]</a>
+              <a href="subject.html#141">[ subject ]</a>
+              <a href="author.html#141">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Nov 29, 2009 at 7:40 PM, Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt; wrote:
+&gt;<i> From: Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> As django-registration 0.8 is not released yet, the hg repository must
+</I>&gt;<i> be used. Added it to pip-requirements file.
+</I>&gt;<i>
+</I>&gt;<i> Signed-off-by: Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt;
+</I>&gt;<i> ---
+</I>&gt;<i> &#160;pip-requirements.txt | &#160; &#160;2 +-
+</I>&gt;<i> &#160;1 files changed, 1 insertions(+), 1 deletions(-)
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/pip-requirements.txt b/pip-requirements.txt
+</I>&gt;<i> index 3a9f9d0..d11da85 100644
+</I>&gt;<i> --- a/pip-requirements.txt
+</I>&gt;<i> +++ b/pip-requirements.txt
+</I>&gt;<i> @@ -1,3 +1,3 @@
+</I>&gt;<i> &#160;Django&gt;=1.0
+</I>&gt;<i> -django-registration&gt;=0.8
+</I>&gt;<i> +-e hg+<A HREF="http://bitbucket.org/ubernostrum/django-registration/#egg=django-registration">http://bitbucket.org/ubernostrum/django-registration/#egg=django-registration</A>
+</I>&gt;<i> &#160;-e svn+<A HREF="http://django-tagging.googlecode.com/svn/trunk/#egg=tagging">http://django-tagging.googlecode.com/svn/trunk/#egg=tagging</A>
+</I>
+NACK, no need to involve django-registration from hg, if the release
+is provided on their site(available from AUR too), and works fine.
+
+Best Regards,
+Laszlo Papp
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000138.html">[aur2-dev] [PATCH] Fix requirement for django-registration
+</A></li>
+	<LI>Next message: <A HREF="000142.html">[aur2-dev] [PATCH] Fix requirement for django-registration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#141">[ date ]</a>
+              <a href="thread.html#141">[ thread ]</a>
+              <a href="subject.html#141">[ subject ]</a>
+              <a href="author.html#141">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

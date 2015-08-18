@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH 2/2] Add voting for packages.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%202/2%5D%20Add%20voting%20for%20packages.&In-Reply-To=%3CD8A684DB-6051-4D6C-8CF8-F959F5873EF1%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000056.html">
+   <LINK REL="Next"  HREF="000053.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH 2/2] Add voting for packages.</H1>
+    <B>Sebastian Nowicki</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%202/2%5D%20Add%20voting%20for%20packages.&In-Reply-To=%3CD8A684DB-6051-4D6C-8CF8-F959F5873EF1%40gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH 2/2] Add voting for packages.">sebnow at gmail.com
+       </A><BR>
+    <I>Thu Nov 26 09:55:25 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000056.html">[aur2-dev] [PATCH 2/2] Add voting for packages.
+</A></li>
+        <LI>Next message: <A HREF="000053.html">[aur2-dev] [PATCH 2/2] Add voting for packages.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#52">[ date ]</a>
+              <a href="thread.html#52">[ thread ]</a>
+              <a href="subject.html#52">[ subject ]</a>
+              <a href="author.html#52">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On Nov 26, 2009, at 5:46 AM, Christopher Brannon wrote:
+
+&gt;<i> A Vote object records the fact that a given user voted for a certain
+</I>&gt;<i> package at a known time.
+</I>&gt;<i> Voting and unvoting are implemented.  Also, the details page for a  
+</I>&gt;<i> package
+</I>&gt;<i> shows the number of votes that it has received.
+</I>
+I haven't tested it, but it looks fine (bonus points for adding  
+tests!), at least from a technical point of view. I'm not sure if this  
+should be in the AUR (I know it's in the current one). The &quot;vote&quot;  
+feature has been criticized many times, and I believe, after  
+discussing it at length, a download counter was in favor of voting. I  
+suppose this should be discussed again, or simply added now, and  
+potentially removed later on, in favor of download-counting.
+
+A quick run through, from the top of my head:
+
+Voting pros:
+* Easy to implement. It doesn't require a &quot;proxy&quot; page to track each  
+download.
+
+Voting cons:
+* It doesn't really indicate how many people use a package. It simply  
+shows that it's in favor of being put into community - this is  
+Archlinux specific behaviour, btw.
+* The user has to manually go to the website (or use a 3rd party  
+client) to vote.
+
+Download counter pros:
+* It more accurately shows the popularity of a package.
+* A popularity statistic could potentially be created using time,  
+package version, and the download counter. I.e., the popularity decays  
+with time, but is reset with each new version, or something like that.
+
+Download counter cons:
+* There's potential for abuse. A user can only vote once, but  
+downloading requires no authentication - bots could continuously  
+download a package to increase the counter.
+* The &quot;proxy&quot; page required to increase the download counter might be  
+a nuisance.
+
+&gt;<i> Signed-off-by: Christopher Brannon &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">cmbrannon79 at gmail.com</A>&gt;
+</I>&gt;<i> ---
+</I>&gt;<i> archlinux/aur/models.py                     |   13 ++++++
+</I>&gt;<i> archlinux/aur/templatetags/aur_tags.py      |   10 ++++-
+</I>&gt;<i> archlinux/aur/tests.py                      |   59 ++++++++++++++++++ 
+</I>&gt;<i> ++++++++-
+</I>&gt;<i> archlinux/aur/urls.py                       |    4 ++
+</I>&gt;<i> archlinux/aur/views.py                      |   24 +++++++++++
+</I>&gt;<i> archlinux/templates/aur/package_detail.html |    9 ++++
+</I>&gt;<i> 6 files changed, 117 insertions(+), 2 deletions(-)
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/archlinux/aur/models.py b/archlinux/aur/models.py
+</I>&gt;<i> index 6bc7a85..4c9bcb8 100644
+</I>&gt;<i> --- a/archlinux/aur/models.py
+</I>&gt;<i> +++ b/archlinux/aur/models.py
+</I>&gt;<i> @@ -1,5 +1,6 @@
+</I>&gt;<i> from django.db import models
+</I>&gt;<i> from django.db import transaction
+</I>&gt;<i> +from django.db import IntegrityError
+</I>&gt;<i> from django.contrib.auth.models import User
+</I>&gt;<i> from django.core.mail import send_mass_mail
+</I>&gt;<i> from django.db.models import signals, permalink
+</I>&gt;<i> @@ -183,6 +184,18 @@ class PackageNotification(models.Model):
+</I>&gt;<i>                 self.package.name)
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> +class Vote(models.Model):
+</I>&gt;<i> +    user = models.ForeignKey(User)
+</I>&gt;<i> +    package = models.ForeignKey(Package)
+</I>&gt;<i> +    when = models.DateTimeField(editable=False,  
+</I>&gt;<i> default=datetime.now())
+</I>
+Perhaps this should be:
+
+when = models.DateTimeField(editable=False, auto_now_add=True)
+
+&gt;<i> DateField.auto_now_add Automatically set the field to now when the  
+</I>&gt;<i> object is first created. Useful for creation of timestamps. Note  
+</I>&gt;<i> that the current date isalways used; it's not just a default value  
+</I>&gt;<i> that you can override.
+</I>
+It seems editable=False might not be necessary in this case.
+
+&gt;<i> [snip]
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">+ at login_required</A>
+</I>&gt;<i> +def vote(request, object_id):
+</I>&gt;<i> +    &quot;&quot;&quot;Record a user's vote for a package&quot;&quot;&quot;
+</I>&gt;<i> +    package = get_object_or_404(Package, name=object_id)
+</I>&gt;<i> +    try:
+</I>&gt;<i> +        Vote(package=package, user=request.user,
+</I>&gt;<i> +                when=datetime.now()).save()
+</I>
+Setting auto_now_add=True would make setting the when parameter  
+unnecessary.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000056.html">[aur2-dev] [PATCH 2/2] Add voting for packages.
+</A></li>
+	<LI>Next message: <A HREF="000053.html">[aur2-dev] [PATCH 2/2] Add voting for packages.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#52">[ date ]</a>
+              <a href="thread.html#52">[ thread ]</a>
+              <a href="subject.html#52">[ subject ]</a>
+              <a href="author.html#52">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

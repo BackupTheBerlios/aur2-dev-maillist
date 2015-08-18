@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH] changed ADMIN_MEDIA_PREFIX dir Signed-off-by:	Ismael Carnales &lt;icarnales at gmail.com&gt;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20changed%20ADMIN_MEDIA_PREFIX%20dir%20Signed-off-by%3A%0A%09Ismael%20Carnales%20%3Cicarnales%40gmail.com%3E&In-Reply-To=%3C1258233569-5098-1-git-send-email-icarnales%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000000.html">
+   <LINK REL="Next"  HREF="000002.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH] changed ADMIN_MEDIA_PREFIX dir Signed-off-by:	Ismael Carnales &lt;icarnales at gmail.com&gt;</H1>
+    <B>Ismael Carnales</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20changed%20ADMIN_MEDIA_PREFIX%20dir%20Signed-off-by%3A%0A%09Ismael%20Carnales%20%3Cicarnales%40gmail.com%3E&In-Reply-To=%3C1258233569-5098-1-git-send-email-icarnales%40gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH] changed ADMIN_MEDIA_PREFIX dir Signed-off-by:	Ismael Carnales &lt;icarnales at gmail.com&gt;">icarnales at gmail.com
+       </A><BR>
+    <I>Sat Nov 14 22:19:29 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000000.html">[Aur2-dev] [Git]Project aur2 at BerliOS branch, master,	created. 2da02900756ced2e08da28b4e178fadc7a90f5cf
+</A></li>
+        <LI>Next message: <A HREF="000002.html">[aur2-dev] [PATCH] changed ADMIN_MEDIA_PREFIX dir	Signed-off-by: Ismael Carnales &lt;icarnales at gmail.com&gt;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1">[ date ]</a>
+              <a href="thread.html#1">[ thread ]</a>
+              <a href="subject.html#1">[ subject ]</a>
+              <a href="author.html#1">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>ADMIN_MEDIA_PREFIX should be different than MEDIA_URL as stated here:
+<A HREF="http://docs.djangoproject.com/en/dev/ref/settings/#admin-media-prefix">http://docs.djangoproject.com/en/dev/ref/settings/#admin-media-prefix</A>
+
+If they're equal like now, local media serving fails
+---
+ archlinux/settings.py |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/archlinux/settings.py b/archlinux/settings.py
+index f809fee..1d9843e 100644
+--- a/archlinux/settings.py
++++ b/archlinux/settings.py
+@@ -32,7 +32,7 @@ MEDIA_URL = '<A HREF="http://localhost:8000/media/">http://localhost:8000/media/</A>'
+ 
+ # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
+ # trailing slash.
+-ADMIN_MEDIA_PREFIX = '/media/'
++ADMIN_MEDIA_PREFIX = '/media/admin_media/'
+ 
+ # Make this unique, and don't share it with anybody.
+ SECRET_KEY = ''
+-- 
+1.6.5.2
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000000.html">[Aur2-dev] [Git]Project aur2 at BerliOS branch, master,	created. 2da02900756ced2e08da28b4e178fadc7a90f5cf
+</A></li>
+	<LI>Next message: <A HREF="000002.html">[aur2-dev] [PATCH] changed ADMIN_MEDIA_PREFIX dir	Signed-off-by: Ismael Carnales &lt;icarnales at gmail.com&gt;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1">[ date ]</a>
+              <a href="thread.html#1">[ thread ]</a>
+              <a href="subject.html#1">[ subject ]</a>
+              <a href="author.html#1">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated.  0a09d0f69975c8a387d46b2ac8b5c619c2d3b5f9
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%20%200a09d0f69975c8a387d46b2ac8b5c619c2d3b5f9&In-Reply-To=%3C8921DC42-09B6-46BA-8BAE-719C868D9311%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000043.html">
+   <LINK REL="Next"  HREF="000045.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated.  0a09d0f69975c8a387d46b2ac8b5c619c2d3b5f9</H1>
+    <B>Sebastian Nowicki</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%20%200a09d0f69975c8a387d46b2ac8b5c619c2d3b5f9&In-Reply-To=%3C8921DC42-09B6-46BA-8BAE-719C868D9311%40gmail.com%3E"
+       TITLE="[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated.  0a09d0f69975c8a387d46b2ac8b5c619c2d3b5f9">sebnow at gmail.com
+       </A><BR>
+    <I>Thu Nov 26 09:22:22 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000043.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	0a09d0f69975c8a387d46b2ac8b5c619c2d3b5f9
+</A></li>
+        <LI>Next message: <A HREF="000045.html">[aur2-dev] [PATCH 2/2] Add voting for packages.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#50">[ date ]</a>
+              <a href="thread.html#50">[ thread ]</a>
+              <a href="subject.html#50">[ subject ]</a>
+              <a href="author.html#50">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On Nov 26, 2009, at 3:10 AM, Laszlo Papp wrote:
+
+&gt;<i> On Wed, Nov 25, 2009 at 2:58 PM, Sebastian Nowicki  
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">sebnow at gmail.com</A>&gt; wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Nov 25, 2009, at 10:36 AM, <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A> wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> commit d825583df5556c9d875f1f53c2aff0964477fcd8
+</I>&gt;&gt;&gt;<i> Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>&gt;&gt;&gt;<i> Date:   Wed Nov 25 03:12:03 2009 +0100
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>    Add 'any' to the architectures
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>    Add 'any' to the architectures then initial_data was generated
+</I>&gt;&gt;&gt;<i> again with the
+</I>&gt;&gt;&gt;<i>    following options:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>    ./manage.py dumpdata aur --indent 4 --format xml &gt; aur/fixtures/
+</I>&gt;&gt;&gt;<i> initial_data.xml
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Perhaps architectures should be created if they don't exist, like
+</I>&gt;&gt;<i> licenses?
+</I>&gt;<i>
+</I>&gt;&gt;<i> The commit also moves two repositories in initial_data.xml for no
+</I>&gt;&gt;<i> apparent reason. Please make commits cleaner (i.e. only changes
+</I>&gt;&gt;<i> relevant to the commit).
+</I>&gt;<i>
+</I>&gt;<i> As the commit says I've just added the relatively new 'any'
+</I>&gt;<i> architecture that's used recently rather, no else changed here to the
+</I>&gt;<i> initial_data.xml
+</I>
+Look at the commit diff.
+
+&gt;&gt;&gt;<i>    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> commit 67a1de2c4d09c848be7e9a766d8c9af7ba1ed897
+</I>&gt;&gt;&gt;<i> Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>&gt;&gt;&gt;<i> Date:   Mon Nov 23 00:42:23 2009 +0100
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>    Fix some warnings/errors in aurprofile/forms.py
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>    Fix the following warnings/errors:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>    * W:  5:ProfileUpdateForm.Meta: Class has no __init__ method
+</I>&gt;&gt;&gt;<i>    * C:  4:ProfileUpdateForm: Missing docstring
+</I>&gt;&gt;&gt;<i>    * C:  5:ProfileUpdateForm.Meta: Missing docstring
+</I>&gt;&gt;&gt;<i>    * Implement better exception handling in this file
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Could you explain this commit? If the comments are there just to get
+</I>&gt;&gt;<i> rid of the warnings, then ignore the warnings, otherwise, please
+</I>&gt;&gt;<i> actually describe the class/method the docstring is for. I also don't
+</I>&gt;&gt;<i> understand why throw an exception in the __init__ method. Also to get
+</I>&gt;&gt;<i> rid of the warning? Please don't be so pedantic about it, these tools
+</I>&gt;&gt;<i> don't always give the best advice, as you can clearly see.
+</I>&gt;<i>
+</I>&gt;<i> Yeah, you're right Sebastian, pylint, cppcheck, phplint, php-sat,
+</I>&gt;<i> phpcs, pdepend are just code syntax and coding style checkers, but I
+</I>&gt;<i> don't think I'd like to ignore them, it can detect sometimes trivial
+</I>&gt;<i> bugs, that I can't see at first glance.
+</I>
+I agree in general, but not when the warning relates to a comment -  
+there can't be a bug involved ;).
+
+&gt;<i> Exception:
+</I>&gt;<i> Because you shouldn't ever be instanciating an object from that class,
+</I>&gt;<i> it would be an error, But maybe it would be just to leave init out all
+</I>&gt;<i> together.
+</I>&gt;<i>
+</I>&gt;<i> Thanks the feedbacks, reviews!
+</I>&gt;<i>
+</I>&gt;<i> Best Regards,
+</I>&gt;<i> Laszlo Papp
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> aur2-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">aur2-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">https://lists.berlios.de/mailman/listinfo/aur2-dev</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000043.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	0a09d0f69975c8a387d46b2ac8b5c619c2d3b5f9
+</A></li>
+	<LI>Next message: <A HREF="000045.html">[aur2-dev] [PATCH 2/2] Add voting for packages.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#50">[ date ]</a>
+              <a href="thread.html#50">[ thread ]</a>
+              <a href="subject.html#50">[ subject ]</a>
+              <a href="author.html#50">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

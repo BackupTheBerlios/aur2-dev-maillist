@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 4195ceb53e6ed852e339a582a76949ae2368c4c5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%204195ceb53e6ed852e339a582a76949ae2368c4c5&In-Reply-To=%3C200911282125.nASLPLxY011200%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000130.html">
+   <LINK REL="Next"  HREF="000133.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 4195ceb53e6ed852e339a582a76949ae2368c4c5</H1>
+    <B>djszapi at archlinux.us</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%204195ceb53e6ed852e339a582a76949ae2368c4c5&In-Reply-To=%3C200911282125.nASLPLxY011200%40sheep.berlios.de%3E"
+       TITLE="[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 4195ceb53e6ed852e339a582a76949ae2368c4c5">djszapi at archlinux.us
+       </A><BR>
+    <I>Sat Nov 28 22:25:21 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000130.html">[aur2-dev] github
+</A></li>
+        <LI>Next message: <A HREF="000133.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	4195ceb53e6ed852e339a582a76949ae2368c4c5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#131">[ date ]</a>
+              <a href="thread.html#131">[ thread ]</a>
+              <a href="subject.html#131">[ subject ]</a>
+              <a href="author.html#131">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project &quot;Project aur2 at BerliOS&quot;.
+
+The branch, master has been updated
+       via  4195ceb53e6ed852e339a582a76949ae2368c4c5 (commit)
+       via  fe6e516241c2ca72afd2427617d0b89cec2fb0a6 (commit)
+       via  c3651e374b28edcfa2096f63c65f8bdced780ed3 (commit)
+       via  2b99c50afa0c176df50cbbfb16784f4c50571bb7 (commit)
+       via  b3791f8da474002480a053d8c52f75d0617a7347 (commit)
+       via  f2b95d080ed438985b1b4ff2f54897fff2bf641a (commit)
+      from  a73808e21190571c5a50e0e2847a6bd9cea5d910 (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit 4195ceb53e6ed852e339a582a76949ae2368c4c5
+Author: Christopher Brannon &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">cmbrannon79 at gmail.com</A>&gt;
+Date:   Sat Nov 28 14:20:00 2009 -0600
+
+    Add voting for packages.
+    
+    A Vote object records the fact that a given user voted for a certain
+    package at a known time.
+    Voting and unvoting are implemented.  Also, the details page for a package
+    shows the number of votes that it has received.
+    
+    Per discussions on the mailing list, the DateTime field is declared with
+    auto_now_add=True, so we don't have to save timestamps manually on creation of votes.
+    
+    This patch incorporates the following changes by Ismael Carnales:
+    1. Use get_package_or_404 in unvote, from views.py.  Trying to remove
+    a vote for a non-existent package should produce a 404 HTTP response.
+    2. The timestamp in the Vote class should be named &quot;added&quot; for consistency,
+    rather than &quot;when&quot;, which was the name used in the original patch.
+    
+    Signed-off-by: Christopher Brannon &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">cmbrannon79 at gmail.com</A>&gt;
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit fe6e516241c2ca72afd2427617d0b89cec2fb0a6
+Author: Christopher Brannon &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">cmbrannon79 at gmail.com</A>&gt;
+Date:   Sat Nov 28 14:17:46 2009 -0600
+
+    Remove an unneeded call to os.path.join in PackageSubmitForm
+    
+    The call had one argument, so it was a no-op.
+    
+    Signed-off-by: Christopher Brannon &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">cmbrannon79 at gmail.com</A>&gt;
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit c3651e374b28edcfa2096f63c65f8bdced780ed3
+Author: Christopher Brannon &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">cmbrannon79 at gmail.com</A>&gt;
+Date:   Sat Nov 28 14:16:08 2009 -0600
+
+    Remove a missplaced word from the middle of package_detail template.
+    
+    The word &quot;ah&quot; was in the middle of the package details template,
+    and it doesn't belong to there, it's the result of a missplacing.
+    
+    Signed-off-by: Christopher Brannon &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">cmbrannon79 at gmail.com</A>&gt;
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit 2b99c50afa0c176df50cbbfb16784f4c50571bb7
+Author: Christopher Brannon &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">cmbrannon79 at gmail.com</A>&gt;
+Date:   Sat Nov 28 14:14:23 2009 -0600
+
+    Fix package uploading with EOF at the end of parsepkgbuild.sh.
+    
+    It's needed to do, because the script wouldn't work over here.  Package
+    uploading didn't work, but now it does.
+    
+    Signed-off-by: Christopher Brannon &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">cmbrannon79 at gmail.com</A>&gt;
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit b3791f8da474002480a053d8c52f75d0617a7347
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sat Nov 28 20:06:22 2009 +0100
+
+    Refactor AurRegistrationForm subclass
+    
+    This modification was needed because of the django-registration updating to
+    &gt;=0.8 version now.
+    
+    Implementation details:
+    
+    * Change for 'form_class': aur.forms.AurRegistrationForm in the urls.py again
+    
+    * Change the main class of AurRegistrationForm from RegistrationForm to
+    RegistrationFormUniqueEmail to keep the unique email handling facility.
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit f2b95d080ed438985b1b4ff2f54897fff2bf641a
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sat Nov 28 14:58:41 2009 +0100
+
+    Remove the plain PKGBUILD upload feature.
+    
+    makepkg --source should be used to upload packages. It provides a bit of error
+    checking and it's good to support only a single format here.
+    
+    Keeping consistent with the current AUR in this regard.
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aur/Package/parsepkgbuild.sh      |    1 +
+ archlinux/aur/Package/pkgbuild.py           |    3 +-
+ archlinux/aur/forms.py                      |    6 +-
+ archlinux/aur/models.py                     |   13 ++++++
+ archlinux/aur/templatetags/aur_tags.py      |   10 ++++-
+ archlinux/aur/tests.py                      |   59 ++++++++++++++++++++++++++-
+ archlinux/aur/urls.py                       |    4 ++
+ archlinux/aur/views.py                      |   24 +++++++++++
+ archlinux/templates/aur/package_detail.html |   11 +++++-
+ archlinux/urls.py                           |    3 +-
+ pip-requirements.txt                        |    2 +-
+ 11 files changed, 125 insertions(+), 11 deletions(-)
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000130.html">[aur2-dev] github
+</A></li>
+	<LI>Next message: <A HREF="000133.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	4195ceb53e6ed852e339a582a76949ae2368c4c5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#131">[ date ]</a>
+              <a href="thread.html#131">[ thread ]</a>
+              <a href="subject.html#131">[ subject ]</a>
+              <a href="author.html#131">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

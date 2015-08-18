@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. b0b76a778df14be6c6e016e3d891a2521647ac16
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%20b0b76a778df14be6c6e016e3d891a2521647ac16&In-Reply-To=%3C200912061008.nB6A8JI8010045%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000157.html">
+   <LINK REL="Next"  HREF="000181.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. b0b76a778df14be6c6e016e3d891a2521647ac16</H1>
+    <B>djszapi at archlinux.us</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%20b0b76a778df14be6c6e016e3d891a2521647ac16&In-Reply-To=%3C200912061008.nB6A8JI8010045%40sheep.berlios.de%3E"
+       TITLE="[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. b0b76a778df14be6c6e016e3d891a2521647ac16">djszapi at archlinux.us
+       </A><BR>
+    <I>Sun Dec  6 11:08:19 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000157.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 8c57bc6be8f5f27e91663915b5797f83a3849392
+</A></li>
+        <LI>Next message: <A HREF="000181.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. b0b76a778df14be6c6e016e3d891a2521647ac16
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#162">[ date ]</a>
+              <a href="thread.html#162">[ thread ]</a>
+              <a href="subject.html#162">[ subject ]</a>
+              <a href="author.html#162">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project &quot;Project aur2 at BerliOS&quot;.
+
+The branch, master has been updated
+       via  b0b76a778df14be6c6e016e3d891a2521647ac16 (commit)
+       via  ba6a909dd388da72a5ceb379d065b507b5dd85bc (commit)
+       via  b638c870cbe8cc91af4fcf6cdd0a049cdb7f029f (commit)
+       via  f1daa65afc79ebe7f1c2732bc83c189331c15ab6 (commit)
+       via  f018eecc21bdcc97fa53f0f14c9c16e87f769eef (commit)
+      from  8c57bc6be8f5f27e91663915b5797f83a3849392 (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit b0b76a778df14be6c6e016e3d891a2521647ac16
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sun Dec 6 11:04:16 2009 +0100
+
+    Implement RSS facility for newly updated/added packages
+    
+    This is similar that can be seen on so much site, like current AUR too.
+    
+    Implementation details:
+    
+    * New Feed class was established and therefore a new file too, aur/feeds.py
+    * New entry was added in the urls.py to it, and a new feed element
+    * The search template was modified in extra_head block regard, new link was
+    * added with the related /feeds/rss url in a link
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit ba6a909dd388da72a5ceb379d065b507b5dd85bc
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sat Dec 5 21:03:15 2009 +0100
+
+    Change the label from 'password:' for 'Password:' in the login form
+
+commit b638c870cbe8cc91af4fcf6cdd0a049cdb7f029f
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sat Dec 5 20:52:59 2009 +0100
+
+    Redirect accounts/login/ while logged in
+    
+    When a logged in user tried to load the accounts/login/ page, the real login
+    form was got meanwhile the actual user was logged in, so this was a small bug.
+    
+    The solution was for it to redirect that page in this case to the 'aur-main'
+    one, which means the search page. So this redirections happens when the
+    user authentication is ok.
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit f1daa65afc79ebe7f1c2732bc83c189331c15ab6
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sat Dec 5 20:30:47 2009 +0100
+
+    Fix the error signification issue after invalid user login
+    
+    The issue was that no error appeared after trying to log in with an invalid
+    username or password, just the prompt was got back
+    
+    Change form.has_errors for form.error in the login template solved the problem
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit f018eecc21bdcc97fa53f0f14c9c16e87f769eef
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sat Dec 5 18:41:14 2009 +0100
+
+    Refactor middleware implementation in the settings.py, fix cache problems
+    
+    Issues were:
+    
+    * The problem was the earlier logged in user could be seen after trying to log in.
+    * After clicking for the 'Packages' submenu the actual logged in user couldn't
+    be seen
+    
+    The problem was the cache handling, the fix for it was to change the previous
+    cache middleware for:
+    
+    * UpdateCacheMiddleware, in the beginning of the middleware order list
+    * FetchFromCacheMiddleware, at the end of middleware order list
+    
+    The documentation says why they should occur at the beginning/end of the
+    middleware section.
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aur/feeds.py                      |   31 +++++++++++++++++++++++++++
+ archlinux/aurprofile/views.py               |    5 ++++
+ archlinux/settings.py                       |   27 ++++++++++++-----------
+ archlinux/templates/aur/search.html         |    2 +
+ archlinux/templates/registration/login.html |    6 ++--
+ archlinux/urls.py                           |    9 +++++++
+ 6 files changed, 64 insertions(+), 16 deletions(-)
+ create mode 100644 archlinux/aur/feeds.py
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000157.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 8c57bc6be8f5f27e91663915b5797f83a3849392
+</A></li>
+	<LI>Next message: <A HREF="000181.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. b0b76a778df14be6c6e016e3d891a2521647ac16
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#162">[ date ]</a>
+              <a href="thread.html#162">[ thread ]</a>
+              <a href="subject.html#162">[ subject ]</a>
+              <a href="author.html#162">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

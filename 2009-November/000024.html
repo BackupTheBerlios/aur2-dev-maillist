@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH] Import aur app as if it were on project path
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Import%20aur%20app%20as%20if%20it%20were%20on%20project%20path&In-Reply-To=%3Ca362e8010911151130s62758187o9ee5fcb83c1e3a26%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000023.html">
+   <LINK REL="Next"  HREF="000025.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH] Import aur app as if it were on project path</H1>
+    <B>Laszlo Papp</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Import%20aur%20app%20as%20if%20it%20were%20on%20project%20path&In-Reply-To=%3Ca362e8010911151130s62758187o9ee5fcb83c1e3a26%40mail.gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH] Import aur app as if it were on project path">djszapi at archlinux.us
+       </A><BR>
+    <I>Sun Nov 15 20:30:46 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000023.html">[aur2-dev] [PATCH] Import aur app as if it were on project path
+</A></li>
+        <LI>Next message: <A HREF="000025.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. b60510dfcd99cac8f09ae3e273df310a1afb3849
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#24">[ date ]</a>
+              <a href="thread.html#24">[ thread ]</a>
+              <a href="subject.html#24">[ subject ]</a>
+              <a href="author.html#24">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Nov 15, 2009 at 8:01 PM, Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt; wrote:
+&gt;<i> Importing apps from the project path is the recommended way of doing it
+</I>&gt;<i> and also makes the aur app importing consistent with the aurprofile app
+</I>&gt;<i> importing.
+</I>&gt;<i>
+</I>&gt;<i> Signed-off-by: Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt;
+</I>&gt;<i> ---
+</I>&gt;<i> &#160;archlinux/aur/admin.py &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;| &#160; &#160;2 +-
+</I>&gt;<i> &#160;archlinux/aur/forms.py &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;| &#160; &#160;4 ++--
+</I>&gt;<i> &#160;archlinux/aur/templatetags/aur_tags.py &#160; &#160; &#160;| &#160; &#160;2 +-
+</I>&gt;<i> &#160;archlinux/aur/urls.py &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; | &#160; &#160;4 ++--
+</I>&gt;<i> &#160;archlinux/aur/views.py &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;| &#160; &#160;4 ++--
+</I>&gt;<i> &#160;archlinux/settings.py &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; | &#160; &#160;2 +-
+</I>&gt;<i> &#160;archlinux/templates/aur/package_detail.html | &#160; &#160;4 ++--
+</I>&gt;<i> &#160;archlinux/templates/base.html &#160; &#160; &#160; &#160; &#160; &#160; &#160; | &#160; &#160;2 +-
+</I>&gt;<i> &#160;archlinux/urls.py &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; | &#160; &#160;2 +-
+</I>&gt;<i> &#160;9 files changed, 13 insertions(+), 13 deletions(-)
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/archlinux/aur/admin.py b/archlinux/aur/admin.py
+</I>&gt;<i> index 78c3b04..9cebefb 100644
+</I>&gt;<i> --- a/archlinux/aur/admin.py
+</I>&gt;<i> +++ b/archlinux/aur/admin.py
+</I>&gt;<i> @@ -1,4 +1,4 @@
+</I>&gt;<i> -from archlinux.aur.models import *
+</I>&gt;<i> +from aur.models import *
+</I>&gt;<i> &#160;from django.contrib import admin
+</I>&gt;<i>
+</I>&gt;<i> &#160;admin.site.register(Architecture)
+</I>&gt;<i> diff --git a/archlinux/aur/forms.py b/archlinux/aur/forms.py
+</I>&gt;<i> index 2378aef..4337a61 100644
+</I>&gt;<i> --- a/archlinux/aur/forms.py
+</I>&gt;<i> +++ b/archlinux/aur/forms.py
+</I>&gt;<i> @@ -1,8 +1,8 @@
+</I>&gt;<i> &#160;from django import forms
+</I>&gt;<i> &#160;from django.core.files import File
+</I>&gt;<i>
+</I>&gt;<i> -from archlinux.aur.models import *
+</I>&gt;<i> -import archlinux.aur.Package as PKGBUILD
+</I>&gt;<i> +from aur.models import *
+</I>&gt;<i> +import aur.Package as PKGBUILD
+</I>&gt;<i>
+</I>&gt;<i> &#160;import os
+</I>&gt;<i> &#160;import sys
+</I>&gt;<i> diff --git a/archlinux/aur/templatetags/aur_tags.py b/archlinux/aur/templatetags/aur_tags.py
+</I>&gt;<i> index 6e767ba..141a21b 100644
+</I>&gt;<i> --- a/archlinux/aur/templatetags/aur_tags.py
+</I>&gt;<i> +++ b/archlinux/aur/templatetags/aur_tags.py
+</I>&gt;<i> @@ -1,7 +1,7 @@
+</I>&gt;<i> &#160;from django.template import Library
+</I>&gt;<i> &#160;from django.template.defaultfilters import stringfilter
+</I>&gt;<i> &#160;from django.contrib.auth.models import User
+</I>&gt;<i> -from archlinux.aur.models import Package, PackageNotification
+</I>&gt;<i> +from aur.models import Package, PackageNotification
+</I>&gt;<i> &#160;import re
+</I>&gt;<i>
+</I>&gt;<i> &#160;register = Library()
+</I>&gt;<i> diff --git a/archlinux/aur/urls.py b/archlinux/aur/urls.py
+</I>&gt;<i> index b34631f..4b3a4b4 100644
+</I>&gt;<i> --- a/archlinux/aur/urls.py
+</I>&gt;<i> +++ b/archlinux/aur/urls.py
+</I>&gt;<i> @@ -1,12 +1,12 @@
+</I>&gt;<i> &#160;from django.conf.urls.defaults import *
+</I>&gt;<i> -from archlinux.aur.models import Package
+</I>&gt;<i> +from aur.models import Package
+</I>&gt;<i>
+</I>&gt;<i> &#160;detail_dict = {
+</I>&gt;<i> &#160; &#160; 'queryset': Package.objects.all(),
+</I>&gt;<i> &#160; &#160; 'template_object_name': 'pkg',
+</I>&gt;<i> &#160;}
+</I>&gt;<i>
+</I>&gt;<i> -urlpatterns = patterns('archlinux.aur.views',
+</I>&gt;<i> +urlpatterns = patterns('aur.views',
+</I>&gt;<i> &#160; &#160; url(r'^$', 'search', name='aur-main'),
+</I>&gt;<i> &#160; &#160; url(r'^search/$', 'search', name='aur-search'),
+</I>&gt;<i> &#160; &#160; url(r'^submit/$', 'submit', name='aur-submit_package'),
+</I>&gt;<i> diff --git a/archlinux/aur/views.py b/archlinux/aur/views.py
+</I>&gt;<i> index 6843d91..e6ec7b7 100644
+</I>&gt;<i> --- a/archlinux/aur/views.py
+</I>&gt;<i> +++ b/archlinux/aur/views.py
+</I>&gt;<i> @@ -13,8 +13,8 @@ from django.core.urlresolvers import reverse
+</I>&gt;<i> &#160;from django.core import serializers
+</I>&gt;<i> &#160;from django.utils.translation import ugettext
+</I>&gt;<i>
+</I>&gt;<i> -from archlinux.aur.models import *
+</I>&gt;<i> -from archlinux.aur.forms import PackageSearchForm, PackageSubmitForm
+</I>&gt;<i> +from aur.models import *
+</I>&gt;<i> +from aur.forms import PackageSearchForm, PackageSubmitForm
+</I>&gt;<i>
+</I>&gt;<i> &#160;# Helper functions for permissions
+</I>&gt;<i> &#160;# This should perhaps be elsewhere. In the future Django may support
+</I>&gt;<i> diff --git a/archlinux/settings.py b/archlinux/settings.py
+</I>&gt;<i> index 6429b66..a7d1813 100644
+</I>&gt;<i> --- a/archlinux/settings.py
+</I>&gt;<i> +++ b/archlinux/settings.py
+</I>&gt;<i> @@ -56,7 +56,7 @@ INSTALLED_APPS = (
+</I>&gt;<i> &#160; &#160; 'django.contrib.sessions',
+</I>&gt;<i> &#160; &#160; 'django.contrib.admin',
+</I>&gt;<i> &#160; &#160; 'django.contrib.sites',
+</I>&gt;<i> - &#160; &#160;'archlinux.aur',
+</I>&gt;<i> + &#160; &#160;'aur',
+</I>&gt;<i> &#160; &#160; 'registration',
+</I>&gt;<i> &#160; &#160; 'aurprofile',
+</I>&gt;<i> &#160; &#160; 'tagging',
+</I>&gt;<i> diff --git a/archlinux/templates/aur/package_detail.html b/archlinux/templates/aur/package_detail.html
+</I>&gt;<i> index 891e650..59abf9f 100644
+</I>&gt;<i> --- a/archlinux/templates/aur/package_detail.html
+</I>&gt;<i> +++ b/archlinux/templates/aur/package_detail.html
+</I>&gt;<i> @@ -105,7 +105,7 @@
+</I>&gt;<i> &#160; &#160; &lt;p class=&quot;news&quot;&gt;{{ comment.message }}&lt;/p&gt;
+</I>&gt;<i> &#160; &#160; &lt;br /&gt;
+</I>&gt;<i> &#160; &#160; &lt;div style=&quot;text-align:right&quot;&gt;
+</I>&gt;<i> - &#160; &#160;&lt;form action=&quot;{% url archlinux.aur.views.comment object_id=pkg.name %}&quot; method=&quot;post&quot;&gt;
+</I>&gt;<i> + &#160; &#160;&lt;form action=&quot;{% url aur.views.comment object_id=pkg.name %}&quot; method=&quot;post&quot;&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &lt;input type=&quot;hidden&quot; name=&quot;reply_to&quot; value=&quot;{{ comment.id }}&quot; /&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &lt;input type=&quot;submit&quot; value=&quot;{% trans &quot;Reply&quot; %}&quot; /&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &lt;/form&gt;
+</I>&gt;<i> @@ -117,7 +117,7 @@
+</I>&gt;<i> &#160;&lt;br /&gt;
+</I>&gt;<i> &#160;&lt;h2 class=&quot;title&quot;&gt;{% trans &quot;Post comment&quot; %}&lt;/h2&gt;
+</I>&gt;<i> &#160;&lt;div class=&quot;greybox&quot; style=&quot;text-align:right&quot;&gt;
+</I>&gt;<i> - &#160; &#160;&lt;form action=&quot;{% url archlinux.aur.views.comment object_id=pkg.name %}&quot; method=&quot;post&quot;&gt;
+</I>&gt;<i> + &#160; &#160;&lt;form action=&quot;{% url aur.views.comment object_id=pkg.name %}&quot; method=&quot;post&quot;&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &lt;textarea name=&quot;message&quot; style=&quot;width:100%;&quot; rows=&quot;10&quot;&gt;&lt;/textarea&gt;&lt;br /&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &lt;input type=&quot;submit&quot; value=&quot;{% trans &quot;Reply&quot; %}&quot; /&gt;
+</I>&gt;<i> &#160; &#160; &lt;/form&gt;
+</I>&gt;<i> diff --git a/archlinux/templates/base.html b/archlinux/templates/base.html
+</I>&gt;<i> index b6c8ef7..37b2b99 100644
+</I>&gt;<i> --- a/archlinux/templates/base.html
+</I>&gt;<i> +++ b/archlinux/templates/base.html
+</I>&gt;<i> @@ -41,7 +41,7 @@
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &lt;li&gt;&lt;a href=&quot;<A HREF="http://archlinux.org/mailman/listinfo/aur-general">http://archlinux.org/mailman/listinfo/aur-general</A>&quot;&gt;{% trans &quot;Mailing List&quot; %}&lt;/a&gt;&lt;/li&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &lt;li&gt;&lt;a href=&quot;<A HREF="http://bugs.archlinux.org/index.php?tasks=all&amp;amp;project=2">http://bugs.archlinux.org/index.php?tasks=all&amp;project=2</A>&quot;&gt;{% trans &quot;Bugs&quot; %}&lt;/a&gt;&lt;/li&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; {% if user.is_authenticated %}
+</I>&gt;<i> - &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&lt;li&gt;&lt;a href=&quot;{% url archlinux.aur.views.submit %}&quot;&gt;{% trans &quot;Submit&quot; %}&lt;/a&gt;&lt;/li&gt;
+</I>&gt;<i> + &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&lt;li&gt;&lt;a href=&quot;{% url aur.views.submit %}&quot;&gt;{% trans &quot;Submit&quot; %}&lt;/a&gt;&lt;/li&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; {% endif %}
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &lt;li&gt;&lt;a href=&quot;/&quot;&gt;{% trans &quot;Packages&quot; %}&lt;/a&gt;&lt;/li&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &lt;/ul&gt;
+</I>&gt;<i> diff --git a/archlinux/urls.py b/archlinux/urls.py
+</I>&gt;<i> index de3a92d..2c5dae4 100644
+</I>&gt;<i> --- a/archlinux/urls.py
+</I>&gt;<i> +++ b/archlinux/urls.py
+</I>&gt;<i> @@ -8,7 +8,7 @@ urlpatterns = patterns('',
+</I>&gt;<i> &#160; &#160; (r'^admin/(.*)', admin.site.root),
+</I>&gt;<i> &#160; &#160; (r'^accounts/', include('registration.urls')),
+</I>&gt;<i> &#160; &#160; (r'^profile/', include('aurprofile.urls')),
+</I>&gt;<i> - &#160; &#160;(r'^', include('archlinux.aur.urls')),
+</I>&gt;<i> + &#160; &#160;(r'^', include('aur.urls')),
+</I>&gt;<i> &#160;)
+</I>&gt;<i>
+</I>&gt;<i> &#160;if settings.DEBUG == True:
+</I>&gt;<i> --
+</I>&gt;<i> 1.6.5.2
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> aur2-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">aur2-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">https://lists.berlios.de/mailman/listinfo/aur2-dev</A>
+</I>&gt;<i>
+</I>
+I like this patch, I will apply it soon.It's good because apps can be
+reached with archlinux.aur absolutely or relatively with aur. I prefer
+the relative way to absolute because it will be available in other
+project too, meanwhile in this format it should be rewritten if
+archlinux name wll change.
+
+Anyway, thanks :)
+
+Best Regards,
+Laszlo Papp
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000023.html">[aur2-dev] [PATCH] Import aur app as if it were on project path
+</A></li>
+	<LI>Next message: <A HREF="000025.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. b60510dfcd99cac8f09ae3e273df310a1afb3849
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#24">[ date ]</a>
+              <a href="thread.html#24">[ thread ]</a>
+              <a href="subject.html#24">[ subject ]</a>
+              <a href="author.html#24">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

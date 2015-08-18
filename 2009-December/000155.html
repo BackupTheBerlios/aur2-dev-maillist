@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 7987db5d828d2e09b731bd441de17c28785d3d65
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%207987db5d828d2e09b731bd441de17c28785d3d65&In-Reply-To=%3C7AFE1184-901E-48A4-958C-A5DD8BC57712%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000154.html">
+   <LINK REL="Next"  HREF="000159.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 7987db5d828d2e09b731bd441de17c28785d3d65</H1>
+    <B>Sebastian Nowicki</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%207987db5d828d2e09b731bd441de17c28785d3d65&In-Reply-To=%3C7AFE1184-901E-48A4-958C-A5DD8BC57712%40gmail.com%3E"
+       TITLE="[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 7987db5d828d2e09b731bd441de17c28785d3d65">sebnow at gmail.com
+       </A><BR>
+    <I>Sat Dec  5 03:33:28 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000154.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 7987db5d828d2e09b731bd441de17c28785d3d65
+</A></li>
+        <LI>Next message: <A HREF="000159.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	7987db5d828d2e09b731bd441de17c28785d3d65
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#155">[ date ]</a>
+              <a href="thread.html#155">[ thread ]</a>
+              <a href="subject.html#155">[ subject ]</a>
+              <a href="author.html#155">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On Dec 5, 2009, at 8:14 AM, <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A> wrote:
+&gt;<i> commit 767a3441275caedafd28b56013abc9dc6a3da850
+</I>&gt;<i> Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>&gt;<i> Date:   Fri Dec 4 22:17:22 2009 +0100
+</I>&gt;<i>
+</I>&gt;<i>    Implement Remember me checkbox to the login page
+</I>&gt;<i>
+</I>&gt;<i>    This is a typical feature on websites, like in case of AUR too,  
+</I>&gt;<i> so it was worth
+</I>&gt;<i>    to implement it. The Remember Me feature allows a user to select  
+</I>&gt;<i> a Remember Me,
+</I>&gt;<i>    checkbox on the website login form.  When checked the user will  
+</I>&gt;<i> be &quot;remembered&quot;
+</I>&gt;<i>    between browser sessions.
+</I>&gt;<i>
+</I>&gt;<i>    The implementation touched the new extended form class, the new  
+</I>&gt;<i> view, extended
+</I>&gt;<i>    login template, and the url too
+</I>
+If appears this won't work. From the Django documentation about  
+set_expiry():
+&gt;<i> If value is 0, the user&#8217;s session cookie will expire when the user&#8217;s  
+</I>&gt;<i> Web browser is closed.
+</I>
+You should really test your changes, at least manually, but preferably  
+using unit tests. This could have been easily caught.
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000154.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 7987db5d828d2e09b731bd441de17c28785d3d65
+</A></li>
+	<LI>Next message: <A HREF="000159.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	7987db5d828d2e09b731bd441de17c28785d3d65
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#155">[ date ]</a>
+              <a href="thread.html#155">[ thread ]</a>
+              <a href="subject.html#155">[ subject ]</a>
+              <a href="author.html#155">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

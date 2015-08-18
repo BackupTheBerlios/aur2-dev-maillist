@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH] Fix failing aur tests
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Fix%20failing%20aur%20tests&In-Reply-To=%3CE5418DE2-DB4F-454B-A0EC-9F4A61D9DDFF%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000071.html">
+   <LINK REL="Next"  HREF="000064.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH] Fix failing aur tests</H1>
+    <B>Sebastian Nowicki</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Fix%20failing%20aur%20tests&In-Reply-To=%3CE5418DE2-DB4F-454B-A0EC-9F4A61D9DDFF%40gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH] Fix failing aur tests">sebnow at gmail.com
+       </A><BR>
+    <I>Sat Nov 28 05:19:45 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000071.html">[aur2-dev] [PATCH] Fix failing aur tests
+</A></li>
+        <LI>Next message: <A HREF="000064.html">[aur2-dev] Extrange error when uploading some packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#91">[ date ]</a>
+              <a href="thread.html#91">[ thread ]</a>
+              <a href="subject.html#91">[ subject ]</a>
+              <a href="author.html#91">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On Nov 28, 2009, at 1:30 AM, Laszlo Papp wrote:
+
+&gt;<i> On Fri, Nov 27, 2009 at 4:36 PM, Sebastian Nowicki  
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">sebnow at gmail.com</A>&gt; wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Nov 27, 2009, at 10:19 PM, Ismael Carnales wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> * Added slug to the packages fixture
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Signed-off-by: Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt;
+</I>&gt;&gt;&gt;<i> ---
+</I>&gt;&gt;&gt;<i> archlinux/aur/fixtures/test/packages.json |    3 ++-
+</I>&gt;&gt;&gt;<i> 1 files changed, 2 insertions(+), 1 deletions(-)
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> diff --git a/archlinux/aur/fixtures/test/packages.json b/archlinux/
+</I>&gt;&gt;&gt;<i> aur/fixtures/test/packages.json
+</I>&gt;&gt;&gt;<i> index 081ebb6..07afe83 100644
+</I>&gt;&gt;&gt;<i> --- a/archlinux/aur/fixtures/test/packages.json
+</I>&gt;&gt;&gt;<i> +++ b/archlinux/aur/fixtures/test/packages.json
+</I>&gt;&gt;&gt;<i> @@ -3,7 +3,8 @@
+</I>&gt;&gt;&gt;<i>         &quot;pk&quot;: 1,
+</I>&gt;&gt;&gt;<i>         &quot;model&quot;: &quot;aur.package&quot;,
+</I>&gt;&gt;&gt;<i>         &quot;fields&quot;: {
+</I>&gt;&gt;&gt;<i> -                     &quot;name&quot;: &quot;unique_package&quot;,
+</I>&gt;&gt;&gt;<i> +            &quot;name&quot;: &quot;unique_package&quot;,
+</I>&gt;&gt;&gt;<i> +            &quot;slug&quot;: &quot;unique_package&quot;,
+</I>&gt;&gt;&gt;<i>             &quot;tags&quot;: [&quot;unique&quot;],
+</I>&gt;&gt;&gt;<i>             &quot;updated&quot;: &quot;2009-01-01 00:00:00&quot;,
+</I>&gt;&gt;&gt;<i>             &quot;added&quot;: &quot;2009-01-01 00:00:00&quot;,
+</I>&gt;&gt;&gt;<i> --
+</I>&gt;&gt;&gt;<i> 1.6.5.2
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;&gt;<i> aur2-dev mailing list
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">aur2-dev at lists.berlios.de</A>
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">https://lists.berlios.de/mailman/listinfo/aur2-dev</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thanks! Applied in my github repo. I need to figure out how to
+</I>&gt;&gt;<i> activate my berlios account to be able to push to that repo :/.
+</I>&gt;<i>
+</I>&gt;<i> Ohh Sebastian, don't you have that account yet ? :)
+</I>&gt;<i> I will apply it later, thanks.
+</I>&gt;<i>
+</I>&gt;<i> Best Regards,
+</I>&gt;<i> Laszlo Papp
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> aur2-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">aur2-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">https://lists.berlios.de/mailman/listinfo/aur2-dev</A>
+</I>
+I was able to get the admins to activate it, but I still didn't have  
+access to the git repository. I'll try again soon.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000071.html">[aur2-dev] [PATCH] Fix failing aur tests
+</A></li>
+	<LI>Next message: <A HREF="000064.html">[aur2-dev] Extrange error when uploading some packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#91">[ date ]</a>
+              <a href="thread.html#91">[ thread ]</a>
+              <a href="subject.html#91">[ subject ]</a>
+              <a href="author.html#91">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

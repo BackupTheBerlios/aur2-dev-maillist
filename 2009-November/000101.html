@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. a73808e21190571c5a50e0e2847a6bd9cea5d910
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%20a73808e21190571c5a50e0e2847a6bd9cea5d910&In-Reply-To=%3C200911280909.nAS99OJv010194%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000092.html">
+   <LINK REL="Next"  HREF="000117.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. a73808e21190571c5a50e0e2847a6bd9cea5d910</H1>
+    <B>djszapi at archlinux.us</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%20a73808e21190571c5a50e0e2847a6bd9cea5d910&In-Reply-To=%3C200911280909.nAS99OJv010194%40sheep.berlios.de%3E"
+       TITLE="[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. a73808e21190571c5a50e0e2847a6bd9cea5d910">djszapi at archlinux.us
+       </A><BR>
+    <I>Sat Nov 28 10:09:24 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000092.html">[aur2-dev] &quot;Offtopic&quot;: development workflow
+</A></li>
+        <LI>Next message: <A HREF="000117.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	a73808e21190571c5a50e0e2847a6bd9cea5d910
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#101">[ date ]</a>
+              <a href="thread.html#101">[ thread ]</a>
+              <a href="subject.html#101">[ subject ]</a>
+              <a href="author.html#101">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project &quot;Project aur2 at BerliOS&quot;.
+
+The branch, master has been updated
+       via  a73808e21190571c5a50e0e2847a6bd9cea5d910 (commit)
+       via  87af85f10a2e4ee0be918df9404078d589391034 (commit)
+       via  86c6dd586f08807f64f2394b791dce9a991f5ace (commit)
+      from  61008e056097dcd6542880ad6ffd1a9cbd9ee6e7 (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit a73808e21190571c5a50e0e2847a6bd9cea5d910
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sat Nov 28 09:33:04 2009 +0100
+
+    Refactor account registration, keep one account for one mail
+    
+    Refactor the account registration with the help of new version of
+    django-registration module which provides facility for it with the
+    RegistrationFormUniqueEmail element to reject those requirements to register an
+    account in which cases an account was registered earlier for that email address
+    
+    The implementation touched the urls.py file to introduce the backend facility in
+    the new module in he accounts and account/register regards.
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit 87af85f10a2e4ee0be918df9404078d589391034
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sat Nov 28 04:35:45 2009 +0100
+
+    Add DEFAULT_FROM_ADRESS to settings_local.py.sample
+    
+    Add the email address into the settings_local.py.sample what will service the
+    account registration procedure with sending activation/registration email.
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit 86c6dd586f08807f64f2394b791dce9a991f5ace
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sat Nov 28 00:23:14 2009 +0100
+
+    Remove Community repository from Submit select/option box
+    
+    Remove the community repository from the package submitting page, because
+    community repository isn't handled by AUR anymore, and no need to involve
+    option/select field for it.
+    
+    The implementation touched the aur/fixtures/initial_data.xml changing, so
+    removing that objects from there, and making a manage.py flush to recreate
+    the real data after deleting it on the admin interface.
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aur/fixtures/initial_data.xml |    3 ---
+ archlinux/settings_local.py.sample      |    3 +++
+ archlinux/urls.py                       |    8 +++++---
+ 3 files changed, 8 insertions(+), 6 deletions(-)
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000092.html">[aur2-dev] &quot;Offtopic&quot;: development workflow
+</A></li>
+	<LI>Next message: <A HREF="000117.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	a73808e21190571c5a50e0e2847a6bd9cea5d910
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#101">[ date ]</a>
+              <a href="thread.html#101">[ thread ]</a>
+              <a href="subject.html#101">[ subject ]</a>
+              <a href="author.html#101">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

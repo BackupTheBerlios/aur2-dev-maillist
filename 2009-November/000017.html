@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH] reworked local settings
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20reworked%20local%20settings&In-Reply-To=%3Ca362e8010911141528p566f15e4j8c6f9e1d62bfea6c%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000016.html">
+   <LINK REL="Next"  HREF="000018.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH] reworked local settings</H1>
+    <B>Laszlo Papp</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20reworked%20local%20settings&In-Reply-To=%3Ca362e8010911141528p566f15e4j8c6f9e1d62bfea6c%40mail.gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH] reworked local settings">djszapi at archlinux.us
+       </A><BR>
+    <I>Sun Nov 15 00:28:58 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000016.html">[aur2-dev] [PATCH] reworked local settings
+</A></li>
+        <LI>Next message: <A HREF="000018.html">[aur2-dev] [PATCH] Move default settings to local settings
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#17">[ date ]</a>
+              <a href="thread.html#17">[ thread ]</a>
+              <a href="subject.html#17">[ subject ]</a>
+              <a href="author.html#17">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Nov 15, 2009 at 12:14 AM, Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt; wrote:
+&gt;<i> On Sat, Nov 14, 2009 at 9:04 PM, Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt; wrote:
+</I>&gt;&gt;&gt;<i> renamed settings_local to local_settings
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> local_settings.py is the conventional name for the local settings
+</I>&gt;&gt;&gt;<i> overrides file
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> If I see well, this patch is about renaming. What's the real benefit of this ?
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> This patch could be really splitted in two patches, actually is a
+</I>&gt;<i> rebase squishing two commits.
+</I>&gt;<i>
+</I>&gt;<i> The first part moves some default settings that shouldn't be in the
+</I>&gt;<i> main setting.py file to the local settings file.
+</I>&gt;<i>
+</I>
+Agreed.
+
+&gt;<i> The second part renames settings_local.py to local_setting.py this is
+</I>&gt;<i> the conventional name (as in good practices) for the local settings
+</I>&gt;<i> file, you can see it in the django conventions site for example:
+</I>&gt;<i> <A HREF="http://ericholscher.com/projects/reusable-app-docs/projects/settings.html">http://ericholscher.com/projects/reusable-app-docs/projects/settings.html</A>
+</I>&gt;<i>
+</I>
+It's just an 1-2 lines snippet, I can show you example for settings_* too :)
+<A HREF="http://www.bearfruit.org/blog/2008/05/28/multiple-django-configurations-for-development-and-production">http://www.bearfruit.org/blog/2008/05/28/multiple-django-configurations-for-development-and-production</A>
+
+The current name seems for me more logical, maybe Sebastian choosed
+this one because of this, I'd preserve Sebastian's work.
+
+If you send again the first part of patch alone, I will apply it,
+because it's a good patch so in my opinion.
+
+PS: Don't forget reworked -&gt; Refactor in the subject.
+
+Best Regards,
+Laszlo Papp
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000016.html">[aur2-dev] [PATCH] reworked local settings
+</A></li>
+	<LI>Next message: <A HREF="000018.html">[aur2-dev] [PATCH] Move default settings to local settings
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#17">[ date ]</a>
+              <a href="thread.html#17">[ thread ]</a>
+              <a href="subject.html#17">[ subject ]</a>
+              <a href="author.html#17">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

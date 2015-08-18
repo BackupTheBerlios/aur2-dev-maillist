@@ -1,0 +1,2898 @@
+From djszapi at archlinux.us  Tue Dec  1 03:54:12 2009
+From: djszapi at archlinux.us (djszapi at archlinux.us)
+Date: Tue, 1 Dec 2009 03:54:12 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. f352575112bfc859839d939ae3eb172da3b48dae
+Message-ID: <200912010254.nB12sC1I009458@sheep.berlios.de>
+
+This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project "Project aur2 at BerliOS".
+
+The branch, master has been updated
+       via  f352575112bfc859839d939ae3eb172da3b48dae (commit)
+       via  215f0ada5789dc19633498309543db289128242d (commit)
+       via  d218580b85a5219a3769963a6a20f96e7037ad6d (commit)
+       via  850556b3e1415a92ad7c8059050f1bfcfd7d76dd (commit)
+       via  2b7cc40599a76d5873e2158d0e06a8dbf06847bb (commit)
+       via  d596c830487d229809a52e1c8d103bf540f377b6 (commit)
+       via  2da3203e1ff8f95c4aa07467a7c9efd847443033 (commit)
+      from  2b44a1265c789da7cf767349a946f4cdc1269bf6 (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit f352575112bfc859839d939ae3eb172da3b48dae
+Author: Ismael Carnales <icarnales at gmail.com>
+Date:   Fri Nov 27 16:35:22 2009 -0200
+
+    Fix added date on Package and Comment models
+    
+    The added datetime for Packages and Comments was getting set in the
+    default value (always the datetime from server start), now using
+    auto_now_create and auto_now for updated
+    
+    Signed-off-by: Ismael Carnales <icarnales at gmail.com>
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 215f0ada5789dc19633498309543db289128242d
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Nov 28 00:00:00 2009 +0100
+
+    Refactor AurRegistrationForm handling
+    
+    This implementation reduces the dependencies, it means we could change only the
+    label, and not worry about anything else. It can happen when the
+    django-registration author changes the, or any other setting, inherit the
+    django-registration definition of password2, then change it on object
+    instanciation. This means the deletion of global variable 'attrs_dict' too.
+    
+    Summary: The label is edited only, It's pretty safe unless the Forms api gets
+    altered significantly.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit d218580b85a5219a3769963a6a20f96e7037ad6d
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Nov 28 00:00:00 2009 +0100
+
+    Move AurRegistrationFrom subclass handling into the aurprofile
+    
+    It was needed because the AUR2 Registration Form is more or less profile related
+    thing, so it should be placed in the aurprofile app, all the importation was
+    moved, RegistrationFormUniqueEmail and ugettext handling too.
+    
+    The entry in the urls.py was needed to modify to according to the aur ->
+    aurprofile chaning
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 850556b3e1415a92ad7c8059050f1bfcfd7d76dd
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Nov 28 00:00:00 2009 +0100
+
+    Add cache related settings into the MIDDLEWARE_CLASSES block
+    
+    This addition can be found in the official documentation to work, so it was
+    needed to add, because the cache facility use those ones for the operation.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 2b7cc40599a76d5873e2158d0e06a8dbf06847bb
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Nov 28 22:13:37 2009 +0100
+
+    Fix the delete of PKGBUILD uploading method
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit d596c830487d229809a52e1c8d103bf540f377b6
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Mon Nov 30 23:12:20 2009 +0100
+
+    Implement account deleting function in aur/views.py
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 2da3203e1ff8f95c4aa07467a7c9efd847443033
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Mon Nov 30 23:08:58 2009 +0100
+
+    Add Cache Backend option to the settings_local.py.sample
+    
+    This implementation means a cache middleware one, whole page caching facility,
+    but maybe in the future the model level caching is worth to consider or the
+    sessions cache.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aur/forms.py             |   41 +++++------------------------------
+ archlinux/aur/models.py            |    7 ++---
+ archlinux/aur/views.py             |    4 +++
+ archlinux/aurprofile/forms.py      |    8 +++++++
+ archlinux/settings.py              |    4 ++-
+ archlinux/settings_local.py.sample |    1 +
+ archlinux/urls.py                  |    4 +-
+ 7 files changed, 27 insertions(+), 42 deletions(-)
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+
+From cmbrannon79 at gmail.com  Tue Dec  1 05:03:03 2009
+From: cmbrannon79 at gmail.com (Chris Brannon)
+Date: Mon, 30 Nov 2009 22:03:03 -0600
+Subject: [aur2-dev] temporary MEDIA_ROOT
+Message-ID: <4b14952d.9453f10a.2033.ffffefa2@mx.google.com>
+
+There's only one problem with that patch.  Django evaluates settings
+twice.  Two temporary directories are created while running tests.
+That may not be much of a problem, since both are removed on exit.
+
+-- Chris
+
+
+From sebnow at gmail.com  Tue Dec  1 14:33:11 2009
+From: sebnow at gmail.com (Sebastian Nowicki)
+Date: Tue, 1 Dec 2009 21:33:11 +0800
+Subject: [aur2-dev] [PATCH] Use a temporary MEDIA_ROOT when running unit
+	tests.
+In-Reply-To: <4b14948d.9653f10a.0b57.fffff586@mx.google.com>
+References: <4b14948d.9653f10a.0b57.fffff586@mx.google.com>
+Message-ID: <85459940-7060-418B-AC17-65C969D2745B@gmail.com>
+
+
+On Nov 30, 2009, at 11:00 PM, Christopher Brannon wrote:
+
+> I want to test package uploading thoroughly.  Here's the first step.
+> This was suggested by Xilon on the AUR_2 page from the Arch wiki.
+> The temporary tree is removed when the application terminates.
+>
+> Signed-off-by: Christopher Brannon <cmbrannon79 at gmail.com>
+> ---
+> archlinux/settings.py |    8 ++++++++
+> 1 files changed, 8 insertions(+), 0 deletions(-)
+>
+> diff --git a/archlinux/settings.py b/archlinux/settings.py
+> index a7d1813..63958fa 100644
+> --- a/archlinux/settings.py
+> +++ b/archlinux/settings.py
+> @@ -1,4 +1,8 @@
+> import os.path
+> +import sys
+> +import tempfile
+> +import shutil
+> +import atexit
+>
+> DEPLOY_PATH = os.path.dirname(__file__) # This is the base dir for  
+> everything
+>
+> @@ -75,3 +79,7 @@ try:
+>     from settings_local import *
+> except ImportError:
+>     pass
+> +
+> +if len(sys.argv) > 1 and sys.argv[1] == 'test':
+> +    MEDIA_ROOT = tempfile.mkdtemp(prefix='testaur2')
+> +    atexit.register(lambda : shutil.rmtree(MEDIA_ROOT))
+> -- 
+
+Hmm, it's kind of a hack (mainly the use of sys.argv). It's a great  
+idea to isolate the test environment like this, but I think a better  
+solution is in order. I'm considering implementing something like  
+FakeFS (Ruby) in python, to mock the filesystem for the tests. This  
+should suffice for the time being (assuming it works :P) though.  
+Thanks. It's nice to see the test suite getting some attention :).
+
+
+
+From cmbrannon79 at gmail.com  Tue Dec  1 21:52:39 2009
+From: cmbrannon79 at gmail.com (Chris Brannon)
+Date: Tue, 01 Dec 2009 14:52:39 -0600
+Subject: [aur2-dev] [PATCH] Use a temporary MEDIA_ROOT when running unit
+	tests.
+In-Reply-To: <85459940-7060-418B-AC17-65C969D2745B@gmail.com>
+References: <4b14948d.9653f10a.0b57.fffff586@mx.google.com>
+	<85459940-7060-418B-AC17-65C969D2745B@gmail.com>
+Message-ID: <4b1581cc.9515f10a.0c04.1e15@mx.google.com>
+
+> Hmm, it's kind of a hack (mainly the use of sys.argv). It's a great  
+> idea to isolate the test environment like this, but I think a better  
+> solution is in order. I'm considering implementing something like  
+> FakeFS (Ruby) in python, to mock the filesystem for the tests. This  
+> should suffice for the time being (assuming it works :P) though.  
+
+Yes it is a hack.  I ran across this idea somewhere on the net, while
+looking at info about Django testing.
+The FakeFS concept sounds nice.
+
+-- Chris
+
+
+From icarnales at gmail.com  Wed Dec  2 00:08:12 2009
+From: icarnales at gmail.com (Ismael Carnales)
+Date: Tue, 1 Dec 2009 21:08:12 -0200
+Subject: [aur2-dev] [PATCH] Remove single PKGBUILD uploading from aur
+	forms
+In-Reply-To: <d83f7a8d0911300419x5265d0d3qa4f086700d8e5f0c@mail.gmail.com>
+References: <d83f7a8d0911281450p3a7dc50dh720778054c247557@mail.gmail.com> 
+	<1259535247-6439-1-git-send-email-icarnales@gmail.com>
+	<a362e8010911292018u7bdce1eap7e9c5e822b072686@mail.gmail.com> 
+	<d83f7a8d0911300419x5265d0d3qa4f086700d8e5f0c@mail.gmail.com>
+Message-ID: <d83f7a8d0912011508o299dd39r2c9be1873e4aeb3e@mail.gmail.com>
+
+On Mon, Nov 30, 2009 at 10:19 AM, Ismael Carnales <icarnales at gmail.com> wrote:
+>> I implemented something similar after my PKBUILD removing patch, and
+>> after you warned me for these things, so you will see the patch from
+>> me after the next aur2 push operation, but thanks.
+>>
+>
+> You could have replied that to my mail :/
+>
+
+Dude you've commited my patch with another commit message and your
+name in ... there's no way in the world you would have done the exact
+same changes as I in the file, including the comment changing ...
+
+
+From djszapi at archlinux.us  Wed Dec  2 03:40:24 2009
+From: djszapi at archlinux.us (Laszlo Papp)
+Date: Wed, 2 Dec 2009 03:40:24 +0100
+Subject: [aur2-dev] [PATCH] Remove single PKGBUILD uploading from aur
+	forms
+In-Reply-To: <d83f7a8d0912011508o299dd39r2c9be1873e4aeb3e@mail.gmail.com>
+References: <d83f7a8d0911281450p3a7dc50dh720778054c247557@mail.gmail.com>
+	<1259535247-6439-1-git-send-email-icarnales@gmail.com>
+	<a362e8010911292018u7bdce1eap7e9c5e822b072686@mail.gmail.com>
+	<d83f7a8d0911300419x5265d0d3qa4f086700d8e5f0c@mail.gmail.com>
+	<d83f7a8d0912011508o299dd39r2c9be1873e4aeb3e@mail.gmail.com>
+Message-ID: <a362e8010912011840v7b671026k28613f9bf8416dbf@mail.gmail.com>
+
+On Wed, Dec 2, 2009 at 12:08 AM, Ismael Carnales <icarnales at gmail.com> wrote:
+> On Mon, Nov 30, 2009 at 10:19 AM, Ismael Carnales <icarnales at gmail.com> wrote:
+>>> I implemented something similar after my PKBUILD removing patch, and
+>>> after you warned me for these things, so you will see the patch from
+>>> me after the next aur2 push operation, but thanks.
+>>>
+>>
+>> You could have replied that to my mail :/
+>>
+>
+> Dude you've commited my patch with another commit message and your
+> name in ... there's no way in the world you would have done the exact
+> same changes as I in the file, including the comment changing ...
+
+Hello,
+
+1) It was related to my previous patch, so I didn't understand why you
+wanted to take this patch instead of suggesting me to correct it, I
+didn't take your patches, but I did you some hint earlier, and others
+too, so I don't understand this habbit.
+
+2) 1-2 line was different in my patch maybe, if it wasn't the same, I
+can't remember well, because I've done more patches in these days, and
+It's not my purpose to talking about one patch more days instead of
+developing the project efficiently.
+
+3) Did you see the date of patch ?
+
+4) I've applied one of your patch yesterday without any problem(and
+earlier more), interesting :)
+
+5) Once more time, I did a patch, you advised something, I kept your
+suggestion (it means you gave good suggestion to my patch!) and you
+complain about it why I kept your suggestion, and you sent a patch 1-2
+days later. Well, I can do patch for everybody who did a not 100 %
+good patch instead of suggestions, but first of all it's not correct
+or fair, secondly it's not a general git and project development
+workflow.
+
+4) The only thing I see in this momment you've got so much problem
+with git general, this project handling. I tried to reach you in
+private without result to talk about some things, that's not okay for
+you or me to clarify it, or to find a good solution for us to make the
+situation better, but you didn't reply :(
+
+Best Regards,
+Laszlo Papp
+
+
+From djszapi at archlinux.us  Sat Dec  5 01:14:07 2009
+From: djszapi at archlinux.us (djszapi at archlinux.us)
+Date: Sat, 5 Dec 2009 01:14:07 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. 7987db5d828d2e09b731bd441de17c28785d3d65
+Message-ID: <200912050014.nB50E7WA030920@sheep.berlios.de>
+
+This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project "Project aur2 at BerliOS".
+
+The branch, master has been updated
+       via  7987db5d828d2e09b731bd441de17c28785d3d65 (commit)
+       via  e56a757194fc366a6fcde963cde1554451bfe42e (commit)
+       via  767a3441275caedafd28b56013abc9dc6a3da850 (commit)
+      from  f352575112bfc859839d939ae3eb172da3b48dae (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit 7987db5d828d2e09b731bd441de17c28785d3d65
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Fri Dec 4 23:44:08 2009 +0100
+
+    Modify OPENID feature for not a launchpad server hardcoded one
+    
+    Remove OPENID_SSO_SERVER_URL from the settings.py with its comments for user to
+    be able to enter the type for OPENID option
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit e56a757194fc366a6fcde963cde1554451bfe42e
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Fri Dec 4 23:17:29 2009 +0100
+
+    Implement OPENID facility on the site
+    
+    Every new big site is using this feature, its the way things are going.
+    It also includes support for using a fixed OpenID server endpoint. Launchpad is
+    support at this commit only, but it will be extended later it's planned.
+    
+    New dependency was established, named django-openid-auth, it can helps with
+    their implementation and documentation.
+    
+    So this dependency was added to the pip-requirements.txt, and the related
+    modifications were established in the settings.py and in the urls.py
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 767a3441275caedafd28b56013abc9dc6a3da850
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Fri Dec 4 22:17:22 2009 +0100
+
+    Implement Remember me checkbox to the login page
+    
+    This is a typical feature on websites, like in case of AUR too, so it was worth
+    to implement it. The Remember Me feature allows a user to select a Remember Me,
+    checkbox on the website login form.  When checked the user will be "remembered"
+    between browser sessions.
+    
+    The implementation touched the new extended form class, the new view, extended
+    login template, and the url too
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aurprofile/forms.py               |   15 +++++++
+ archlinux/aurprofile/views.py               |   61 +++++++++++++++++++++++++++
+ archlinux/settings.py                       |   17 +++++++
+ archlinux/templates/registration/login.html |   10 +++-
+ archlinux/urls.py                           |    6 ++-
+ pip-requirements.txt                        |    1 +
+ 6 files changed, 106 insertions(+), 4 deletions(-)
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+
+From sebnow at gmail.com  Sat Dec  5 03:33:28 2009
+From: sebnow at gmail.com (Sebastian Nowicki)
+Date: Sat, 5 Dec 2009 10:33:28 +0800
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. 7987db5d828d2e09b731bd441de17c28785d3d65
+In-Reply-To: <200912050014.nB50E7WA030920@sheep.berlios.de>
+References: <200912050014.nB50E7WA030920@sheep.berlios.de>
+Message-ID: <7AFE1184-901E-48A4-958C-A5DD8BC57712@gmail.com>
+
+
+On Dec 5, 2009, at 8:14 AM, djszapi at archlinux.us wrote:
+> commit 767a3441275caedafd28b56013abc9dc6a3da850
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Fri Dec 4 22:17:22 2009 +0100
+>
+>    Implement Remember me checkbox to the login page
+>
+>    This is a typical feature on websites, like in case of AUR too,  
+> so it was worth
+>    to implement it. The Remember Me feature allows a user to select  
+> a Remember Me,
+>    checkbox on the website login form.  When checked the user will  
+> be "remembered"
+>    between browser sessions.
+>
+>    The implementation touched the new extended form class, the new  
+> view, extended
+>    login template, and the url too
+
+If appears this won't work. From the Django documentation about  
+set_expiry():
+> If value is 0, the user?s session cookie will expire when the user?s  
+> Web browser is closed.
+
+You should really test your changes, at least manually, but preferably  
+using unit tests. This could have been easily caught.
+
+From sebnow at gmail.com  Sat Dec  5 07:31:33 2009
+From: sebnow at gmail.com (Sebastian Nowicki)
+Date: Sat,  5 Dec 2009 14:31:33 +0800
+Subject: [aur2-dev] [PATCH] Fix sorting by "updated" field in search view.
+Message-ID: <1259994693-2435-1-git-send-email-sebnow@gmail.com>
+
+Clicking on "Last Updated" in the search view attempted to sort by a
+"lastupdated" field which does not exist. It now sorts by the "updated"
+field.
+
+Signed-off-by: Sebastian Nowicki <sebnow at gmail.com>
+---
+ archlinux/templates/aur/search.html |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/archlinux/templates/aur/search.html b/archlinux/templates/aur/search.html
+index ed9d02d..b194c61 100644
+--- a/archlinux/templates/aur/search.html
++++ b/archlinux/templates/aur/search.html
+@@ -46,7 +46,7 @@
+                 <th><a href="{% url aur-search %}?sortby=name&order=desc">{% trans "Name" %}</a></th>
+                 <th><a href="{% url aur-search %}?sortby=description&order=desc">{% trans "Description" %}</a></th>
+                 <th>{% trans "Maintainer" %}</a></th>
+-                <th style="width: 9em"><a href="{% url aur-search %}?sortby=lastupdated&order=desc">{% trans "Last Updated" %}</a></th>
++                <th style="width: 9em"><a href="{% url aur-search %}?sortby=updated&order=desc">{% trans "Last Updated" %}</a></th>
+                 {% if is_moderator %}
+                 <th>&nbsp;</th>
+                 {% endif %}
+-- 
+1.6.5.2
+
+
+
+From djszapi at archlinux.us  Sat Dec  5 08:44:11 2009
+From: djszapi at archlinux.us (djszapi at archlinux.us)
+Date: Sat, 5 Dec 2009 08:44:11 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. 8c57bc6be8f5f27e91663915b5797f83a3849392
+Message-ID: <200912050744.nB57iBQv026921@sheep.berlios.de>
+
+This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project "Project aur2 at BerliOS".
+
+The branch, master has been updated
+       via  8c57bc6be8f5f27e91663915b5797f83a3849392 (commit)
+       via  9588aae25316e0128e8a62b825cadfb0b48be1b0 (commit)
+       via  ce77e851ea6c543c69e615e29cd3d8d0fb976feb (commit)
+       via  0b8854faf3f22b4e820f1b22a520186ba91b5f77 (commit)
+       via  9a2e15558661ee9bc1d7f1245d017a05790fccc2 (commit)
+       via  484a0a23a8768af276705865b88ea7c1e7852520 (commit)
+      from  7987db5d828d2e09b731bd441de17c28785d3d65 (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit 8c57bc6be8f5f27e91663915b5797f83a3849392
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 5 08:37:20 2009 +0100
+
+    Delete AurRegistrationForm reference from settings.py
+    
+    There is no need for passing this form class in the urls.py, because it's the
+    same as the default one.
+    
+    The aurprofile.forms import was deleted too from urls.py, because it's not used
+    after the cleanup
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 9588aae25316e0128e8a62b825cadfb0b48be1b0
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 5 08:12:53 2009 +0100
+
+    Change the session expiration data from 0 to ~ 1 year
+    
+    The only requirement was here not to be 0, because it will expire automatically
+    when the browser is closed, so one year period was choosed, which should be
+    enough for it here.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit ce77e851ea6c543c69e615e29cd3d8d0fb976feb
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 5 08:00:03 2009 +0100
+
+    Delete AuthenticationRememberMeForm reference from settings.py
+    
+    There is no need for passing this form class in the urls.py, because it's the
+    same as the default one.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 0b8854faf3f22b4e820f1b22a520186ba91b5f77
+Author: Sebastian Nowicki <sebnow at gmail.com>
+Date:   Sat Dec 5 14:31:33 2009 +0800
+
+    Fix sorting by "updated" field in search view.
+    
+    Clicking on "Last Updated" in the search view attempted to sort by a
+    "lastupdated" field which does not exist. It now sorts by the "updated"
+    field.
+    
+    Signed-off-by: Sebastian Nowicki <sebnow at gmail.com>
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 9a2e15558661ee9bc1d7f1245d017a05790fccc2
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 5 07:40:52 2009 +0100
+
+    Delete some unneccesary space characters which is against the PEP8 rules
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 484a0a23a8768af276705865b88ea7c1e7852520
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 5 07:35:07 2009 +0100
+
+    Change AuthenticationRememberMeForm for form_class in the related form
+    
+    It's worth to use form??=??form_class(data??=??request.POST) instead of the
+    hardcoded form??=??AuthenticationRememberMeForm??(data??=??request.POST,) solution.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aurprofile/forms.py       |    6 +++---
+ archlinux/aurprofile/views.py       |   22 +++++++++++-----------
+ archlinux/templates/aur/search.html |    2 +-
+ archlinux/urls.py                   |    7 ++-----
+ 4 files changed, 17 insertions(+), 20 deletions(-)
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+
+From djszapi at archlinux.us  Sat Dec  5 08:46:55 2009
+From: djszapi at archlinux.us (Laszlo Papp)
+Date: Sat, 5 Dec 2009 08:46:55 +0100
+Subject: [aur2-dev] [PATCH] Fix sorting by "updated" field in search
+	view.
+In-Reply-To: <1259994693-2435-1-git-send-email-sebnow@gmail.com>
+References: <1259994693-2435-1-git-send-email-sebnow@gmail.com>
+Message-ID: <a362e8010912042346p3e5b01e5g9c425b4e5285a2d@mail.gmail.com>
+
+On Sat, Dec 5, 2009 at 7:31 AM, Sebastian Nowicki <sebnow at gmail.com> wrote:
+> Clicking on "Last Updated" in the search view attempted to sort by a
+> "lastupdated" field which does not exist. It now sorts by the "updated"
+> field.
+>
+> Signed-off-by: Sebastian Nowicki <sebnow at gmail.com>
+> ---
+> ?archlinux/templates/aur/search.html | ? ?2 +-
+> ?1 files changed, 1 insertions(+), 1 deletions(-)
+>
+> diff --git a/archlinux/templates/aur/search.html b/archlinux/templates/aur/search.html
+> index ed9d02d..b194c61 100644
+> --- a/archlinux/templates/aur/search.html
+> +++ b/archlinux/templates/aur/search.html
+> @@ -46,7 +46,7 @@
+> ? ? ? ? ? ? ? ? <th><a href="{% url aur-search %}?sortby=name&order=desc">{% trans "Name" %}</a></th>
+> ? ? ? ? ? ? ? ? <th><a href="{% url aur-search %}?sortby=description&order=desc">{% trans "Description" %}</a></th>
+> ? ? ? ? ? ? ? ? <th>{% trans "Maintainer" %}</a></th>
+> - ? ? ? ? ? ? ? ?<th style="width: 9em"><a href="{% url aur-search %}?sortby=lastupdated&order=desc">{% trans "Last Updated" %}</a></th>
+> + ? ? ? ? ? ? ? ?<th style="width: 9em"><a href="{% url aur-search %}?sortby=updated&order=desc">{% trans "Last Updated" %}</a></th>
+> ? ? ? ? ? ? ? ? {% if is_moderator %}
+> ? ? ? ? ? ? ? ? <th>&nbsp;</th>
+> ? ? ? ? ? ? ? ? {% endif %}
+> --
+> 1.6.5.2
+>
+> _______________________________________________
+> aur2-dev mailing list
+> aur2-dev at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/aur2-dev
+>
+
+You've got eagle eyes :) Applied, thanks.
+
+Best Regards,
+Laszlo Papp
+
+
+From djszapi at archlinux.us  Sat Dec  5 09:04:06 2009
+From: djszapi at archlinux.us (Laszlo Papp)
+Date: Sat, 5 Dec 2009 09:04:06 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. 	7987db5d828d2e09b731bd441de17c28785d3d65
+In-Reply-To: <7AFE1184-901E-48A4-958C-A5DD8BC57712@gmail.com>
+References: <200912050014.nB50E7WA030920@sheep.berlios.de>
+	<7AFE1184-901E-48A4-958C-A5DD8BC57712@gmail.com>
+Message-ID: <a362e8010912050004y24e985c3jde4a9546a6bf5cfe@mail.gmail.com>
+
+> If appears this won't work. From the Django documentation about
+> set_expiry():
+>> If value is 0, the user?s session cookie will expire when the user?s
+>> Web browser is closed.
+>
+
+I saw it in an example (django-remember_me module ?).
+Otherwise you're right with this recommandation, Sebastian. Corrected, thanks.
+
+Best Regards,
+Laszlo Papp
+
+
+From cmbrannon79 at gmail.com  Sat Dec  5 15:01:08 2009
+From: cmbrannon79 at gmail.com (Chris Brannon)
+Date: Sat, 05 Dec 2009 08:01:08 -0600
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. 7987db5d828d2e09b731bd441de17c28785d3d65
+In-Reply-To: <200912050014.nB50E7WA030920@sheep.berlios.de>
+References: <200912050014.nB50E7WA030920@sheep.berlios.de>
+Message-ID: <4b1a67a4.5644f10a.5cb1.ffff9186@mx.google.com>
+
+*SNIP*
+>     New dependency was established, named django-openid-auth, it can helps
+> with
+>     their implementation and documentation.
+
+I installed django_openid_auth, but that doesn't seem sufficient.
+A dependency is missing.  I believe it is python-openid.
+Here's what I get when I run
+python manage.py test
+
+  File "build/bdist.linux-i686/egg/django_openid_auth/tests/test_store.py", line 5, in <module>
+ImportError: No module named openid.association
+
+And here's a fragment of what "manage.py test aur" gives:
+
+  File "/usr/lib/python2.6/site-packages/django/contrib/auth/__init__.py", line 15, in load_backend
+    raise ImproperlyConfigured, 'Error importing authentication backend %s: "%s"' % (module, e)
+ImproperlyConfigured: Error importing authentication backend django_openid_auth.auth: "No module named openid.consumer.consumer"
+
+-- Chris
+
+
+From djszapi at archlinux.us  Sat Dec  5 18:08:39 2009
+From: djszapi at archlinux.us (Laszlo Papp)
+Date: Sat, 5 Dec 2009 18:08:39 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. 	7987db5d828d2e09b731bd441de17c28785d3d65
+In-Reply-To: <4b1a67a4.5644f10a.5cb1.ffff9186@mx.google.com>
+References: <200912050014.nB50E7WA030920@sheep.berlios.de>
+	<4b1a67a4.5644f10a.5cb1.ffff9186@mx.google.com>
+Message-ID: <a362e8010912050908wf2fe074vc2d69ea0051cce5c@mail.gmail.com>
+
+> I installed django_openid_auth, but that doesn't seem sufficient.
+> A dependency is missing. ?I believe it is python-openid.
+> Here's what I get when I run
+> python manage.py test
+
+
+Yeah, you're right Chris, the problem appeared by me too on server of
+AUR2, I installed python-openid, and it solved the issue. Maybe it
+would be better to add it into the dependecies of django-openid-auth
+package on AUR(not to the AUR2 project), but I didn't have time to
+submit it yesterday. Now I submitted the modified django-openid-auth
+package, and I've adopted the dependency, python-openid. This will
+make pacman bring it in
+
+Otherwise to patch setup.py would be nice so that the dependency is
+there (this, when updated, makes pip and easy_install bring in
+python-openid).
+
+Thanks your feedback once more time.
+
+Best Regards,
+Laszlo Papp
+
+
+From djszapi at archlinux.us  Sun Dec  6 11:08:19 2009
+From: djszapi at archlinux.us (djszapi at archlinux.us)
+Date: Sun, 6 Dec 2009 11:08:19 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. b0b76a778df14be6c6e016e3d891a2521647ac16
+Message-ID: <200912061008.nB6A8JI8010045@sheep.berlios.de>
+
+This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project "Project aur2 at BerliOS".
+
+The branch, master has been updated
+       via  b0b76a778df14be6c6e016e3d891a2521647ac16 (commit)
+       via  ba6a909dd388da72a5ceb379d065b507b5dd85bc (commit)
+       via  b638c870cbe8cc91af4fcf6cdd0a049cdb7f029f (commit)
+       via  f1daa65afc79ebe7f1c2732bc83c189331c15ab6 (commit)
+       via  f018eecc21bdcc97fa53f0f14c9c16e87f769eef (commit)
+      from  8c57bc6be8f5f27e91663915b5797f83a3849392 (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit b0b76a778df14be6c6e016e3d891a2521647ac16
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 6 11:04:16 2009 +0100
+
+    Implement RSS facility for newly updated/added packages
+    
+    This is similar that can be seen on so much site, like current AUR too.
+    
+    Implementation details:
+    
+    * New Feed class was established and therefore a new file too, aur/feeds.py
+    * New entry was added in the urls.py to it, and a new feed element
+    * The search template was modified in extra_head block regard, new link was
+    * added with the related /feeds/rss url in a link
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit ba6a909dd388da72a5ceb379d065b507b5dd85bc
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 5 21:03:15 2009 +0100
+
+    Change the label from 'password:' for 'Password:' in the login form
+
+commit b638c870cbe8cc91af4fcf6cdd0a049cdb7f029f
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 5 20:52:59 2009 +0100
+
+    Redirect accounts/login/ while logged in
+    
+    When a logged in user tried to load the accounts/login/ page, the real login
+    form was got meanwhile the actual user was logged in, so this was a small bug.
+    
+    The solution was for it to redirect that page in this case to the 'aur-main'
+    one, which means the search page. So this redirections happens when the
+    user authentication is ok.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit f1daa65afc79ebe7f1c2732bc83c189331c15ab6
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 5 20:30:47 2009 +0100
+
+    Fix the error signification issue after invalid user login
+    
+    The issue was that no error appeared after trying to log in with an invalid
+    username or password, just the prompt was got back
+    
+    Change form.has_errors for form.error in the login template solved the problem
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit f018eecc21bdcc97fa53f0f14c9c16e87f769eef
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 5 18:41:14 2009 +0100
+
+    Refactor middleware implementation in the settings.py, fix cache problems
+    
+    Issues were:
+    
+    * The problem was the earlier logged in user could be seen after trying to log in.
+    * After clicking for the 'Packages' submenu the actual logged in user couldn't
+    be seen
+    
+    The problem was the cache handling, the fix for it was to change the previous
+    cache middleware for:
+    
+    * UpdateCacheMiddleware, in the beginning of the middleware order list
+    * FetchFromCacheMiddleware, at the end of middleware order list
+    
+    The documentation says why they should occur at the beginning/end of the
+    middleware section.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aur/feeds.py                      |   31 +++++++++++++++++++++++++++
+ archlinux/aurprofile/views.py               |    5 ++++
+ archlinux/settings.py                       |   27 ++++++++++++-----------
+ archlinux/templates/aur/search.html         |    2 +
+ archlinux/templates/registration/login.html |    6 ++--
+ archlinux/urls.py                           |    9 +++++++
+ 6 files changed, 64 insertions(+), 16 deletions(-)
+ create mode 100644 archlinux/aur/feeds.py
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+
+From djszapi at archlinux.us  Tue Dec  8 07:07:40 2009
+From: djszapi at archlinux.us (djszapi at archlinux.us)
+Date: Tue, 8 Dec 2009 07:07:40 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. a9bf9cc86dc3f0639344eb141105fc04197d727a
+Message-ID: <200912080607.nB867e5s000431@sheep.berlios.de>
+
+This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project "Project aur2 at BerliOS".
+
+The branch, master has been updated
+       via  a9bf9cc86dc3f0639344eb141105fc04197d727a (commit)
+       via  2adbfaaaa5951121c23236f3561d876d77155756 (commit)
+       via  0bfa69c7306b72906bf18d07da3488c1bf7aa509 (commit)
+       via  847eaf3b7c41af83d1aa5fa2f1eba312e0bcf2a8 (commit)
+       via  11a07e2e5f60c912c5e599977091fdb01bda5f77 (commit)
+      from  b0b76a778df14be6c6e016e3d891a2521647ac16 (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit a9bf9cc86dc3f0639344eb141105fc04197d727a
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Tue Dec 8 00:56:52 2009 +0100
+
+    Change the rss feed path for /feeds/rss/packages
+    
+    This renaming was worth because it's more talkative at first glance, otherwise
+    /feeds/rss was too general to use since maybe more rss feeds can be occur in the
+    future on this site.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 2adbfaaaa5951121c23236f3561d876d77155756
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Tue Dec 8 00:53:28 2009 +0100
+
+    Fix the rss feed in Mozilla Firefox
+    
+    The url names, namespaces related thing was deleted from the search template, so
+    the clicking for the rss logo in Mozilla Firefox e.g., in the url line loads the
+    right page, so it can be available so too.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 0bfa69c7306b72906bf18d07da3488c1bf7aa509
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Mon Dec 7 22:16:58 2009 +0100
+
+    Refactor search template for Maintainer to be a link to the profile
+    
+    The implementation changed to Maintainer column handling a little bit after
+    clicking 'Packages' submenu.
+    
+    If the user who logged in can see the Maintainer in that column as a link to the
+    Maintainer profile, otherwise if any user is logged in this Maintainer name in
+    that column is a simple text field
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 847eaf3b7c41af83d1aa5fa2f1eba312e0bcf2a8
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Mon Dec 7 21:36:12 2009 +0100
+
+    Change the rss feed to display the last 20 packages instead of all
+    
+    It was more reasonable to see the last 20 newly updated/added packages in the
+    rss feeds than all of them, because it can be annoying in case of 18.000
+    packages. 20 was choosen, because the current AUR implementation works so too.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 11a07e2e5f60c912c5e599977091fdb01bda5f77
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Mon Dec 7 21:32:40 2009 +0100
+
+    Add 'Registered: date' line into the Profile
+    
+    It's good to know about a user when he or she registered and later it can be
+    shown to the other users who will be able to browse the profile of other users.
+    
+    The implementation touched the aurprofile/profile.html template file, it was
+    needed to insert a new line into the profile form, with the builtind user
+    date_joined option with the real date in YYYY-MM-DD format.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aur/feeds.py                      |    4 ++--
+ archlinux/templates/aur/search.html         |   26 ++++++++++++++++++--------
+ archlinux/templates/aurprofile/profile.html |   13 ++++++++++---
+ archlinux/urls.py                           |    6 +++---
+ 4 files changed, 33 insertions(+), 16 deletions(-)
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+
+From djszapi at archlinux.us  Wed Dec  9 00:39:27 2009
+From: djszapi at archlinux.us (djszapi at archlinux.us)
+Date: Wed, 9 Dec 2009 00:39:27 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. 06e0d740ac3fe31aadcfe7ec887eb0addb76c704
+Message-ID: <200912082339.nB8NdRwf006157@sheep.berlios.de>
+
+This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project "Project aur2 at BerliOS".
+
+The branch, master has been updated
+       via  06e0d740ac3fe31aadcfe7ec887eb0addb76c704 (commit)
+       via  cc91813d43f672b895e8a0de5141e9cccfa7347c (commit)
+       via  aee34614e5a25362c504c6233e79b617b0b3529b (commit)
+       via  9dd10119345e0d02723fe28394ec58b4c9ee4d72 (commit)
+       via  22d8625a217a569ffc7b634a79ec9c1b07264c9e (commit)
+       via  9eb658b26ef5371543f892013ffe97640e744c60 (commit)
+      from  a9bf9cc86dc3f0639344eb141105fc04197d727a (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit 06e0d740ac3fe31aadcfe7ec887eb0addb76c704
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Wed Dec 9 00:36:15 2009 +0100
+
+    Implement /users/$username/packages url showing given user packages
+    
+    This feature isn't implemented in the last format, it's just a very pure and
+    starting implementation for it that should be continued in the near future.
+    
+    The packages from the desired user will be available for other users to see, and
+    check them.
+    
+    The implementation is simple here, one url addition is needed for it, and to do
+    the template html for it, named templates/aur/package_list.html
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit cc91813d43f672b895e8a0de5141e9cccfa7347c
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Tue Dec 8 23:42:11 2009 +0100
+
+    Revert Confirm password and unique mail registering feature
+    
+    It was deleted accidentaly, so it's the fix a previous missunderstanding.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit aee34614e5a25362c504c6233e79b617b0b3529b
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Tue Dec 8 23:30:24 2009 +0100
+
+    Add a warning message for trying to see user details without logging in
+    
+    It's needed to implement as long it's implemented on the current AUR too.
+    So any trying to see the user details page as an anonymous user without logging
+    it, it won't work.
+    
+    The implementation happened only in the desired template file, named
+    templated/aurprofile/user_detail.html with an if/else/endif is_authenticatiod
+    condition.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 9dd10119345e0d02723fe28394ec58b4c9ee4d72
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Tue Dec 8 23:18:29 2009 +0100
+
+    Wrap long url lines in aur/urls.py
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 22d8625a217a569ffc7b634a79ec9c1b07264c9e
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Tue Dec 8 23:09:05 2009 +0100
+
+    Implement automatic new account adding to User group
+    
+    The new users are automatically added to the default 'User' group after this
+    feature implementation. In case of more than 1000-1500 users it can be very
+    handy and comfortable :)
+    
+    The implementation touched:
+    
+    * aur/forms.py -> New AddGroupDefaultBackend subclass implementation as a
+    wrapper for the DefaultBackend of registration module, it was needed because the
+    register method should be overwritten with automatically adding the new accounts
+    into the defined 'User' group
+    
+    * urls.py -> The DefaultBackend reference was changed for the newly created
+    AddGroupDefaultBackend url.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 9eb658b26ef5371543f892013ffe97640e744c60
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Tue Dec 8 21:47:45 2009 +0100
+
+    Implement User Details page as /users/$username
+    
+    It was a sense feature to implement, it can be seen on the current AUR too, when
+    you click for a username after you logged in.
+    
+    The implementation touched the followings:
+    
+    * The urls.py file, where object_details generic view was used with slug effect
+    * Establish the templates/aurprofile/user_detail.html related template file with
+    the users data, like lastname, firstname, username, registered date, email,
+    account type
+    
+    Small remark: It's worth to redesign with css this page, because now it's very
+    pure.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aur/forms.py                          |    9 ++++++
+ archlinux/aur/urls.py                           |    9 ++++--
+ archlinux/aur/views.py                          |    5 +++
+ archlinux/templates/aur/package_list.html       |    1 +
+ archlinux/templates/aurprofile/user_detail.html |   34 +++++++++++++++++++++++
+ archlinux/urls.py                               |   15 +++++++++-
+ 6 files changed, 68 insertions(+), 5 deletions(-)
+ create mode 100644 archlinux/templates/aur/package_list.html
+ create mode 100644 archlinux/templates/aurprofile/user_detail.html
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+
+From sebnow at gmail.com  Wed Dec  9 14:18:32 2009
+From: sebnow at gmail.com (Sebastian Nowicki)
+Date: Wed, 9 Dec 2009 21:18:32 +0800
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. 06e0d740ac3fe31aadcfe7ec887eb0addb76c704
+In-Reply-To: <200912082339.nB8NdRwf006157@sheep.berlios.de>
+References: <200912082339.nB8NdRwf006157@sheep.berlios.de>
+Message-ID: <C137BF13-8492-4C86-9630-D48EB2363458@gmail.com>
+
+
+On 09/12/2009, at 7:39 AM, djszapi at archlinux.us wrote:
+> commit 06e0d740ac3fe31aadcfe7ec887eb0addb76c704
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Wed Dec 9 00:36:15 2009 +0100
+>
+>    Implement /users/$username/packages url showing given user packages
+>
+>    This feature isn't implemented in the last format, it's just a  
+> very pure and
+>    starting implementation for it that should be continued in the  
+> near future.
+>
+>    The packages from the desired user will be available for other  
+> users to see, and
+>    check them.
+>
+>    The implementation is simple here, one url addition is needed for  
+> it, and to do
+>    the template html for it, named templates/aur/package_list.html
+
+I haven't had time to look at the commit diff, but how does this  
+differ from the list of packages on the user profile? Apart from it  
+being a separate page, of course.
+
+The urls.py changes should in in aurprofile/urls.py, not the archlinux/ 
+urls.py. It should also be under the URL /profile/, not /users/, for  
+consistency.
+
+> commit aee34614e5a25362c504c6233e79b617b0b3529b
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Tue Dec 8 23:30:24 2009 +0100
+>
+>    It's needed to implement as long it's implemented on the current  
+> AUR too.
+>    So any trying to see the user details page as an anonymous user  
+> without logging
+>    it, it won't work.
+>
+>    The implementation happened only in the desired template file,  
+> named
+>    templated/aurprofile/user_detail.html with an if/else/endif  
+> is_authenticatiod
+>    condition.
+
+The @login_required decorator should be used here (it redirects to the  
+login page - much more useful than a simple warning message). Don't  
+just attempt to just replicate AUR functionality, attempt to improve  
+upon it.
+
+> commit 9dd10119345e0d02723fe28394ec58b4c9ee4d72
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Tue Dec 8 23:18:29 2009 +0100
+>
+>    Wrap long url lines in aur/urls.py
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+>
+> commit 9eb658b26ef5371543f892013ffe97640e744c60
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Tue Dec 8 21:47:45 2009 +0100
+>
+>    Implement User Details page as /users/$username
+>
+>    It was a sense feature to implement, it can be seen on the  
+> current AUR too, when
+>    you click for a username after you logged in.
+>
+>    The implementation touched the followings:
+>
+>    * The urls.py file, where object_details generic view was used  
+> with slug effect
+>    * Establish the templates/aurprofile/user_detail.html related  
+> template file with
+>    the users data, like lastname, firstname, username, registered  
+> date, email,
+>    account type
+>
+>    Small remark: It's worth to redesign with css this page, because  
+> now it's very
+>    pure.
+
+Cool. The current aurprofile template should be re-used somehow. It  
+should display information about the user if the profile is not the  
+user's, otherwise it should also allow editing of that information  
+(like it does now).
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/aur2-dev/attachments/20091209/b5276602/attachment.html>
+
+From djszapi at archlinux.us  Thu Dec 10 05:53:33 2009
+From: djszapi at archlinux.us (djszapi at archlinux.us)
+Date: Thu, 10 Dec 2009 05:53:33 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. d8f40d6975cc5daab9953fe92fa906b9a08339ec
+Message-ID: <200912100453.nBA4rXv4032208@sheep.berlios.de>
+
+This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project "Project aur2 at BerliOS".
+
+The branch, master has been updated
+       via  d8f40d6975cc5daab9953fe92fa906b9a08339ec (commit)
+       via  37feff3ed399d4c866684f3fd82eb34cb8e1ef6d (commit)
+       via  5b47becc93d9f0e021e6f72b6be9bf691e1de4bc (commit)
+       via  08d544f96158ffd832e9d1d2872a4f70c221d62a (commit)
+       via  b6d194d9169a6e89808d9b51d5d76a435928c076 (commit)
+       via  a16ff1d87f8c330d38cd71cbc00d4335f0a93fc8 (commit)
+       via  bcaf1231f8885d5411b4155b8f6af594b2722833 (commit)
+       via  247909cbb4056fce8d93ea13a542a186a0819dc1 (commit)
+      from  06e0d740ac3fe31aadcfe7ec887eb0addb76c704 (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit d8f40d6975cc5daab9953fe92fa906b9a08339ec
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Thu Dec 10 00:54:06 2009 +0100
+
+    Implement 'View this user's packages' link in the user_detail.html template
+    
+    This feature/link was implemented earlier in the current AUR too, so this one
+    has got a compatibility reason too first of all, secondly it provides the
+    facility to other users to see the packages from this desired user easily with a
+    quick link
+    
+    The implementation was just to add a div with the link of the desired user's
+    packages.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 37feff3ed399d4c866684f3fd82eb34cb8e1ef6d
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Thu Dec 10 00:42:22 2009 +0100
+
+    Add 'Recent Updates' + RSS logo on the search page
+    
+    The RSS page for newly updated/added packages was established earlier, but there
+    weren't an available link for them apart from Mozilla Firefox builtin button or
+    typing the link manually, so this feature first of all made sense, and secondly
+    it's implemented on the current AUR, so it has got a compability reason too
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 5b47becc93d9f0e021e6f72b6be9bf691e1de4bc
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Thu Dec 10 00:26:22 2009 +0100
+
+    Add patch files (*.patch) to the .gitignore ignoring list
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 08d544f96158ffd832e9d1d2872a4f70c221d62a
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Thu Dec 10 00:20:53 2009 +0100
+
+    Add 'My Packages' submenu
+    
+    This feature was implemented on the current AUR and it's an efficient facility
+    to view your own packages quickly, so it was worth to implement and it wasn't a
+    big deal, it was needed to modify the base.html template, to add this new
+    submenu and to implement the right url, with right parameters(username) for it.
+    
+    The truth is the packages template for a user is needed to improve/implement
+    correctly in the near future
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit b6d194d9169a6e89808d9b51d5d76a435928c076
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Wed Dec 9 21:48:59 2009 +0100
+
+    Refactor package_detail.html in the comment snippet
+    
+    The point of the change is that it will query the database only once
+    The change will also make it a lot easier to switch to the comment framework
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit a16ff1d87f8c330d38cd71cbc00d4335f0a93fc8
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Wed Dec 9 21:30:23 2009 +0100
+
+    Add *.swp swap files into '.gitignore' file
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit bcaf1231f8885d5411b4155b8f6af594b2722833
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Wed Dec 9 06:59:35 2009 +0100
+
+    Add javascript catalog view for Javascript translations
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 247909cbb4056fce8d93ea13a542a186a0819dc1
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Wed Dec 9 06:41:28 2009 +0100
+
+    Add user's language preference with /i18n/setlang
+    
+    As a convenience, Django comes with a view, django.views.i18n.set_language,
+    that sets a user???s language preference and redirects back to the previous page.
+    
+    Activate this view by adding the following line to your URLconf:
+    (r'^i18n/', include('django.conf.urls.i18n')),
+    (Note that this example makes the view available at /i18n/setlang/.)
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ .gitignore                                      |    3 ++-
+ archlinux/templates/aur/package_detail.html     |   12 ++++++++----
+ archlinux/templates/aur/search.html             |    5 +++++
+ archlinux/templates/aurprofile/user_detail.html |    4 ++++
+ archlinux/templates/base.html                   |    1 +
+ archlinux/urls.py                               |    4 +++-
+ 6 files changed, 23 insertions(+), 6 deletions(-)
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+
+From djszapi at archlinux.us  Fri Dec 11 00:42:54 2009
+From: djszapi at archlinux.us (djszapi at archlinux.us)
+Date: Fri, 11 Dec 2009 00:42:54 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. 9b70f1b464c6f19cee9d790a59412472ad756221
+Message-ID: <200912102342.nBANgslA015641@sheep.berlios.de>
+
+This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project "Project aur2 at BerliOS".
+
+The branch, master has been updated
+       via  9b70f1b464c6f19cee9d790a59412472ad756221 (commit)
+       via  821d0e17ec6a92e871d53372bdb5d512be9e2b17 (commit)
+       via  9b62cef3f9a87d7f8809fc738ee955abc9cb53d2 (commit)
+       via  68b78ae0e6ae30f3eacdda64ac0ab6e6b011726a (commit)
+       via  486d480286b24606ec517f4d7f88282d862075ed (commit)
+      from  d8f40d6975cc5daab9953fe92fa906b9a08339ec (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit 9b70f1b464c6f19cee9d790a59412472ad756221
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Thu Dec 10 22:56:38 2009 +0100
+
+    Fix the user's link on the package detail page for the user's profile
+    
+    This implementation a fix for the broken links, because earlier the reference
+    for the users who posted was '#', so for the current package detail view, which
+    isn't a wanted behaviour, so it was corrected with the right url usage, so the
+    link is for the desired profile of the user now.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 821d0e17ec6a92e871d53372bdb5d512be9e2b17
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Thu Dec 10 22:52:18 2009 +0100
+
+    Delete the object_detail/info_dict from urls.py
+    
+    These informations/implementation are unneccesary, because refactoring
+    happened in this regard.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 9b62cef3f9a87d7f8809fc738ee955abc9cb53d2
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Thu Dec 10 22:05:10 2009 +0100
+
+    Refactor the package_detail template because of the comment fw.
+    
+    It was needed be cause the earlier implementation/changing for comments
+    framework usage contained some BUGS that were corrected, like the following
+    ones:
+    
+    * comment.added -> comment.submit_date
+    * comment.message -> comment.comment
+    * the right alignment comes from broken HTML -> just drop that it's never closed
+    anyway
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 68b78ae0e6ae30f3eacdda64ac0ab6e6b011726a
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Thu Dec 10 21:38:45 2009 +0100
+
+    Change 'user' variable for 'pkg' variable in user detail template
+    
+    It was needed because the previous implementation contained a BUG, because the
+    So data was showing the data of the logged in user -- not the data from the user
+    selected by the url
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 486d480286b24606ec517f4d7f88282d862075ed
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Thu Dec 10 21:19:40 2009 +0100
+
+    Implement @login required decorator for user details
+    
+    The @login_required decorator should be used here (it redirects to the login
+    page - much more useful than a simple warning message). It's not just an
+    attemption to replicate AUR functionality, but attempting to improve upon it.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aurprofile/views.py                   |    7 ++++
+ archlinux/templates/aur/package_detail.html     |   42 ++++++++++++-----------
+ archlinux/templates/aurprofile/user_detail.html |   20 ++++-------
+ archlinux/urls.py                               |   10 +----
+ 4 files changed, 38 insertions(+), 41 deletions(-)
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+
+From sebnow at gmail.com  Fri Dec 11 12:36:50 2009
+From: sebnow at gmail.com (Sebastian Nowicki)
+Date: Fri, 11 Dec 2009 19:36:50 +0800
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. d8f40d6975cc5daab9953fe92fa906b9a08339ec
+In-Reply-To: <200912100453.nBA4rXv4032208@sheep.berlios.de>
+References: <200912100453.nBA4rXv4032208@sheep.berlios.de>
+Message-ID: <6A536281-9ABF-48A9-8810-11F0D22E65E9@gmail.com>
+
+
+On 10/12/2009, at 12:53 PM, djszapi at archlinux.us wrote:
+
+> commit 37feff3ed399d4c866684f3fd82eb34cb8e1ef6d
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Thu Dec 10 00:42:22 2009 +0100
+>
+>    Add 'Recent Updates' + RSS logo on the search page
+>
+>    The RSS page for newly updated/added packages was established  
+> earlier, but there
+>    weren't an available link for them apart from Mozilla Firefox  
+> builtin button or
+>    typing the link manually, so this feature first of all made  
+> sense, and secondly
+>    it's implemented on the current AUR, so it has got a compability  
+> reason too
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+The placement of the header is slightly confusing. Since the "Search  
+Criteria" header is right-aligned, it looks like "Recent Updates" is  
+the header of the page (it's also the same level, which shouldn't be  
+the case). Removing "Recent Updates" and placing the RSS icon to the  
+right would be better, but it would imply that the RSS feed is of the  
+search, rather than recent updates. Like I said in our conversation  
+there's no good place to put this at the moment. I'd probably put it  
+somewhere in the footer, but we don't really have a footer. Using a  
+browser's in-built RSS capabilities should be enough for now. It's not  
+just a Mozilla Firefox feature. All browsers I know of support this,  
+including Internet Explorer, Firefox, Opera, Chrome, Safari, etc.
+
+> commit 5b47becc93d9f0e021e6f72b6be9bf691e1de4bc
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Thu Dec 10 00:26:22 2009 +0100
+>
+>    Add patch files (*.patch) to the .gitignore ignoring list
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+This should be in .git/info/excludes, not in .gitignore.  
+The .gitignore file should only have files that are generated or would  
+otherwise be present, but specific to the project. Patch files  
+shouldn't even be used (unless temporarily), as we are using git.
+
+> commit 08d544f96158ffd832e9d1d2872a4f70c221d62a
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Thu Dec 10 00:20:53 2009 +0100
+>
+>    Add 'My Packages' submenu
+>
+>    This feature was implemented on the current AUR and it's an  
+> efficient facility
+>    to view your own packages quickly, so it was worth to implement  
+> and it wasn't a
+>    big deal, it was needed to modify the base.html template, to add  
+> this new
+>    submenu and to implement the right url, with right  
+> parameters(username) for it.
+>
+>    The truth is the packages template for a user is needed to  
+> improve/implement
+>    correctly in the near future
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+This is already implemented through the use profile page - why  
+duplicate it? It's confusing having two ways of seeing your packages.
+
+> commit b6d194d9169a6e89808d9b51d5d76a435928c076
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Wed Dec 9 21:48:59 2009 +0100
+>
+>    Refactor package_detail.html in the comment snippet
+>
+>    The point of the change is that it will query the database only  
+> once
+>    The change will also make it a lot easier to switch to the  
+> comment framework
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+I'm against having comments at all. It isn't useful for packages  
+themselves. There are other, superior, means of communicating with  
+package managers and/or discussing packages, e.g.: email, forums, IRC,  
+bug tracker.
+
+> commit a16ff1d87f8c330d38cd71cbc00d4335f0a93fc8
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Wed Dec 9 21:30:23 2009 +0100
+>
+>    Add *.swp swap files into '.gitignore' file
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+See previous comment about .gitignore.
+
+> commit bcaf1231f8885d5411b4155b8f6af594b2722833
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Wed Dec 9 06:59:35 2009 +0100
+>
+>    Add javascript catalog view for Javascript translations
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+What's this for? We don't use JavaScript.
+
+
+
+From djszapi at archlinux.us  Sat Dec 12 10:06:26 2009
+From: djszapi at archlinux.us (Laszlo Papp)
+Date: Sat, 12 Dec 2009 09:06:26 +0000
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. 	d8f40d6975cc5daab9953fe92fa906b9a08339ec
+In-Reply-To: <6A536281-9ABF-48A9-8810-11F0D22E65E9@gmail.com>
+References: <200912100453.nBA4rXv4032208@sheep.berlios.de>
+	<6A536281-9ABF-48A9-8810-11F0D22E65E9@gmail.com>
+Message-ID: <a362e8010912120106s7cd8dae4pddaa9b664900d2d2@mail.gmail.com>
+
+On Fri, Dec 11, 2009 at 11:36 AM, Sebastian Nowicki <sebnow at gmail.com> wrote:
+>
+> On 10/12/2009, at 12:53 PM, djszapi at archlinux.us wrote:
+>
+>> commit 37feff3ed399d4c866684f3fd82eb34cb8e1ef6d
+>> Author: Laszlo Papp <djszapi at archlinux.us>
+>> Date: ? Thu Dec 10 00:42:22 2009 +0100
+>>
+>> ? ?Add 'Recent Updates' + RSS logo on the search page
+>>
+>> ? ?The RSS page for newly updated/added packages was established
+>> earlier, but there
+>> ? ?weren't an available link for them apart from Mozilla Firefox
+>> builtin button or
+>> ? ?typing the link manually, so this feature first of all made
+>> sense, and secondly
+>> ? ?it's implemented on the current AUR, so it has got a compability
+>> reason too
+>>
+>> ? ?Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+>
+> The placement of the header is slightly confusing. Since the "Search
+> Criteria" header is right-aligned, it looks like "Recent Updates" is
+> the header of the page (it's also the same level, which shouldn't be
+> the case). Removing "Recent Updates" and placing the RSS icon to the
+> right would be better, but it would imply that the RSS feed is of the
+> search, rather than recent updates. Like I said in our conversation
+> there's no good place to put this at the moment. I'd probably put it
+> somewhere in the footer, but we don't really have a footer. Using a
+> browser's in-built RSS capabilities should be enough for now. It's not
+> just a Mozilla Firefox feature. All browsers I know of support this,
+> including Internet Explorer, Firefox, Opera, Chrome, Safari, etc.
+
+I don't know whether it would be a good idea to place just one icon at
+the right side where the search field is, it sounds interesting, the
+current AUR + Main Archlinux site doesn't do so too.
+Maybe it's not the best to count for that every browser will have got
+builtin feature for it that users use.
+Maybe it would be better to implement such an outlook/solution that
+the main archlinux site uses in this situation.
+
+>> commit 5b47becc93d9f0e021e6f72b6be9bf691e1de4bc
+>> Author: Laszlo Papp <djszapi at archlinux.us>
+>> Date: ? Thu Dec 10 00:26:22 2009 +0100
+>>
+>> ? ?Add patch files (*.patch) to the .gitignore ignoring list
+>>
+>> ? ?Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+>
+> This should be in .git/info/excludes, not in .gitignore.
+> The .gitignore file should only have files that are generated or would
+> otherwise be present, but specific to the project. Patch files
+> shouldn't even be used (unless temporarily), as we are using git.
+
+I saw *.swp files in other projects and the *.patch related one too,
+It doesn't bother me if it's there.
+
+>> commit 08d544f96158ffd832e9d1d2872a4f70c221d62a
+>> Author: Laszlo Papp <djszapi at archlinux.us>
+>> Date: ? Thu Dec 10 00:20:53 2009 +0100
+>>
+>> ? ?Add 'My Packages' submenu
+>>
+>> ? ?This feature was implemented on the current AUR and it's an
+>> efficient facility
+>> ? ?to view your own packages quickly, so it was worth to implement
+>> and it wasn't a
+>> ? ?big deal, it was needed to modify the base.html template, to add
+>> this new
+>> ? ?submenu and to implement the right url, with right
+>> parameters(username) for it.
+>>
+>> ? ?The truth is the packages template for a user is needed to
+>> improve/implement
+>> ? ?correctly in the near future
+>>
+>> ? ?Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+>
+> This is already implemented through the use profile page - why
+> duplicate it? It's confusing having two ways of seeing your packages.
+
+Yeah, I've realised later you choosed another solution for it like AUR
+does. It's needed to decide which approach to use, to involve user's
+package in the personal profile or not, or a separate menu, because
+profile isn't equal to aur related things, that's why aur and
+aurprofile is in the different app now.
+
+>> commit b6d194d9169a6e89808d9b51d5d76a435928c076
+>> Author: Laszlo Papp <djszapi at archlinux.us>
+>> Date: ? Wed Dec 9 21:48:59 2009 +0100
+>>
+>> ? ?Refactor package_detail.html in the comment snippet
+>>
+>> ? ?The point of the change is that it will query the database only
+>> once
+>> ? ?The change will also make it a lot easier to switch to the
+>> comment framework
+>>
+>> ? ?Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+>
+> I'm against having comments at all. It isn't useful for packages
+> themselves. There are other, superior, means of communicating with
+> package managers and/or discussing packages, e.g.: email, forums, IRC,
+> bug tracker.
+>
+
+Discussing AUR packages on IRC/forums/email ? What happens if the
+Maintainer doesn't use IRC or forums ?
+IRC and forums aren't bug trackers, and there isn't AUR packages
+related thread on the bugtracker, which is ok so, I think, it's
+unsupported.
+Email can make sense, but that one is private conversation, meanwhile
+this comment framework is a public one, which is better in this
+situation.
+
+>> commit a16ff1d87f8c330d38cd71cbc00d4335f0a93fc8
+>> Author: Laszlo Papp <djszapi at archlinux.us>
+>> Date: ? Wed Dec 9 21:30:23 2009 +0100
+>>
+>> ? ?Add *.swp swap files into '.gitignore' file
+>>
+>> ? ?Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+>
+> See previous comment about .gitignore.
+>
+
+See above.
+
+>> commit bcaf1231f8885d5411b4155b8f6af594b2722833
+>> Author: Laszlo Papp <djszapi at archlinux.us>
+>> Date: ? Wed Dec 9 06:59:35 2009 +0100
+>>
+>> ? ?Add javascript catalog view for Javascript translations
+>>
+>> ? ?Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+>
+> What's this for? We don't use JavaScript.
+
+I will use javascript later, e.g. in the TU voting app that's nearly
+finished, but I don't use messages at this momment, we will see.
+
+Best Regards,
+Laszlo Papp
+
+
+From djszapi at archlinux.us  Sun Dec 13 18:13:45 2009
+From: djszapi at archlinux.us (djszapi at archlinux.us)
+Date: Sun, 13 Dec 2009 18:13:45 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. 52597924c24f8f4c9567e0a09a41cf7eb982e1a2
+Message-ID: <200912131713.nBDHDjGX020604@sheep.berlios.de>
+
+This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project "Project aur2 at BerliOS".
+
+The branch, master has been updated
+       via  52597924c24f8f4c9567e0a09a41cf7eb982e1a2 (commit)
+       via  935d8b6ce837bca5e8be5ea359d67f49483fd1fd (commit)
+       via  2ee3f85c249ef5c3e824de3407782b0dfed92d05 (commit)
+       via  f136bf37f60c13734d8036b2654321cd4e89e3b8 (commit)
+       via  c976c069184561612b08273c808d54ec0288ee4e (commit)
+       via  ff5cfabc9c9d5b32ea4741967cc28f31d35931b3 (commit)
+       via  49e445c9afbdbd8bcea8ee229b55700de8d9d1fd (commit)
+       via  144cb1597d2093ac3829fd7bc1506de9a06c9d4e (commit)
+       via  e71f181a274aa472eefea45b97c95619bbcb407b (commit)
+       via  f646230c52cfdb2c4ba1677fe9c8f6f190b0294b (commit)
+       via  397bca510895065c15ec1c2b98c9ca7eb0d00ce7 (commit)
+       via  806f3e8fc1691315f83a1a59b9d00a3e051a0f5a (commit)
+       via  f2412035612afd345ac74c52ff806df3fb5a46cb (commit)
+       via  13e8acd85b95ef15398a07ae36e5fda82fb72a47 (commit)
+       via  1171ebbecd98f67c47638dd6b5f992d29f4df437 (commit)
+       via  7a9d2b63604c1ac05e7a38b078a44a38e3da4513 (commit)
+       via  4f930e7d3923643f4b215a4a0861fabdefa8162e (commit)
+       via  bd6d59bf311a7fc1a3ac0b8f5ffaba9b89017292 (commit)
+       via  7a32d8a6fccc068ecfcf998ee6b4570bc3298adb (commit)
+       via  935a10b968a15b02571baf37149d290a218b28bc (commit)
+      from  9b70f1b464c6f19cee9d790a59412472ad756221 (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit 52597924c24f8f4c9567e0a09a41cf7eb982e1a2
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 15:15:20 2009 +0100
+
+    Change the copyright year from 2008 to 2009
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 935d8b6ce837bca5e8be5ea359d67f49483fd1fd
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 15:10:29 2009 +0100
+
+    Implement 'Required By' counter on the package details page
+    
+    It's a small information about how many dependencies the package has got, it
+    wasn't a big deal to implement and it's a new information to have, otherwise
+    it's implemented on the official archlinux site too so.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 2ee3f85c249ef5c3e824de3407782b0dfed92d05
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 15:05:13 2009 +0100
+
+    Implement Dependency counter on the package details page
+    
+    It's a small information about how many dependencies the package has got, it
+    wasn't a big deal to implement and it's a new information to have, otherwise
+    it's implemented on the official archlinux site too so.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit f136bf37f60c13734d8036b2654321cd4e89e3b8
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 15:03:01 2009 +0100
+
+    Change 'users' for 'profile' in the user details related references
+    
+    It was discussed on the mailing list, maybe it's better to leave the implemented
+    'profile' name here instead of the 'users' one, and it's profile related thing
+    in fact that describes the situation better.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit c976c069184561612b08273c808d54ec0288ee4e
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 11:30:05 2009 +0100
+
+    Change 'Acc. Type' for 'Group' in the user profile template
+    
+    It's more reasonable to handle so because that's the name on the admin interface
+    too, and 'group' is the name of this element in the code too
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit ff5cfabc9c9d5b32ea4741967cc28f31d35931b3
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 11:21:07 2009 +0100
+
+    Add 'Acc. Type' on the user profile page too
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 49e445c9afbdbd8bcea8ee229b55700de8d9d1fd
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 10:54:09 2009 +0100
+
+    Fix the Maintainer link on the package details page
+    
+    There wasn't any link earlier for the Maintainer name, but it was reasonable to
+    establish, and now the user details page can be reached in this way too
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 144cb1597d2093ac3829fd7bc1506de9a06c9d4e
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 09:07:43 2009 +0100
+
+    Change the order for the Arch in the package details template
+    
+    It was worth to implement because the 'Arch' is the first column now in case of
+    user profile, package searching template too, and secondly the official main
+    site uses in this format too.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit e71f181a274aa472eefea45b97c95619bbcb407b
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 09:02:22 2009 +0100
+
+    Change 'Reverse dependencies' for 'Required By' in pkg detais
+    
+    It was needed to be more closed to the official main site and the current AUR
+    too, and 'Required By' is more reasonable then the 'Reverse dependencies'.
+    
+    Otherwise it's shorter and clearer name, so the column for it con be smaller
+    with smaller space reservation
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit f646230c52cfdb2c4ba1677fe9c8f6f190b0294b
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 08:26:56 2009 +0100
+
+    Add 'Arch' column in the user profile template too to the packages
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 397bca510895065c15ec1c2b98c9ca7eb0d00ce7
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 07:59:01 2009 +0100
+
+    Add execution(+x) permission for the manage.py
+    
+    It was worth to change the permission, because lazier people can use ./manage.py
+    instead of python manage.py, and it doesn't mean any disadvantage or dangerous
+    behaviour for the Maintainer of the server, so it was implemented
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 806f3e8fc1691315f83a1a59b9d00a3e051a0f5a
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 07:46:54 2009 +0100
+
+    Implement 'south' contender for database handling
+    
+    This was a TODO on the wikipage, because this facility helps to handle database
+    related operation, functions. The implementation was very easy, 'south' was
+    needed to take into the INSTALLED_APPS section of the settings.py, and the
+    relevant entry was added in the pip-requirements.txt too.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit f2412035612afd345ac74c52ff806df3fb5a46cb
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 12 22:41:30 2009 +0100
+
+    Change 'URL' string for 'Upstream URL' like on the official site
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 13e8acd85b95ef15398a07ae36e5fda82fb72a47
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 12 21:51:32 2009 +0100
+
+    Fix the missing reference for comment framework in the INSTALLED_APP
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 1171ebbecd98f67c47638dd6b5f992d29f4df437
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 12 21:50:52 2009 +0100
+
+    Separate Name and Version instead of Name unit in the user profile too
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 7a9d2b63604c1ac05e7a38b078a44a38e3da4513
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 12 21:46:04 2009 +0100
+
+    Change 'Repository' column for 'Repo' in the user profile too
+    
+    It was needed to reduce the size of the column, and it's used so on the
+    officical Archlinux page too
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 4f930e7d3923643f4b215a4a0861fabdefa8162e
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 12 19:30:09 2009 +0100
+
+    Change 'Repository' column  to 'Repo' on the search page
+    
+    The reason for it was to reduce to size of the column first of all, secondly to
+    follow the official way where 'Repo' is displayed.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit bd6d59bf311a7fc1a3ac0b8f5ffaba9b89017292
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 12 19:27:41 2009 +0100
+
+    Fix the missing comment framework url in the urls.py
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 7a32d8a6fccc068ecfcf998ee6b4570bc3298adb
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 12 19:17:05 2009 +0100
+
+    Delete My Packages option from the submenu
+    
+    This is already implemented through the use profile page
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 935a10b968a15b02571baf37149d290a218b28bc
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 12 15:37:08 2009 +0100
+
+    Separate Name and Version instead of Name unit in the search templ.
+    
+    First of all it makes better sense to handle these two things separately,
+    because it's a separate feature of a package, like in case of PKGBUILD too, two
+    different lines.
+    Secondly the current Main Site handles them so too.
+    
+    New column was added on the the search page.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/settings.py                       |    2 ++
+ archlinux/templates/aur/package_detail.html |   18 ++++++++++--------
+ archlinux/templates/aur/search.html         |   20 +++++++++++++++-----
+ archlinux/templates/aurprofile/profile.html |   20 +++++++++++++++-----
+ archlinux/templates/base.html               |    3 +--
+ archlinux/urls.py                           |    3 ++-
+ pip-requirements.txt                        |    1 +
+ 7 files changed, 46 insertions(+), 21 deletions(-)
+ mode change 100644 => 100755 archlinux/manage.py
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+
+From djszapi at archlinux.us  Mon Dec 14 08:07:02 2009
+From: djszapi at archlinux.us (djszapi at archlinux.us)
+Date: Mon, 14 Dec 2009 08:07:02 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. 33e127b4e82dd4a612f671c91e4b43ea077c4aea
+Message-ID: <200912140707.nBE772KB009187@sheep.berlios.de>
+
+This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project "Project aur2 at BerliOS".
+
+The branch, master has been updated
+       via  33e127b4e82dd4a612f671c91e4b43ea077c4aea (commit)
+       via  c1e816e3e7b570566cad9da8a27847cfaef1e4a8 (commit)
+       via  b387ea5e88928ccbf128293e71e05d8d419821ea (commit)
+       via  53b866e4968e2e8ea0715c05b2e73e1554c56a0b (commit)
+       via  26528433495f9c7b52d8f2202a81040c38bc8dec (commit)
+      from  52597924c24f8f4c9567e0a09a41cf7eb982e1a2 (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit 33e127b4e82dd4a612f671c91e4b43ea077c4aea
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Mon Dec 14 08:05:01 2009 +0100
+
+    Delete user_details view and the user_details template
+    
+    It's not needed anymore, because the original profile will be used everywhere.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit c1e816e3e7b570566cad9da8a27847cfaef1e4a8
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Mon Dec 14 08:00:45 2009 +0100
+
+    Fix some refenreces for user profiles
+    
+    It tried to load the logged in user's profile every time, after the /profile ->
+    /users changing at this was fixed this time.
+    
+    The profile view was refactored to handle the username argument and the related
+    urls were changed, object_id -> username, in the urls.py files.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit b387ea5e88928ccbf128293e71e05d8d419821ea
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 21:51:30 2009 +0100
+
+    Change the loaded page for profile,packages in case /users/$username
+    
+    It's needed to remove the duplicated user details things, and keep the earlier
+    existing one here.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 53b866e4968e2e8ea0715c05b2e73e1554c56a0b
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 21:12:42 2009 +0100
+
+    Change to url for /users/$username in case of Logged in user
+    
+    The reason of it to continue the renaming of 'profile/' for 'users/' according
+    to the django project/developers recommendation.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 26528433495f9c7b52d8f2202a81040c38bc8dec
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sun Dec 13 21:08:11 2009 +0100
+
+    Change 'profile/' link for 'users/' in the urls.py
+    
+    This was needed because the django developers support it better than any custom
+    link name here, so the auth app/modules use the default /users name for it, so
+    it's more reasonable to use that one then.
+    
+    The rejection of it can be seen here, with the mail thread too:
+    http://code.djangoproject.com/ticket/5783
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aurprofile/urls.py                    |    3 +-
+ archlinux/aurprofile/views.py                   |   20 +++++++-------
+ archlinux/templates/aurprofile/user_detail.html |   32 -----------------------
+ archlinux/templates/base.html                   |    2 +-
+ archlinux/templates/registration/login.html     |    2 +-
+ archlinux/urls.py                               |    6 ++--
+ 6 files changed, 17 insertions(+), 48 deletions(-)
+ delete mode 100644 archlinux/templates/aurprofile/user_detail.html
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+
+From djszapi at archlinux.us  Tue Dec 15 07:31:54 2009
+From: djszapi at archlinux.us (djszapi at archlinux.us)
+Date: Tue, 15 Dec 2009 07:31:54 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. f6761c575276654956b7142c97a6f540c492eaf8
+Message-ID: <200912150631.nBF6VsF5024689@sheep.berlios.de>
+
+This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project "Project aur2 at BerliOS".
+
+The branch, master has been updated
+       via  f6761c575276654956b7142c97a6f540c492eaf8 (commit)
+       via  c8c86f5013b39ce4ebbc7ba0d8c63ac7f50056c1 (commit)
+       via  06899e70c711b0ef362247cffc4cb98bd51708ef (commit)
+       via  54a4f910228143d791750741fc00c5757e9140d6 (commit)
+       via  a06956fe855a83274d117c80a738ba9f5edbd417 (commit)
+      from  33e127b4e82dd4a612f671c91e4b43ea077c4aea (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit f6761c575276654956b7142c97a6f540c492eaf8
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Tue Dec 15 04:21:05 2009 +0100
+
+    Add 'Licenses' line on the package detail page
+    
+    It was an earlier forgotten thing to insert, it made sense to correct, and
+    otherwise the current official site and the current AUR provide this
+    information, which is important to know anyway.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit c8c86f5013b39ce4ebbc7ba0d8c63ac7f50056c1
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Tue Dec 15 04:19:39 2009 +0100
+
+    Implement get_licenses function in the model.
+    
+    It's a useful function that will be used on the package details page e.g., so it
+    was worth to implement, and it hasn't got high cost to establish
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 06899e70c711b0ef362247cffc4cb98bd51708ef
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Tue Dec 15 03:48:28 2009 +0100
+
+    Change the used profile function in the comment framework
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 54a4f910228143d791750741fc00c5757e9140d6
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Tue Dec 15 03:42:35 2009 +0100
+
+    Change user_details for the profile function in case package_detail selection
+    
+    This is the part of the user_details -> profile refactoring to work.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit a06956fe855a83274d117c80a738ba9f5edbd417
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Tue Dec 15 03:19:37 2009 +0100
+
+    Change '/' for 'aur.views.search' in the base template
+    
+    It's good to use the url facility of django here, instead of hard coding an '/'
+    url which is not a good practice, otherwise such a form is used in case of
+    Submit link/submenu too ({% url aur.views.submit %}), so it does an unit too
+    among those elements
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aur/models.py                     |    4 ++++
+ archlinux/templates/aur/package_detail.html |    7 +++++--
+ archlinux/templates/base.html               |    2 +-
+ 3 files changed, 10 insertions(+), 3 deletions(-)
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+
+From rlmflores at gnome.org  Tue Dec 15 21:37:30 2009
+From: rlmflores at gnome.org (Rodrigo Flores)
+Date: Tue, 15 Dec 2009 18:37:30 -0200
+Subject: [aur2-dev] Translating AUR 2
+Message-ID: <cad62a920912151237w384f2e49qd64407b6cd32068c@mail.gmail.com>
+
+Hello
+
+My name is Rodrigo Flores and I am the coordinator of the Brazilian
+Portuguese translation team for archlinux related stuff (pacman, wiki
+and etc). I want to know about the i18n support and the schedule of
+this project. Will you use the gettext files for that ? When we will
+be able to translate that ?
+
+Thanks on advance
+-- 
+
+"A critical section of code is like a bathroom. Only one person is
+allowed inside at once.
+
+Iker Gondra, Operating Systems
+St. Francis Xavier University, Antigonish, NS"
+
+===================
+Rodrigo L. M. Flores
+Computer Science Student - IME - USP
+Homepage (en): http://www.rodrigoflores.org
+Blog (pt-BR): http://blog.rodrigoflores.org
+Linux User # : 351304
+Jabber: im at rodrigoflores.org
+
+
+From djszapi at archlinux.us  Wed Dec 16 10:04:00 2009
+From: djszapi at archlinux.us (Laszlo Papp)
+Date: Wed, 16 Dec 2009 10:04:00 +0100
+Subject: [aur2-dev] Translating AUR 2
+In-Reply-To: <cad62a920912151237w384f2e49qd64407b6cd32068c@mail.gmail.com>
+References: <cad62a920912151237w384f2e49qd64407b6cd32068c@mail.gmail.com>
+Message-ID: <a362e8010912160104g740ee21dm18599bd26b36056c@mail.gmail.com>
+
+On Tue, Dec 15, 2009 at 9:37 PM, Rodrigo Flores <rlmflores at gnome.org> wrote:
+> Hello
+>
+> My name is Rodrigo Flores and I am the coordinator of the Brazilian
+> Portuguese translation team for archlinux related stuff (pacman, wiki
+> and etc). I want to know about the i18n support and the schedule of
+> this project. Will you use the gettext files for that ? When we will
+> be able to translate that ?
+>
+> Thanks on advance
+
+Hello Rodrigo!
+
+Yes, i18n support will be involved, at least I hope so :)
+I will be on 'vacant' soon, because of Christmas and New Years, but I
+will take an announcement on this list before the release, so if you
+follow the mails here, you will see it.
+I won't have internet connection in the next 2-3 weeks, so thanks your
+patient, but I will work on it in the 'background' as much as
+possible. I wouldn't like to say a roadmap or a dead line for the
+release version because it's my hobby only, but I hope the best.
+
+Best Regards,
+Laszlo Papp
+
+
+From rlmflores at gnome.org  Wed Dec 16 13:17:11 2009
+From: rlmflores at gnome.org (Rodrigo Flores)
+Date: Wed, 16 Dec 2009 10:17:11 -0200
+Subject: [aur2-dev] Translating AUR 2
+In-Reply-To: <a362e8010912160104g740ee21dm18599bd26b36056c@mail.gmail.com>
+References: <cad62a920912151237w384f2e49qd64407b6cd32068c@mail.gmail.com> 
+	<a362e8010912160104g740ee21dm18599bd26b36056c@mail.gmail.com>
+Message-ID: <cad62a920912160417i41f2cac9l983527194a1f586@mail.gmail.com>
+
+On Wed, Dec 16, 2009 at 07:04, Laszlo Papp <djszapi at archlinux.us> wrote:
+> On Tue, Dec 15, 2009 at 9:37 PM, Rodrigo Flores <rlmflores at gnome.org> wrote:
+>> Hello
+>>
+>> My name is Rodrigo Flores and I am the coordinator of the Brazilian
+>> Portuguese translation team for archlinux related stuff (pacman, wiki
+>> and etc). I want to know about the i18n support and the schedule of
+>> this project. Will you use the gettext files for that ? When we will
+>> be able to translate that ?
+>>
+>> Thanks on advance
+>
+> Hello Rodrigo!
+>
+> Yes, i18n support will be involved, at least I hope so :)
+> I will be on 'vacant' soon, because of Christmas and New Years, but I
+> will take an announcement on this list before the release, so if you
+> follow the mails here, you will see it.
+> I won't have internet connection in the next 2-3 weeks, so thanks your
+> patient, but I will work on it in the 'background' as much as
+> possible. I wouldn't like to say a roadmap or a dead line for the
+> release version because it's my hobby only, but I hope the best.
+Hi Laszlo
+
+Thanks for you reply. Do you have an idea of how many strings we will
+translate and how many time we will have to do the translation ? I
+believe a string freeze period (or a string change announcement
+period) should be an excelent way for we to get the things translated
+without having the concern to update the po files.
+
+Best regards
+
+>
+> Best Regards,
+> Laszlo Papp
+> _______________________________________________
+> aur2-dev mailing list
+> aur2-dev at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/aur2-dev
+>
+
+
+
+-- 
+
+"A critical section of code is like a bathroom. Only one person is
+allowed inside at once.
+
+Iker Gondra, Operating Systems
+St. Francis Xavier University, Antigonish, NS"
+
+===================
+Rodrigo L. M. Flores
+Computer Science Student - IME - USP
+Homepage (en): http://www.rodrigoflores.org
+Blog (pt-BR): http://blog.rodrigoflores.org
+Linux User # : 351304
+Jabber: im at rodrigoflores.org
+
+
+From djszapi at archlinux.us  Wed Dec 16 14:30:02 2009
+From: djszapi at archlinux.us (Laszlo Papp)
+Date: Wed, 16 Dec 2009 14:30:02 +0100
+Subject: [aur2-dev] Translating AUR 2
+In-Reply-To: <cad62a920912160417i41f2cac9l983527194a1f586@mail.gmail.com>
+References: <cad62a920912151237w384f2e49qd64407b6cd32068c@mail.gmail.com>
+	<a362e8010912160104g740ee21dm18599bd26b36056c@mail.gmail.com>
+	<cad62a920912160417i41f2cac9l983527194a1f586@mail.gmail.com>
+Message-ID: <a362e8010912160530y2ce72c87h5cadbdeb9c022fc3@mail.gmail.com>
+
+> Hi Laszlo
+>
+> Thanks for you reply. Do you have an idea of how many strings we will
+> translate and how many time we will have to do the translation ?
+
+I did translation for current AUR, and It didn't take me more than 3-4
+hours, but I was/am not an expert in translation, so it would be
+smaller job for you, it's sure :) I guess it won't take more than the
+current AUR, but we will see, django will our friend in it.
+
+> I believe a string freeze period (or a string change announcement
+> period) should be an excelent way for we to get the things translated
+> without having the concern to update the po files.
+
+Yes, I think it's Ok.
+
+I need some things to do before this announcement, I wouldn't like to
+show a demo release in a hurry, my purpose is to give a correct
+release instead with fewer bugs :)
+Anyway, thanks all your help, I hope you won't lost your patient :P
+
+I will be 'out of office' from Friday, I won't have internet
+connection until January, so I wish you happy holidays, Arch
+contributors :o)
+
+Best Regards,
+Laszlo Papp
+
+
+From sebnow at gmail.com  Sat Dec 19 06:54:45 2009
+From: sebnow at gmail.com (Sebastian Nowicki)
+Date: Sat, 19 Dec 2009 13:54:45 +0800
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. a9bf9cc86dc3f0639344eb141105fc04197d727a
+In-Reply-To: <200912080607.nB867e5s000431@sheep.berlios.de>
+References: <200912080607.nB867e5s000431@sheep.berlios.de>
+Message-ID: <F6C5CEAB-BEB8-4C1A-92BE-CDADA2567F6E@gmail.com>
+
+
+On 08/12/2009, at 2:07 PM, djszapi at archlinux.us wrote:
+
+> commit 2adbfaaaa5951121c23236f3561d876d77155756
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Tue Dec 8 00:53:28 2009 +0100
+>
+>    Fix the rss feed in Mozilla Firefox
+>
+>    The url names, namespaces related thing was deleted from the  
+> search template, so
+>    the clicking for the rss logo in Mozilla Firefox e.g., in the url  
+> line loads the
+>    right page, so it can be available so too.
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+Please use named urls, not absolute paths.
+
+> commit 0bfa69c7306b72906bf18d07da3488c1bf7aa509
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Mon Dec 7 22:16:58 2009 +0100
+>
+>    Refactor search template for Maintainer to be a link to the profile
+>
+>    The implementation changed to Maintainer column handling a little  
+> bit after
+>    clicking 'Packages' submenu.
+>
+>    If the user who logged in can see the Maintainer in that column  
+> as a link to the
+>    Maintainer profile, otherwise if any user is logged in this  
+> Maintainer name in
+>    that column is a simple text field
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+>
+> commit 847eaf3b7c41af83d1aa5fa2f1eba312e0bcf2a8
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Mon Dec 7 21:36:12 2009 +0100
+>
+>    Change the rss feed to display the last 20 packages instead of all
+>
+>    It was more reasonable to see the last 20 newly updated/added  
+> packages in the
+>    rss feeds than all of them, because it can be annoying in case of  
+> 18.000
+>    packages. 20 was choosen, because the current AUR implementation  
+> works so too.
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+Please make the limit configurable in settings.py.
+
+
+
+From sebnow at gmail.com  Sat Dec 19 10:06:21 2009
+From: sebnow at gmail.com (Sebastian Nowicki)
+Date: Sat, 19 Dec 2009 17:06:21 +0800
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. f352575112bfc859839d939ae3eb172da3b48dae
+In-Reply-To: <200912010254.nB12sC1I009458@sheep.berlios.de>
+References: <200912010254.nB12sC1I009458@sheep.berlios.de>
+Message-ID: <9D7ED844-0185-4942-B385-238132BCC276@gmail.com>
+
+
+On 01/12/2009, at 10:54 AM, djszapi at archlinux.us wrote:
+
+> commit d596c830487d229809a52e1c8d103bf540f377b6
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Mon Nov 30 23:12:20 2009 +0100
+>
+>    Implement account deleting function in aur/views.py
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+Is there a link to this view anywhere? Could you use a template please?
+
+
+
+From sebnow at gmail.com  Sun Dec 20 07:27:37 2009
+From: sebnow at gmail.com (Sebastian Nowicki)
+Date: Sun, 20 Dec 2009 14:27:37 +0800
+Subject: [aur2-dev] [PATCH] Save added and updated date of models in
+	save method
+In-Reply-To: <4b12c1f4.47c1f10a.34a3.26f7@mx.google.com>
+References: <4b101d07.47c2f10a.64fe.ffffde10@mx.google.com>
+	<4b12c1f4.47c1f10a.34a3.26f7@mx.google.com>
+Message-ID: <D09B5AE0-AC7D-423B-BF25-D77D028EB84B@gmail.com>
+
+
+On 30/11/2009, at 2:43 AM, Ismael Carnales wrote:
+
+> From: Ismael Carnales <icarnales at gmail.com>
+>
+> * The added datetime for Packages and Comments was getting set in the
+> default value (always the datetime from server start), now using the
+> model save method for this.
+> * Also use save method for setting added on Vote model for  
+> consistency.
+>
+> Signed-off-by: Ismael Carnales <icarnales at gmail.com>
+> ---
+> archlinux/aur/models.py |   24 +++++++++++++++++++-----
+> 1 files changed, 19 insertions(+), 5 deletions(-)
+>
+> diff --git a/archlinux/aur/models.py b/archlinux/aur/models.py
+> index 2a1a81e..1ba3e09 100644
+> --- a/archlinux/aur/models.py
+> +++ b/archlinux/aur/models.py
+> @@ -95,8 +95,8 @@ class Package(models.Model):
+>     provides = models.ManyToManyField(Provision, null=True,  
+> blank=True)
+>     deleted = models.BooleanField(default=False)
+>     outdated = models.BooleanField(default=False)
+> -    added = models.DateTimeField(editable=False,  
+> default=datetime.now())
+> -    updated = models.DateTimeField()
+> +    added = models.DateTimeField(editable=False)
+> +    updated = models.DateTimeField(editable=False)
+>     groups = models.ManyToManyField(Group, null=True, blank=True)
+>
+>     def __unicode__(self):
+> @@ -115,12 +115,16 @@ class Package(models.Model):
+>     get_absolute_url = permalink(get_absolute_url)
+>
+>     def save(self):
+> -        self.updated = datetime.now()
+> +        if not self.id:
+> +            self.added = datetime.now()
+> +
+>         if not self.slug:
+>             import re
+>             slug = re.sub('[^\w\s-]', '', self.name).strip().lower()
+>             slug = re.sub('[-\s]+', '-', slug)
+>             self.slug = slug
+> +
+> +        self.updated = datetime.now()
+>         super(Package, self).save()
+>
+>     class Meta:
+> @@ -167,13 +171,18 @@ class Comment(models.Model):
+>     parent = models.ForeignKey('self', null=True, blank=True)
+>     user = models.ForeignKey(User)
+>     message = models.TextField()
+> -    added = models.DateTimeField(editable=False,  
+> default=datetime.now())
+> +    added = models.DateTimeField(editable=False)
+>     ip = models.IPAddressField()
+>     hidden = models.BooleanField(default=False)
+>
+>     def __unicode__(self):
+>         return self.message
+>
+> +    def save(self):
+> +        if not self.id:
+> +            self.added = datetime.now()
+> +        super(Comment, self).save()
+> +
+>
+> class PackageNotification(models.Model):
+>     user = models.ForeignKey(User)
+> @@ -187,12 +196,17 @@ class PackageNotification(models.Model):
+> class Vote(models.Model):
+>     user = models.ForeignKey(User)
+>     package = models.ForeignKey(Package)
+> -    added = models.DateTimeField(auto_now_add=True)
+> +    added = models.DateTimeField(editable=False)
+>
+>     def __unicode__(self):
+>         return u"%s's vote for %s" % (self.user.username,
+>                 self.package.name)
+>
+> +    def save(self):
+> +        if not self.id:
+> +            self.added = datetime.now()
+> +        super(Vote, self).save()
+> +
+>     class Meta:
+>         unique_together = (("user", "package"),)
+>
+> -- 
+>
+> This is the style I prefer using for autosaving model creation and  
+> update
+> dates. It makes all the code visible in the save method so the logic  
+> is not
+> scattered in many places.
+> _______________________________________________
+> aur2-dev mailing list
+> aur2-dev at lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/aur2-dev
+
+It appears the auto_now* attributes have been deprecated in Django 1.0  
+(they were actually replaced with the datetime.now() calls  
+previously), so I prefer this method. I modified the patch slightly to  
+use a callable (default=datetime.now) rather than the save method. The  
+changes to Votes were removed, as votes haven't been pushed to master  
+yet.
+
+Applied in my repository. Thanks.
+  
+
+
+From sebnow at gmail.com  Sun Dec 20 08:41:57 2009
+From: sebnow at gmail.com (Sebastian Nowicki)
+Date: Sun, 20 Dec 2009 15:41:57 +0800
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. d8f40d6975cc5daab9953fe92fa906b9a08339ec
+In-Reply-To: <200912100453.nBA4rXv4032208@sheep.berlios.de>
+References: <200912100453.nBA4rXv4032208@sheep.berlios.de>
+Message-ID: <6592A5F8-94AD-4727-AC2A-60A72B0AC8B2@gmail.com>
+
+
+On 10/12/2009, at 12:53 PM, djszapi at archlinux.us wrote:
+
+> commit 37feff3ed399d4c866684f3fd82eb34cb8e1ef6d
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Thu Dec 10 00:42:22 2009 +0100
+>
+>    Add 'Recent Updates' + RSS logo on the search page
+>
+>    The RSS page for newly updated/added packages was established  
+> earlier, but there
+>    weren't an available link for them apart from Mozilla Firefox  
+> builtin button or
+>    typing the link manually, so this feature first of all made  
+> sense, and secondly
+>    it's implemented on the current AUR, so it has got a compability  
+> reason too
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+You forgot to add media/feed-icon-14x14.png to the repository. What is  
+the copyright of the icon?
+
+
+
+From sebnow at gmail.com  Sun Dec 20 08:59:18 2009
+From: sebnow at gmail.com (Sebastian Nowicki)
+Date: Sun, 20 Dec 2009 15:59:18 +0800
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. b0b76a778df14be6c6e016e3d891a2521647ac16
+In-Reply-To: <200912061008.nB6A8JI8010045@sheep.berlios.de>
+References: <200912061008.nB6A8JI8010045@sheep.berlios.de>
+Message-ID: <EBED6402-40CB-473E-8AD8-659FAD149878@gmail.com>
+
+
+On 06/12/2009, at 6:08 PM, djszapi at archlinux.us wrote:
+
+> This is an automated email from the git hooks/post-receive script.  
+> It was
+> generated because a ref change was pushed to the repository containing
+> the project "Project aur2 at BerliOS".
+>
+> The branch, master has been updated
+>       via  b0b76a778df14be6c6e016e3d891a2521647ac16 (commit)
+>       via  ba6a909dd388da72a5ceb379d065b507b5dd85bc (commit)
+>       via  b638c870cbe8cc91af4fcf6cdd0a049cdb7f029f (commit)
+>       via  f1daa65afc79ebe7f1c2732bc83c189331c15ab6 (commit)
+>       via  f018eecc21bdcc97fa53f0f14c9c16e87f769eef (commit)
+>      from  8c57bc6be8f5f27e91663915b5797f83a3849392 (commit)
+>
+> Those revisions listed above that are new to this repository have
+> not appeared on any other notification email; so we list those
+> revisions in full, below.
+>
+> - Log  
+> -----------------------------------------------------------------
+> commit b0b76a778df14be6c6e016e3d891a2521647ac16
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Sun Dec 6 11:04:16 2009 +0100
+>
+>    Implement RSS facility for newly updated/added packages
+>
+>    This is similar that can be seen on so much site, like current  
+> AUR too.
+>
+>    Implementation details:
+>
+>    * New Feed class was established and therefore a new file too,  
+> aur/feeds.py
+>    * New entry was added in the urls.py to it, and a new feed element
+>    * The search template was modified in extra_head block regard,  
+> new link was
+>    * added with the related /feeds/rss url in a link
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+What's with the dangling AtomLatestPackages class? Why isn't it used?  
+Could you finish your changes before pushing them?
+
+The author_* fields are optional and I don't think they are relevant  
+(it might be for a blog). They should definitely not have your details.
+
+Shouldn't the item_pubdate return the actual date, as opposed to doing  
+nothing? i.e.:
+> def item_pudbate(self, pkg):
+>     return pkg.updated
+
+Please remove the comments. If you don't want something in the source  
+code, then don't add it.
+
+The link should use Django's URL dispatcher.
+
+
+
+From sebnow at gmail.com  Sun Dec 20 10:58:40 2009
+From: sebnow at gmail.com (Sebastian Nowicki)
+Date: Sun, 20 Dec 2009 17:58:40 +0800
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. 9b70f1b464c6f19cee9d790a59412472ad756221
+In-Reply-To: <200912102342.nBANgslA015641@sheep.berlios.de>
+References: <200912102342.nBANgslA015641@sheep.berlios.de>
+Message-ID: <F1F210F3-3585-40D9-8AA6-84548E41B6BB@gmail.com>
+
+
+On 11/12/2009, at 7:42 AM, djszapi at archlinux.us wrote:
+> commit 9b62cef3f9a87d7f8809fc738ee955abc9cb53d2
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Thu Dec 10 22:05:10 2009 +0100
+>
+>    Refactor the package_detail template because of the comment fw.
+>
+>    It was needed be cause the earlier implementation/changing for  
+> comments
+>    framework usage contained some BUGS that were corrected, like the  
+> following
+>    ones:
+>
+>    * comment.added -> comment.submit_date
+>    * comment.message -> comment.comment
+>    * the right alignment comes from broken HTML -> just drop that  
+> it's never closed
+>    anyway
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+1. The current comments implementation should be removed, if the  
+comments framework is to be used instead.
+2. The first two "bugs" you mention are not bugs at all, considering  
+they are caused by the change to use the comments framework.
+3. The layout is broken and doesn't even resemble the previous one.
+4. Please add a proper "comment submitted" template. I'd prefer it the  
+current behavior was conserved, i.e. redirect to the package's page.
+
+> commit 68b78ae0e6ae30f3eacdda64ac0ab6e6b011726a
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Thu Dec 10 21:38:45 2009 +0100
+>
+>    Change 'user' variable for 'pkg' variable in user detail template
+>
+>    It was needed because the previous implementation contained a  
+> BUG, because the
+>    So data was showing the data of the logged in user -- not the  
+> data from the user
+>    selected by the url
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+While I understand the reason to rename the "user" variable, why did  
+you rename it to "pkg"? It makes no sense to call a user "pkg." Also,  
+as mentioned above, it's only a bug because of your changes to the  
+template. It was not a bug previously. This wouldn't be a problem if  
+you had tested your changes and didn't push them out so frequently.
+
+Please keep in mind that quality is much more important than quantity.
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <https://lists.berlios.de/pipermail/aur2-dev/attachments/20091220/5d93674f/attachment.html>
+
+From djszapi at archlinux.us  Tue Dec 22 01:27:30 2009
+From: djszapi at archlinux.us (djszapi at archlinux.us)
+Date: Tue, 22 Dec 2009 01:27:30 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, master,
+	updated. 671c78c0c599193c58ce009f7c6e8d3d94d3b474
+Message-ID: <200912220027.nBM0RUKm010400@sheep.berlios.de>
+
+This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project "Project aur2 at BerliOS".
+
+The branch, master has been updated
+       via  671c78c0c599193c58ce009f7c6e8d3d94d3b474 (commit)
+       via  9fc3f07e25fdf87ab40fb2eca796692df0edb3f8 (commit)
+       via  9902de4481c5369bc10c9515a1512351ed945d6d (commit)
+      from  f6761c575276654956b7142c97a6f540c492eaf8 (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit 671c78c0c599193c58ce009f7c6e8d3d94d3b474
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 19 08:25:15 2009 +0100
+
+    Refactor the openid login template for archlinux style
+    
+    It was needed because of the unity, but it's a pure design at this momment too,
+    but it matches to the other pages better.
+    
+    The following tasks will happen in the future:
+    * A better css design(similar to the login page)
+    * Add OpenID logo
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 9fc3f07e25fdf87ab40fb2eca796692df0edb3f8
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 19 05:53:50 2009 +0100
+
+    Add reference for openid login link on the main login page
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 9902de4481c5369bc10c9515a1512351ed945d6d
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Sat Dec 19 05:23:49 2009 +0100
+
+    Add openid login template
+    
+    It was needed because of the following bugs in the django-openid-auth module:
+    https://bugs.launchpad.net/django-openid-auth/+bug/365767
+    
+    This breakage was fixed in the development tree, but no release after 8 months,
+    so it was worth to implement own template for it.
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/templates/openid/login.html       |   26 ++++++++++++++++++++++++++
+ archlinux/templates/registration/login.html |    1 +
+ 2 files changed, 27 insertions(+), 0 deletions(-)
+ create mode 100644 archlinux/templates/openid/login.html
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+
+From djszapi at archlinux.us  Tue Dec 22 08:48:54 2009
+From: djszapi at archlinux.us (djszapi at archlinux.us)
+Date: Tue, 22 Dec 2009 08:48:54 +0100
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, maint,
+	updated. 648a49453f96973c997468f1ec04e899ada5954a
+Message-ID: <200912220748.nBM7mssB014637@sheep.berlios.de>
+
+This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project "Project aur2 at BerliOS".
+
+The branch, maint has been updated
+       via  648a49453f96973c997468f1ec04e899ada5954a (commit)
+       via  79a8b8e124fdc4e3e4d8e0fbc9bd702401b51d11 (commit)
+      from  671c78c0c599193c58ce009f7c6e8d3d94d3b474 (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit 648a49453f96973c997468f1ec04e899ada5954a
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Tue Dec 22 00:40:27 2009 +0100
+
+    Implement the new parched parser instead of the older one
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+commit 79a8b8e124fdc4e3e4d8e0fbc9bd702401b51d11
+Author: Laszlo Papp <djszapi at archlinux.us>
+Date:   Mon Dec 21 23:03:16 2009 +0100
+
+    Add Delete feature for packages in case Moderators(TUs/Devs/Admins)
+    
+    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aur/forms.py                      |  242 ++++++++++++++-------------
+ archlinux/aur/templatetags/aur_tags.py      |    4 +
+ archlinux/aur/urls.py                       |    2 +
+ archlinux/aur/views.py                      |   42 ++++-
+ archlinux/templates/aur/package_detail.html |    7 +-
+ 5 files changed, 175 insertions(+), 122 deletions(-)
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+
+From sebnow at gmail.com  Sat Dec 26 17:21:57 2009
+From: sebnow at gmail.com (Sebastian Nowicki)
+Date: Sun, 27 Dec 2009 00:21:57 +0800
+Subject: [aur2-dev] [Git]Project aur2 at BerliOS branch, maint,
+	updated. 648a49453f96973c997468f1ec04e899ada5954a
+In-Reply-To: <200912220748.nBM7mssB014637@sheep.berlios.de>
+References: <200912220748.nBM7mssB014637@sheep.berlios.de>
+Message-ID: <81966BC0-05BC-4CFB-8141-A1E847029604@gmail.com>
+
+
+On 22/12/2009, at 3:48 PM, djszapi at archlinux.us wrote:
+
+> This is an automated email from the git hooks/post-receive script.  
+> It was
+> generated because a ref change was pushed to the repository containing
+> the project "Project aur2 at BerliOS".
+>
+> The branch, maint has been updated
+>       via  648a49453f96973c997468f1ec04e899ada5954a (commit)
+>       via  79a8b8e124fdc4e3e4d8e0fbc9bd702401b51d11 (commit)
+>      from  671c78c0c599193c58ce009f7c6e8d3d94d3b474 (commit)
+>
+> Those revisions listed above that are new to this repository have
+> not appeared on any other notification email; so we list those
+> revisions in full, below.
+>
+> - Log  
+> -----------------------------------------------------------------
+> commit 648a49453f96973c997468f1ec04e899ada5954a
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Tue Dec 22 00:40:27 2009 +0100
+>
+>    Implement the new parched parser instead of the older one
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+I won't even look at this one as the diff is too noisy. Why did you re- 
+indent everything? It's now a level too deep.
+
+> commit 79a8b8e124fdc4e3e4d8e0fbc9bd702401b51d11
+> Author: Laszlo Papp <djszapi at archlinux.us>
+> Date:   Mon Dec 21 23:03:16 2009 +0100
+>
+>    Add Delete feature for packages in case Moderators(TUs/Devs/Admins)
+>
+>    Signed-off-by: Laszlo Papp <djszapi at archlinux.us>
+
+I haven't looked at how Django permissions work exactly, but looking  
+at the _user_can_delete_package filter, it seems it's dependent on  
+package.__unicode__ returning the package name. I think it should use  
+package.name instead.
+
+> + at login_required
+> +def delete(request, object_id):
+> +     """Deletes a package from the database"""
+> +     package = get_object_or_404(Package, name=object_id)
+> +     try:
+> +         if _user_is_moderator(request.user):
+> +             package.delete()
+> +     except Package.DoesNotExist:
+> +         pass
+> +     if _user_is_moderator(request.user):
+> +         return HttpResponseRedirect(reverse('aur-search'))
+
+The last conditional is confusing. It makes me ask the question what  
+happens if the user isn't a moderator. It seems it won't return  
+anything if the package exists, so the user gets a blank page? The  
+conditional should be removed imo. Also the try/except is redundant  
+since the get_object_or_404 function already redirects to a 404 error  
+page. It is thus guaranteed that the except block will never execute.
+
+
+

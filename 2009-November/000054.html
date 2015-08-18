@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH 2/2] Add voting for packages.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%202/2%5D%20Add%20voting%20for%20packages.&In-Reply-To=%3CE4E8572F-53F7-482E-94D8-7A9DD926AF11%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000053.html">
+   <LINK REL="Next"  HREF="000057.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH 2/2] Add voting for packages.</H1>
+    <B>Sebastian Nowicki</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%202/2%5D%20Add%20voting%20for%20packages.&In-Reply-To=%3CE4E8572F-53F7-482E-94D8-7A9DD926AF11%40gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH 2/2] Add voting for packages.">sebnow at gmail.com
+       </A><BR>
+    <I>Thu Nov 26 13:11:04 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000053.html">[aur2-dev] [PATCH 2/2] Add voting for packages.
+</A></li>
+        <LI>Next message: <A HREF="000057.html">[aur2-dev] [PATCH 2/2] Add voting for packages.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#54">[ date ]</a>
+              <a href="thread.html#54">[ thread ]</a>
+              <a href="subject.html#54">[ subject ]</a>
+              <a href="author.html#54">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On Nov 26, 2009, at 6:58 PM, Ismael Carnales wrote:
+
+&gt;<i> Hi, the use of auto_now and auto_now_add has been very &quot;controversial&quot;
+</I>&gt;<i> in the last time [1], I think it would be better to just override the
+</I>&gt;<i> Vote saving method to add the date.
+</I>&gt;<i>
+</I>&gt;<i> Also I suggest using a more &quot;standard&quot; name for the creation date of
+</I>&gt;<i> the vote (looks like in this project this name would be &quot;added&quot;), for
+</I>&gt;<i> consistency and to have the posibility in the future of abstracting
+</I>&gt;<i> the behaviour to a mixin class for example [2].
+</I>&gt;<i>
+</I>&gt;<i> I see that in the aur app code the timestamping is done in a &quot;mixed
+</I>&gt;<i> way&quot; (having a defalt for one field and setting the other on save
+</I>&gt;<i> method) I think is much consistent doing both things on save method
+</I>&gt;<i> (so you don't have the logic scattered in the model). If you're ok
+</I>&gt;<i> with this, later I'll send a patch to change this.
+</I>
+If I remember correctly this was done before auto_now_add was  
+available, so this was the only way to do it. I don't really mind  
+either way (although auto_now_add results in less code), as long as  
+the date doesn't have to be set whenever a new Vote is created.
+
+&gt;<i> byebye!
+</I>&gt;<i>
+</I>&gt;<i> [1]: <A HREF="http://www.b-list.org/weblog/2006/nov/02/django-tips-auto-populated-fields/">http://www.b-list.org/weblog/2006/nov/02/django-tips-auto-populated-fields/</A>
+</I>&gt;<i> [2]: <A HREF="http://www.eflorenzano.com/blog/post/exploring-mixins-django-model-inheritance/">http://www.eflorenzano.com/blog/post/exploring-mixins-django-model-inheritance/</A>
+</I>&gt;<i>
+</I>&gt;&gt;<i> Perhaps this should be:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> when = models.DateTimeField(editable=False, auto_now_add=True)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> DateField.auto_now_add Automatically set the field to now when the
+</I>&gt;&gt;&gt;<i> object is first created. Useful for creation of timestamps. Note
+</I>&gt;&gt;&gt;<i> that the current date isalways used; it's not just a default value
+</I>&gt;&gt;&gt;<i> that you can override.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It seems editable=False might not be necessary in this case.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> [snip]
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">+ at login_required</A>
+</I>&gt;&gt;&gt;<i> +def vote(request, object_id):
+</I>&gt;&gt;&gt;<i> +    &quot;&quot;&quot;Record a user's vote for a package&quot;&quot;&quot;
+</I>&gt;&gt;&gt;<i> +    package = get_object_or_404(Package, name=object_id)
+</I>&gt;&gt;&gt;<i> +    try:
+</I>&gt;&gt;&gt;<i> +        Vote(package=package, user=request.user,
+</I>&gt;&gt;&gt;<i> +                when=datetime.now()).save()
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Setting auto_now_add=True would make setting the when parameter
+</I>&gt;&gt;<i> unnecessary.
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> aur2-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">aur2-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">https://lists.berlios.de/mailman/listinfo/aur2-dev</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000053.html">[aur2-dev] [PATCH 2/2] Add voting for packages.
+</A></li>
+	<LI>Next message: <A HREF="000057.html">[aur2-dev] [PATCH 2/2] Add voting for packages.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#54">[ date ]</a>
+              <a href="thread.html#54">[ thread ]</a>
+              <a href="subject.html#54">[ subject ]</a>
+              <a href="author.html#54">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

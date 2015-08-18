@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	61008e056097dcd6542880ad6ffd1a9cbd9ee6e7
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%20%0961008e056097dcd6542880ad6ffd1a9cbd9ee6e7&In-Reply-To=%3Ca362e8010911272123w1d325233rc227491ce1450c5b%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000093.html">
+   <LINK REL="Next"  HREF="000097.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	61008e056097dcd6542880ad6ffd1a9cbd9ee6e7</H1>
+    <B>Laszlo Papp</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%20%0961008e056097dcd6542880ad6ffd1a9cbd9ee6e7&In-Reply-To=%3Ca362e8010911272123w1d325233rc227491ce1450c5b%40mail.gmail.com%3E"
+       TITLE="[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	61008e056097dcd6542880ad6ffd1a9cbd9ee6e7">djszapi at archlinux.us
+       </A><BR>
+    <I>Sat Nov 28 06:23:03 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000093.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 61008e056097dcd6542880ad6ffd1a9cbd9ee6e7
+</A></li>
+        <LI>Next message: <A HREF="000097.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated.  61008e056097dcd6542880ad6ffd1a9cbd9ee6e7
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#96">[ date ]</a>
+              <a href="thread.html#96">[ thread ]</a>
+              <a href="subject.html#96">[ subject ]</a>
+              <a href="author.html#96">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Nov 28, 2009 at 6:09 AM, Sebastian Nowicki &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">sebnow at gmail.com</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> On Nov 28, 2009, at 4:47 AM, <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A> wrote:
+</I>&gt;&gt;<i> commit 1741b3d31b0745b40f601c6507567c7eb4c4edfa
+</I>&gt;&gt;<i> Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>&gt;&gt;<i> Date: &#160; Thu Nov 26 23:37:13 2009 +0100
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &#160; &#160;Change 'password (again)' for 'Confirm password
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &#160; &#160;Change the silly 'password (again)' for 'Confirm password',
+</I>&gt;&gt;<i> because it describes
+</I>&gt;&gt;<i> &#160; &#160;better its purpose, and this is the one of the used, standard
+</I>&gt;&gt;<i> message here.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &#160; &#160;New Subclass was established (AurRegistrationForm), because the
+</I>&gt;&gt;<i> original string
+</I>&gt;&gt;<i> &#160; &#160;was established in the django-registration module, and it's no
+</I>&gt;&gt;<i> worth to modify it.
+</I>&gt;&gt;<i> &#160; &#160;The password2 label of the mentionod class was refactored
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &#160; &#160;The desited link should have established in the main urls.py
+</I>&gt;&gt;<i> according to the
+</I>&gt;&gt;<i> &#160; &#160;accouns/register page and AurRegistrationForm subclass, so
+</I>&gt;&gt;<i> involving &#160;it before
+</I>&gt;&gt;<i> &#160; &#160;the original registration.views.register including.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &#160; &#160;Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> The AurRegistrationForm should be put in aurprofile, not in the aur
+</I>&gt;<i> app, as it has nothing to do with packages. &quot;attrs_dict&quot; should
+</I>&gt;<i> probably not be global, and in fact it could just be specified inline.
+</I>
+I will put it in the aurprofile, maybe you're right.
+
+&quot;attrs_dict&quot; is global in the registration module too, so I wanted to
+remain consistent with that module I modify, so It's ok for me.
+
+&gt;<i> Is it worth &quot;hacking&quot; this here? Maybe the upstream author would like
+</I>&gt;<i> this patch in django-registration. It'd be as simple as changing one
+</I>&gt;<i> line (upstream) then.
+</I>
+Sebastian :) You know upstream authors, it's not easy to reach any
+result in this regard in some cases even this needs just a string
+modification in the module, but I sent it to him of course earlier.
+Hope the best.
+
+Best Regards,
+Laszlo Papp
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000093.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 61008e056097dcd6542880ad6ffd1a9cbd9ee6e7
+</A></li>
+	<LI>Next message: <A HREF="000097.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated.  61008e056097dcd6542880ad6ffd1a9cbd9ee6e7
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#96">[ date ]</a>
+              <a href="thread.html#96">[ thread ]</a>
+              <a href="subject.html#96">[ subject ]</a>
+              <a href="author.html#96">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

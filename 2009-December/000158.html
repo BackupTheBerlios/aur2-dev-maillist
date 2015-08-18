@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH] Fix sorting by &quot;updated&quot; field in search	view.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Fix%20sorting%20by%20%22updated%22%20field%20in%20search%0A%09view.&In-Reply-To=%3Ca362e8010912042346p3e5b01e5g9c425b4e5285a2d%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000156.html">
+   <LINK REL="Next"  HREF="000157.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH] Fix sorting by &quot;updated&quot; field in search	view.</H1>
+    <B>Laszlo Papp</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Fix%20sorting%20by%20%22updated%22%20field%20in%20search%0A%09view.&In-Reply-To=%3Ca362e8010912042346p3e5b01e5g9c425b4e5285a2d%40mail.gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH] Fix sorting by &quot;updated&quot; field in search	view.">djszapi at archlinux.us
+       </A><BR>
+    <I>Sat Dec  5 08:46:55 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000156.html">[aur2-dev] [PATCH] Fix sorting by &quot;updated&quot; field in search view.
+</A></li>
+        <LI>Next message: <A HREF="000157.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 8c57bc6be8f5f27e91663915b5797f83a3849392
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#158">[ date ]</a>
+              <a href="thread.html#158">[ thread ]</a>
+              <a href="subject.html#158">[ subject ]</a>
+              <a href="author.html#158">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Dec 5, 2009 at 7:31 AM, Sebastian Nowicki &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">sebnow at gmail.com</A>&gt; wrote:
+&gt;<i> Clicking on &quot;Last Updated&quot; in the search view attempted to sort by a
+</I>&gt;<i> &quot;lastupdated&quot; field which does not exist. It now sorts by the &quot;updated&quot;
+</I>&gt;<i> field.
+</I>&gt;<i>
+</I>&gt;<i> Signed-off-by: Sebastian Nowicki &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">sebnow at gmail.com</A>&gt;
+</I>&gt;<i> ---
+</I>&gt;<i> &#160;archlinux/templates/aur/search.html | &#160; &#160;2 +-
+</I>&gt;<i> &#160;1 files changed, 1 insertions(+), 1 deletions(-)
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/archlinux/templates/aur/search.html b/archlinux/templates/aur/search.html
+</I>&gt;<i> index ed9d02d..b194c61 100644
+</I>&gt;<i> --- a/archlinux/templates/aur/search.html
+</I>&gt;<i> +++ b/archlinux/templates/aur/search.html
+</I>&gt;<i> @@ -46,7 +46,7 @@
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &lt;th&gt;&lt;a href=&quot;{% url aur-search %}?sortby=name&amp;order=desc&quot;&gt;{% trans &quot;Name&quot; %}&lt;/a&gt;&lt;/th&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &lt;th&gt;&lt;a href=&quot;{% url aur-search %}?sortby=description&amp;order=desc&quot;&gt;{% trans &quot;Description&quot; %}&lt;/a&gt;&lt;/th&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &lt;th&gt;{% trans &quot;Maintainer&quot; %}&lt;/a&gt;&lt;/th&gt;
+</I>&gt;<i> - &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&lt;th style=&quot;width: 9em&quot;&gt;&lt;a href=&quot;{% url aur-search %}?sortby=lastupdated&amp;order=desc&quot;&gt;{% trans &quot;Last Updated&quot; %}&lt;/a&gt;&lt;/th&gt;
+</I>&gt;<i> + &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;&lt;th style=&quot;width: 9em&quot;&gt;&lt;a href=&quot;{% url aur-search %}?sortby=updated&amp;order=desc&quot;&gt;{% trans &quot;Last Updated&quot; %}&lt;/a&gt;&lt;/th&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; {% if is_moderator %}
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &lt;th&gt;&nbsp;&lt;/th&gt;
+</I>&gt;<i> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; {% endif %}
+</I>&gt;<i> --
+</I>&gt;<i> 1.6.5.2
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> aur2-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">aur2-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">https://lists.berlios.de/mailman/listinfo/aur2-dev</A>
+</I>&gt;<i>
+</I>
+You've got eagle eyes :) Applied, thanks.
+
+Best Regards,
+Laszlo Papp
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000156.html">[aur2-dev] [PATCH] Fix sorting by &quot;updated&quot; field in search view.
+</A></li>
+	<LI>Next message: <A HREF="000157.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 8c57bc6be8f5f27e91663915b5797f83a3849392
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#158">[ date ]</a>
+              <a href="thread.html#158">[ thread ]</a>
+              <a href="subject.html#158">[ subject ]</a>
+              <a href="author.html#158">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

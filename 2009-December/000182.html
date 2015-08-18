@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 9b70f1b464c6f19cee9d790a59412472ad756221
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%209b70f1b464c6f19cee9d790a59412472ad756221&In-Reply-To=%3CF1F210F3-3585-40D9-8AA6-84548E41B6BB%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000167.html">
+   <LINK REL="Next"  HREF="000170.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 9b70f1b464c6f19cee9d790a59412472ad756221</H1>
+    <B>Sebastian Nowicki</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%209b70f1b464c6f19cee9d790a59412472ad756221&In-Reply-To=%3CF1F210F3-3585-40D9-8AA6-84548E41B6BB%40gmail.com%3E"
+       TITLE="[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 9b70f1b464c6f19cee9d790a59412472ad756221">sebnow at gmail.com
+       </A><BR>
+    <I>Sun Dec 20 10:58:40 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000167.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 9b70f1b464c6f19cee9d790a59412472ad756221
+</A></li>
+        <LI>Next message: <A HREF="000170.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 52597924c24f8f4c9567e0a09a41cf7eb982e1a2
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#182">[ date ]</a>
+              <a href="thread.html#182">[ thread ]</a>
+              <a href="subject.html#182">[ subject ]</a>
+              <a href="author.html#182">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On 11/12/2009, at 7:42 AM, <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A> wrote:
+&gt;<i> commit 9b62cef3f9a87d7f8809fc738ee955abc9cb53d2
+</I>&gt;<i> Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>&gt;<i> Date:   Thu Dec 10 22:05:10 2009 +0100
+</I>&gt;<i>
+</I>&gt;<i>    Refactor the package_detail template because of the comment fw.
+</I>&gt;<i>
+</I>&gt;<i>    It was needed be cause the earlier implementation/changing for  
+</I>&gt;<i> comments
+</I>&gt;<i>    framework usage contained some BUGS that were corrected, like the  
+</I>&gt;<i> following
+</I>&gt;<i>    ones:
+</I>&gt;<i>
+</I>&gt;<i>    * comment.added -&gt; comment.submit_date
+</I>&gt;<i>    * comment.message -&gt; comment.comment
+</I>&gt;<i>    * the right alignment comes from broken HTML -&gt; just drop that  
+</I>&gt;<i> it's never closed
+</I>&gt;<i>    anyway
+</I>&gt;<i>
+</I>&gt;<i>    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>
+1. The current comments implementation should be removed, if the  
+comments framework is to be used instead.
+2. The first two &quot;bugs&quot; you mention are not bugs at all, considering  
+they are caused by the change to use the comments framework.
+3. The layout is broken and doesn't even resemble the previous one.
+4. Please add a proper &quot;comment submitted&quot; template. I'd prefer it the  
+current behavior was conserved, i.e. redirect to the package's page.
+
+&gt;<i> commit 68b78ae0e6ae30f3eacdda64ac0ab6e6b011726a
+</I>&gt;<i> Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>&gt;<i> Date:   Thu Dec 10 21:38:45 2009 +0100
+</I>&gt;<i>
+</I>&gt;<i>    Change 'user' variable for 'pkg' variable in user detail template
+</I>&gt;<i>
+</I>&gt;<i>    It was needed because the previous implementation contained a  
+</I>&gt;<i> BUG, because the
+</I>&gt;<i>    So data was showing the data of the logged in user -- not the  
+</I>&gt;<i> data from the user
+</I>&gt;<i>    selected by the url
+</I>&gt;<i>
+</I>&gt;<i>    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+</I>
+While I understand the reason to rename the &quot;user&quot; variable, why did  
+you rename it to &quot;pkg&quot;? It makes no sense to call a user &quot;pkg.&quot; Also,  
+as mentioned above, it's only a bug because of your changes to the  
+template. It was not a bug previously. This wouldn't be a problem if  
+you had tested your changes and didn't push them out so frequently.
+
+Please keep in mind that quality is much more important than quantity.
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/aur2-dev/attachments/20091220/5d93674f/attachment.html">https://lists.berlios.de/pipermail/aur2-dev/attachments/20091220/5d93674f/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000167.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 9b70f1b464c6f19cee9d790a59412472ad756221
+</A></li>
+	<LI>Next message: <A HREF="000170.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 52597924c24f8f4c9567e0a09a41cf7eb982e1a2
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#182">[ date ]</a>
+              <a href="thread.html#182">[ thread ]</a>
+              <a href="subject.html#182">[ subject ]</a>
+              <a href="author.html#182">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

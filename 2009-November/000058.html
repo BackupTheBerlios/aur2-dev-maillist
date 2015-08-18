@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH 2/2] Add voting for packages.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%202/2%5D%20Add%20voting%20for%20packages.&In-Reply-To=%3Cd83f7a8d0911261035i419c4dd7o2cc7d0b5417421f8%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000057.html">
+   <LINK REL="Next"  HREF="000059.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH 2/2] Add voting for packages.</H1>
+    <B>Ismael Carnales</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%202/2%5D%20Add%20voting%20for%20packages.&In-Reply-To=%3Cd83f7a8d0911261035i419c4dd7o2cc7d0b5417421f8%40mail.gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH 2/2] Add voting for packages.">icarnales at gmail.com
+       </A><BR>
+    <I>Thu Nov 26 19:35:21 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000057.html">[aur2-dev] [PATCH 2/2] Add voting for packages.
+</A></li>
+        <LI>Next message: <A HREF="000059.html">[aur2-dev] [PATCH 2/2] Add voting for packages.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#58">[ date ]</a>
+              <a href="thread.html#58">[ thread ]</a>
+              <a href="subject.html#58">[ subject ]</a>
+              <a href="author.html#58">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Here's a sample traceback:
+</I>&gt;<i>
+</I>&gt;<i> FAIL: test_search_view (aur.tests.AurViewTests)
+</I>&gt;<i> ----------------------------------------------------------------------
+</I>&gt;<i> Traceback (most recent call last):
+</I>&gt;<i> &#160;File &quot;/home/repo/arch/aur2/archlinux/aur/tests.py&quot;, line 29, in test_search_view
+</I>&gt;<i> &#160; &#160;'slug': 'unique_package',
+</I>&gt;<i> &#160;File &quot;/usr/lib/python2.6/site-packages/django/test/testcases.py&quot;, line 315, in assertRedirects
+</I>&gt;<i> &#160; &#160;(path, redirect_response.status_code, target_status_code))
+</I>&gt;<i> AssertionError: Couldn't retrieve redirection page '/package/unique_package/': response code was 404 (expected 200)
+</I>&gt;<i>
+</I>
+I had and have the same issues with 2 tests of the aur app that needs
+data form json fixtures. Apparently the fixtures are not getting
+loaded when running the tests and that makes them fail.
+
+Sebnow: do you have this tests errors too?
+
+bye!
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000057.html">[aur2-dev] [PATCH 2/2] Add voting for packages.
+</A></li>
+	<LI>Next message: <A HREF="000059.html">[aur2-dev] [PATCH 2/2] Add voting for packages.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#58">[ date ]</a>
+              <a href="thread.html#58">[ thread ]</a>
+              <a href="subject.html#58">[ subject ]</a>
+              <a href="author.html#58">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

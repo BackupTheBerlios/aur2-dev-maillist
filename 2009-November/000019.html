@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH] Replace tabs by spaces in urls.py
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Replace%20tabs%20by%20spaces%20in%20urls.py&In-Reply-To=%3C1258243059-7586-1-git-send-email-icarnales%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000018.html">
+   <LINK REL="Next"  HREF="000020.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH] Replace tabs by spaces in urls.py</H1>
+    <B>Ismael Carnales</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Replace%20tabs%20by%20spaces%20in%20urls.py&In-Reply-To=%3C1258243059-7586-1-git-send-email-icarnales%40gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH] Replace tabs by spaces in urls.py">icarnales at gmail.com
+       </A><BR>
+    <I>Sun Nov 15 00:57:39 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000018.html">[aur2-dev] [PATCH] Move default settings to local settings
+</A></li>
+        <LI>Next message: <A HREF="000020.html">[aur2-dev] [PATCH] Replace tabs by spaces in urls.py
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#19">[ date ]</a>
+              <a href="thread.html#19">[ thread ]</a>
+              <a href="subject.html#19">[ subject ]</a>
+              <a href="author.html#19">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Signed-off-by: Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt;
+---
+ archlinux/urls.py |   10 +++++-----
+ 1 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/archlinux/urls.py b/archlinux/urls.py
+index e56fc75..de3a92d 100644
+--- a/archlinux/urls.py
++++ b/archlinux/urls.py
+@@ -12,8 +12,8 @@ urlpatterns = patterns('',
+ )
+ 
+ if settings.DEBUG == True:
+-	urlpatterns += patterns('',
+-		(r'^media/(.*)$', 'django.views.static.serve', {
+-		    'document_root': settings.MEDIA_ROOT
+-		})
+-	)
++    urlpatterns += patterns('',
++        (r'^media/(.*)$', 'django.views.static.serve', {
++            'document_root': settings.MEDIA_ROOT
++        })
++    )
+-- 
+1.6.5.2
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000018.html">[aur2-dev] [PATCH] Move default settings to local settings
+</A></li>
+	<LI>Next message: <A HREF="000020.html">[aur2-dev] [PATCH] Replace tabs by spaces in urls.py
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#19">[ date ]</a>
+              <a href="thread.html#19">[ thread ]</a>
+              <a href="subject.html#19">[ subject ]</a>
+              <a href="author.html#19">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

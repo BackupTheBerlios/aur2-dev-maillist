@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [PATCH] Remove single PKGBUILD uploading from aur forms
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Remove%20single%20PKGBUILD%20uploading%20from%20aur%20forms&In-Reply-To=%3C1259535247-6439-1-git-send-email-icarnales%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000133.html">
+   <LINK REL="Next"  HREF="000144.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [PATCH] Remove single PKGBUILD uploading from aur forms</H1>
+    <B>Ismael Carnales</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BPATCH%5D%20Remove%20single%20PKGBUILD%20uploading%20from%20aur%20forms&In-Reply-To=%3C1259535247-6439-1-git-send-email-icarnales%40gmail.com%3E"
+       TITLE="[aur2-dev] [PATCH] Remove single PKGBUILD uploading from aur forms">icarnales at gmail.com
+       </A><BR>
+    <I>Sun Nov 29 23:54:07 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000133.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	4195ceb53e6ed852e339a582a76949ae2368c4c5
+</A></li>
+        <LI>Next message: <A HREF="000144.html">[aur2-dev] [PATCH] Remove single PKGBUILD uploading from aur	forms
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#143">[ date ]</a>
+              <a href="thread.html#143">[ thread ]</a>
+              <a href="subject.html#143">[ subject ]</a>
+              <a href="author.html#143">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>---
+ archlinux/aur/forms.py |   32 ++++++--------------------------
+ 1 files changed, 6 insertions(+), 26 deletions(-)
+
+diff --git a/archlinux/aur/forms.py b/archlinux/aur/forms.py
+index e6d9e87..aca1cbf 100644
+--- a/archlinux/aur/forms.py
++++ b/archlinux/aur/forms.py
+@@ -97,8 +97,7 @@ class PackageField(forms.FileField):
+             pkg = PKGBUILD.Package(filename)
+         except:
+             raise forms.ValidationError(sys.exc_info()[1])
+-        # Add path of the tarball/PKGBUILD so we can reference in other
+-        # places
++        # Add path of the tarball so we can reference in other places
+         pkg['filename'] = filename
+         # Validate PKGBUILD
+         pkg.validate()
+@@ -190,18 +189,10 @@ class PackageSubmitForm(forms.Form):
+         for arch in pkg['arch']:
+             object = Architecture.objects.get(name=arch)
+             package.architectures.add(object)
+-        # Check if the uploaded file is a tar file or just a PKGBUILD
+-        try:
+-            tar = tarfile.open(pkg['filename'], &quot;r&quot;)
+-        except tarfile.ReadError:
+-            # It's not a tar file, so if must be a PKGBUILD since it validated
+-            is_tarfile = False
+-            pkgbuild = pkg['filename']
+-        else:
+-            is_tarfile = True
+-            tmpdir_sources = os.path.join(tmpdir, 'sources')
+-            tar.extractall(tmpdir_sources)
+-            pkgbuild = os.path.join(tmpdir_sources, pkg['name'], 'PKGBUILD')
++        tar = tarfile.open(pkg['filename'], &quot;r&quot;)
++        tmpdir_sources = os.path.join(tmpdir, 'sources')
++        tar.extractall(tmpdir_sources)
++        pkgbuild = os.path.join(tmpdir_sources, pkg['name'], 'PKGBUILD')
+         # Remove all sources. It's easier and cleaner this way.
+         if updating:
+             PackageFile.objects.filter(package=pkg['name']).delete()
+@@ -219,17 +210,6 @@ class PackageSubmitForm(forms.Form):
+         # Save tarball
+         # TODO: Tar the saved sources instead of using the uploaded one, for
+         # security
+-        if not is_tarfile:
+-            # We only have the PKGBUILD, so lets make a tarball
+-            try:
+-                tarball_path = os.path.join(tmpdir, pkg['name'] + '.tar.gz')
+-                tar = tarfile.open(str(tarball_path), &quot;w|gz&quot;)
+-                tar.add(pkg['filename'], '%s/PKGBUILD' % pkg['name'])
+-                tar.close()
+-                pkg['filename'] = os.path.join(tmpdir, '%s.tar.gz' % pkg['name'])
+-            except:
+-                transaction.rollback()
+-                raise
+         fp = File(open(pkg['filename'], &quot;rb&quot;))
+         package.tarball.save(os.path.join('%(name)s', os.path.basename(pkg['filename'])), fp)
+         fp.close()
+@@ -239,7 +219,7 @@ class PackageSubmitForm(forms.Form):
+             source = PackageFile(package=package)
+             # If it's a local file, save to disk, otherwise record as url
+             source_file = os.path.join(tmpdir_sources, package.name, source_filename)
+-            if is_tarfile and os.path.exists(source_file):
++            if os.path.exists(source_file):
+                 fp = File(open(source_file, &quot;r&quot;))
+                 source.filename.save('%(name)s/sources/' + source_filename, fp)
+                 fp.close()
+-- 
+1.6.5.2
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000133.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 	4195ceb53e6ed852e339a582a76949ae2368c4c5
+</A></li>
+	<LI>Next message: <A HREF="000144.html">[aur2-dev] [PATCH] Remove single PKGBUILD uploading from aur	forms
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#143">[ date ]</a>
+              <a href="thread.html#143">[ thread ]</a>
+              <a href="subject.html#143">[ subject ]</a>
+              <a href="author.html#143">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

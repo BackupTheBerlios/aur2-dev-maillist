@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] &quot;Offtopic&quot;: development workflow
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%22Offtopic%22%3A%20development%20workflow&In-Reply-To=%3Cd83f7a8d0911271528gf87d34dl25489b226f1b999d%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000086.html">
+   <LINK REL="Next"  HREF="000087.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] &quot;Offtopic&quot;: development workflow</H1>
+    <B>Ismael Carnales</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%22Offtopic%22%3A%20development%20workflow&In-Reply-To=%3Cd83f7a8d0911271528gf87d34dl25489b226f1b999d%40mail.gmail.com%3E"
+       TITLE="[aur2-dev] &quot;Offtopic&quot;: development workflow">icarnales at gmail.com
+       </A><BR>
+    <I>Sat Nov 28 00:28:30 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000086.html">[aur2-dev] &quot;Offtopic&quot;: development workflow
+</A></li>
+        <LI>Next message: <A HREF="000087.html">[aur2-dev] &quot;Offtopic&quot;: development workflow
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#89">[ date ]</a>
+              <a href="thread.html#89">[ thread ]</a>
+              <a href="subject.html#89">[ subject ]</a>
+              <a href="author.html#89">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks for your reply.
+
+On Fri, Nov 27, 2009 at 8:57 PM, Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt; wrote:
+&gt;<i> On Fri, Nov 27, 2009 at 11:41 PM, Ismael Carnales &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">icarnales at gmail.com</A>&gt; wrote:
+</I>&gt;&gt;<i> Sorry for the slightly &quot;offtopic&quot; posting, but anyone can spare some
+</I>&gt;&gt;<i> time and tell me or point me to some resource about why is better
+</I>&gt;&gt;<i> using the send-paths workflow than the pull-from-here workflow? I
+</I>&gt;&gt;<i> mean, everytime I send a patch and it gets applied upstream then I get
+</I>&gt;&gt;<i> it back in my repo with other id (as it was applied and commited, not
+</I>&gt;&gt;<i> fetched and merged).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> What's the correct strategy for me a a non-commiter contributor to
+</I>&gt;&gt;<i> have my &quot;development&quot; repo published for other non-commiters to pull
+</I>&gt;&gt;<i> on? If I'm constantly rebasing it again upstream it doesn't work as a
+</I>&gt;&gt;<i> remote for any other person.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I hope someone finds the time to talk about this issue. Thanks, bye!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> P.S: I'm new to git, maybe I'm missing something crucial ...
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> aur2-dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">aur2-dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">https://lists.berlios.de/mailman/listinfo/aur2-dev</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> You can set up your repository and say it to me after &#160;your patch was
+</I>&gt;<i> agreed, but I think it's a good way to send it to the developer
+</I>&gt;<i> mailing list as inline text with git-send-email, because it's easy to
+</I>&gt;<i> review them for others to quote your patches, so if your patch was
+</I>&gt;<i> agreed, you can say 'You applied in your branch' and point the desired
+</I>&gt;<i> URL/Repository, and I will pull them before pushing, after your
+</I>&gt;<i> pulling request e.g.
+</I>
+This is the way I'm used to contributing to scrapy (managed with hg),
+I work in a patch queue, on top of a clone of the mine repo, when I'm
+finished I send the patch for reviewing and if it's ok I apply it into
+my clone and then the commiters pull from mine and push to the &quot;main&quot;
+repo.
+
+I'll try to send the patchs by email and pull requests, (I just
+discovered git request-pull wich outputs a nice log of changes) this
+way history is preserved and I get the same changesets when the
+patches are applied upstream.
+
+&gt;<i>
+</I>&gt;<i> Other developers do so too, just see the pacman project, or git
+</I>&gt;<i> project, or other projects on the <A HREF="http://repo.or.cz/">http://repo.or.cz/</A> site or on other
+</I>&gt;<i> git hosting sites.
+</I>&gt;<i>
+</I>&gt;<i> But otherwise in those projects where I contributed, I've never had my
+</I>&gt;<i> own repository, and it's not problem for me to handle in local these
+</I>&gt;<i> changes/rebasings/pullings/pushings, but you can do that direction,
+</I>&gt;<i> anyway, no problem for me.
+</I>&gt;<i>
+</I>&gt;<i> You can find it here some related hosting services:
+</I>&gt;<i> <A HREF="http://git.or.cz/gitwiki/GitHosting">http://git.or.cz/gitwiki/GitHosting</A>
+</I>
+Thanks, I already have a fork on github, <A HREF="http://github.com/void/aur2">http://github.com/void/aur2</A>
+with the master branch following upstream and a new voting branch with
+the patch from Chris and some patches of mine on top, so I can follow
+that work in parallel.
+
+&gt;<i>
+</I>&gt;<i> Best Regards,
+</I>&gt;<i> Laszlo Papp
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> aur2-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">aur2-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">https://lists.berlios.de/mailman/listinfo/aur2-dev</A>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000086.html">[aur2-dev] &quot;Offtopic&quot;: development workflow
+</A></li>
+	<LI>Next message: <A HREF="000087.html">[aur2-dev] &quot;Offtopic&quot;: development workflow
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#89">[ date ]</a>
+              <a href="thread.html#89">[ thread ]</a>
+              <a href="subject.html#89">[ subject ]</a>
+              <a href="author.html#89">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

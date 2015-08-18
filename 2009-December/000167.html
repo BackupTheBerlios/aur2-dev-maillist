@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 9b70f1b464c6f19cee9d790a59412472ad756221
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%209b70f1b464c6f19cee9d790a59412472ad756221&In-Reply-To=%3C200912102342.nBANgslA015641%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000180.html">
+   <LINK REL="Next"  HREF="000182.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 9b70f1b464c6f19cee9d790a59412472ad756221</H1>
+    <B>djszapi at archlinux.us</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%209b70f1b464c6f19cee9d790a59412472ad756221&In-Reply-To=%3C200912102342.nBANgslA015641%40sheep.berlios.de%3E"
+       TITLE="[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 9b70f1b464c6f19cee9d790a59412472ad756221">djszapi at archlinux.us
+       </A><BR>
+    <I>Fri Dec 11 00:42:54 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000180.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. d8f40d6975cc5daab9953fe92fa906b9a08339ec
+</A></li>
+        <LI>Next message: <A HREF="000182.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 9b70f1b464c6f19cee9d790a59412472ad756221
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#167">[ date ]</a>
+              <a href="thread.html#167">[ thread ]</a>
+              <a href="subject.html#167">[ subject ]</a>
+              <a href="author.html#167">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project &quot;Project aur2 at BerliOS&quot;.
+
+The branch, master has been updated
+       via  9b70f1b464c6f19cee9d790a59412472ad756221 (commit)
+       via  821d0e17ec6a92e871d53372bdb5d512be9e2b17 (commit)
+       via  9b62cef3f9a87d7f8809fc738ee955abc9cb53d2 (commit)
+       via  68b78ae0e6ae30f3eacdda64ac0ab6e6b011726a (commit)
+       via  486d480286b24606ec517f4d7f88282d862075ed (commit)
+      from  d8f40d6975cc5daab9953fe92fa906b9a08339ec (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit 9b70f1b464c6f19cee9d790a59412472ad756221
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Thu Dec 10 22:56:38 2009 +0100
+
+    Fix the user's link on the package detail page for the user's profile
+    
+    This implementation a fix for the broken links, because earlier the reference
+    for the users who posted was '#', so for the current package detail view, which
+    isn't a wanted behaviour, so it was corrected with the right url usage, so the
+    link is for the desired profile of the user now.
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit 821d0e17ec6a92e871d53372bdb5d512be9e2b17
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Thu Dec 10 22:52:18 2009 +0100
+
+    Delete the object_detail/info_dict from urls.py
+    
+    These informations/implementation are unneccesary, because refactoring
+    happened in this regard.
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit 9b62cef3f9a87d7f8809fc738ee955abc9cb53d2
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Thu Dec 10 22:05:10 2009 +0100
+
+    Refactor the package_detail template because of the comment fw.
+    
+    It was needed be cause the earlier implementation/changing for comments
+    framework usage contained some BUGS that were corrected, like the following
+    ones:
+    
+    * comment.added -&gt; comment.submit_date
+    * comment.message -&gt; comment.comment
+    * the right alignment comes from broken HTML -&gt; just drop that it's never closed
+    anyway
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit 68b78ae0e6ae30f3eacdda64ac0ab6e6b011726a
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Thu Dec 10 21:38:45 2009 +0100
+
+    Change 'user' variable for 'pkg' variable in user detail template
+    
+    It was needed because the previous implementation contained a BUG, because the
+    So data was showing the data of the logged in user -- not the data from the user
+    selected by the url
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit 486d480286b24606ec517f4d7f88282d862075ed
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Thu Dec 10 21:19:40 2009 +0100
+
+    Implement @login required decorator for user details
+    
+    The @login_required decorator should be used here (it redirects to the login
+    page - much more useful than a simple warning message). It's not just an
+    attemption to replicate AUR functionality, but attempting to improve upon it.
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aurprofile/views.py                   |    7 ++++
+ archlinux/templates/aur/package_detail.html     |   42 ++++++++++++-----------
+ archlinux/templates/aurprofile/user_detail.html |   20 ++++-------
+ archlinux/urls.py                               |   10 +----
+ 4 files changed, 38 insertions(+), 41 deletions(-)
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000180.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. d8f40d6975cc5daab9953fe92fa906b9a08339ec
+</A></li>
+	<LI>Next message: <A HREF="000182.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 9b70f1b464c6f19cee9d790a59412472ad756221
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#167">[ date ]</a>
+              <a href="thread.html#167">[ thread ]</a>
+              <a href="subject.html#167">[ subject ]</a>
+              <a href="author.html#167">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>

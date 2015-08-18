@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 8c57bc6be8f5f27e91663915b5797f83a3849392
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/aur2-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%208c57bc6be8f5f27e91663915b5797f83a3849392&In-Reply-To=%3C200912050744.nB57iBQv026921%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000158.html">
+   <LINK REL="Next"  HREF="000162.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 8c57bc6be8f5f27e91663915b5797f83a3849392</H1>
+    <B>djszapi at archlinux.us</B> 
+    <A HREF="mailto:aur2-dev%40lists.berlios.de?Subject=Re%3A%20%5Baur2-dev%5D%20%5BGit%5DProject%20aur2%20at%20BerliOS%20branch%2C%20master%2C%0A%09updated.%208c57bc6be8f5f27e91663915b5797f83a3849392&In-Reply-To=%3C200912050744.nB57iBQv026921%40sheep.berlios.de%3E"
+       TITLE="[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. 8c57bc6be8f5f27e91663915b5797f83a3849392">djszapi at archlinux.us
+       </A><BR>
+    <I>Sat Dec  5 08:44:11 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000158.html">[aur2-dev] [PATCH] Fix sorting by &quot;updated&quot; field in search	view.
+</A></li>
+        <LI>Next message: <A HREF="000162.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. b0b76a778df14be6c6e016e3d891a2521647ac16
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#157">[ date ]</a>
+              <a href="thread.html#157">[ thread ]</a>
+              <a href="subject.html#157">[ subject ]</a>
+              <a href="author.html#157">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>This is an automated email from the git hooks/post-receive script. It was
+generated because a ref change was pushed to the repository containing
+the project &quot;Project aur2 at BerliOS&quot;.
+
+The branch, master has been updated
+       via  8c57bc6be8f5f27e91663915b5797f83a3849392 (commit)
+       via  9588aae25316e0128e8a62b825cadfb0b48be1b0 (commit)
+       via  ce77e851ea6c543c69e615e29cd3d8d0fb976feb (commit)
+       via  0b8854faf3f22b4e820f1b22a520186ba91b5f77 (commit)
+       via  9a2e15558661ee9bc1d7f1245d017a05790fccc2 (commit)
+       via  484a0a23a8768af276705865b88ea7c1e7852520 (commit)
+      from  7987db5d828d2e09b731bd441de17c28785d3d65 (commit)
+
+Those revisions listed above that are new to this repository have
+not appeared on any other notification email; so we list those
+revisions in full, below.
+
+- Log -----------------------------------------------------------------
+commit 8c57bc6be8f5f27e91663915b5797f83a3849392
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sat Dec 5 08:37:20 2009 +0100
+
+    Delete AurRegistrationForm reference from settings.py
+    
+    There is no need for passing this form class in the urls.py, because it's the
+    same as the default one.
+    
+    The aurprofile.forms import was deleted too from urls.py, because it's not used
+    after the cleanup
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit 9588aae25316e0128e8a62b825cadfb0b48be1b0
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sat Dec 5 08:12:53 2009 +0100
+
+    Change the session expiration data from 0 to ~ 1 year
+    
+    The only requirement was here not to be 0, because it will expire automatically
+    when the browser is closed, so one year period was choosed, which should be
+    enough for it here.
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit ce77e851ea6c543c69e615e29cd3d8d0fb976feb
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sat Dec 5 08:00:03 2009 +0100
+
+    Delete AuthenticationRememberMeForm reference from settings.py
+    
+    There is no need for passing this form class in the urls.py, because it's the
+    same as the default one.
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit 0b8854faf3f22b4e820f1b22a520186ba91b5f77
+Author: Sebastian Nowicki &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">sebnow at gmail.com</A>&gt;
+Date:   Sat Dec 5 14:31:33 2009 +0800
+
+    Fix sorting by &quot;updated&quot; field in search view.
+    
+    Clicking on &quot;Last Updated&quot; in the search view attempted to sort by a
+    &quot;lastupdated&quot; field which does not exist. It now sorts by the &quot;updated&quot;
+    field.
+    
+    Signed-off-by: Sebastian Nowicki &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">sebnow at gmail.com</A>&gt;
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit 9a2e15558661ee9bc1d7f1245d017a05790fccc2
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sat Dec 5 07:40:52 2009 +0100
+
+    Delete some unneccesary space characters which is against the PEP8 rules
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+commit 484a0a23a8768af276705865b88ea7c1e7852520
+Author: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+Date:   Sat Dec 5 07:35:07 2009 +0100
+
+    Change AuthenticationRememberMeForm for form_class in the related form
+    
+    It's worth to use form&#194;&#160;=&#194;&#160;form_class(data&#194;&#160;=&#194;&#160;request.POST) instead of the
+    hardcoded form&#194;&#160;=&#194;&#160;AuthenticationRememberMeForm&#194;&#160;(data&#194;&#160;=&#194;&#160;request.POST,) solution.
+    
+    Signed-off-by: Laszlo Papp &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/aur2-dev">djszapi at archlinux.us</A>&gt;
+
+-----------------------------------------------------------------------
+
+Summary of changes:
+ archlinux/aurprofile/forms.py       |    6 +++---
+ archlinux/aurprofile/views.py       |   22 +++++++++++-----------
+ archlinux/templates/aur/search.html |    2 +-
+ archlinux/urls.py                   |    7 ++-----
+ 4 files changed, 17 insertions(+), 20 deletions(-)
+
+
+hooks/post-receive
+-- 
+Project aur2 at BerliOS
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000158.html">[aur2-dev] [PATCH] Fix sorting by &quot;updated&quot; field in search	view.
+</A></li>
+	<LI>Next message: <A HREF="000162.html">[aur2-dev] [Git]Project aur2 at BerliOS branch, master,	updated. b0b76a778df14be6c6e016e3d891a2521647ac16
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#157">[ date ]</a>
+              <a href="thread.html#157">[ thread ]</a>
+              <a href="subject.html#157">[ subject ]</a>
+              <a href="author.html#157">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/aur2-dev">More information about the aur2-dev
+mailing list</a><br>
+</body></html>
